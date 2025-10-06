@@ -1,0 +1,79 @@
+version: '3.8'
+
+services:
+  web_qaponline:
+    build:
+      context: .
+      dockerfile: Dockerfile.php
+    container_name: qaponline_web
+    restart: always
+    ports:
+      - "${WEB_PORT:-8080}:80"
+    volumes:
+      - .:/var/www/html
+      - ./php.ini:/usr/local/etc/php/php.ini
+    environment:
+      TZ: ${TZ:-America/Bogota}
+      APACHE_DOCUMENT_ROOT: /var/www/html
+    depends_on:
+      - mysql_qaponline
+    networks:
+      - qaponline_network
+
+  mysql_qaponline:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: qaponline_mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      TZ: ${TZ}
+    ports:
+      - "${MYSQL_PORT}:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./logs:/var/log/mysql
+    networks:
+      - qaponline_network
+    command: >
+      --character-set-server=utf8
+      --collation-server=utf8_unicode_ci
+      --default-authentication-plugin=mysql_native_password
+      --max_connections=${MAX_CONNECTIONS}
+      --innodb_buffer_pool_size=${INNODB_BUFFER_POOL_SIZE}
+      --query_cache_size=${QUERY_CACHE_SIZE}
+      --tmp_table_size=128M
+      --max_heap_table_size=128M
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:5.2.1
+    container_name: qaponline_phpmyadmin
+    restart: always
+    environment:
+      PMA_HOST: mysql_qaponline
+      PMA_PORT: 3306
+      PMA_USER: ${MYSQL_USER}
+      PMA_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    ports:
+      - "8081:80"
+    depends_on:
+      - mysql_qaponline
+    networks:
+      - qaponline_network
+
+volumes:
+  mysql_data:
+
+networks:
+  qaponline_network:
+    driver: bridge

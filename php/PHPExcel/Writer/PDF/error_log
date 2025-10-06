@@ -1,0 +1,210 @@
+[03-Jun-2024 20:11:35 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/tcPDF.php on line 30
+[03-Jun-2024 20:28:24 UTC] PHP Fatal error:  Class 'PHPExcel_Writer_HTML' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/Core.php on line 37
+[03-Jun-2024 23:09:52 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/mPDF.php on line 30
+[04-Jun-2024 06:29:04 UTC] PHP Fatal error:  Uncaught exception 'DOMPDF_Exception' with message 'An input file is required (i.e. input_file _GET variable).' in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php:199
+Stack trace:
+#0 {main}
+  thrown in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php on line 199
+[03-Jul-2024 10:08:37 UTC] PHP Fatal error:  Uncaught exception 'DOMPDF_Exception' with message 'An input file is required (i.e. input_file _GET variable).' in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php:199
+Stack trace:
+#0 {main}
+  thrown in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php on line 199
+[03-Jul-2024 11:50:37 UTC] PHP Fatal error:  Uncaught exception 'DOMPDF_Exception' with message 'An input file is required (i.e. input_file _GET variable).' in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php:199
+Stack trace:
+#0 {main}
+  thrown in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php on line 199
+[05-Jul-2024 10:16:23 UTC] PHP Fatal error:  Uncaught exception 'DOMPDF_Exception' with message 'An input file is required (i.e. input_file _GET variable).' in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php:199
+Stack trace:
+#0 {main}
+  thrown in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php on line 199
+[07-Jul-2024 01:36:13 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/tcPDF.php on line 30
+[07-Jul-2024 04:47:28 UTC] PHP Fatal error:  Class 'PHPExcel_Writer_HTML' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/Core.php on line 37
+[07-Jul-2024 05:08:10 UTC] PHP Fatal error:  Class 'PHPExcel_Writer_HTML' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/Core.php on line 37
+[07-Jul-2024 06:13:55 UTC] PHP Fatal error:  Class 'PHPExcel_Writer_HTML' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/Core.php on line 37
+[07-Jul-2024 12:34:08 UTC] PHP Fatal error:  Class 'PHPExcel_Writer_HTML' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/Core.php on line 37
+[07-Jul-2024 13:59:39 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/tcPDF.php on line 30
+[07-Jul-2024 15:34:06 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/tcPDF.php on line 30
+[07-Jul-2024 16:18:41 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/tcPDF.php on line 30
+[07-Jul-2024 19:55:37 UTC] PHP Fatal error:  Class 'PHPExcel_Writer_HTML' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/Core.php on line 37
+[07-Jul-2024 20:02:49 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/mPDF.php on line 30
+[07-Jul-2024 21:31:38 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/tcPDF.php on line 30
+[08-Jul-2024 01:26:32 UTC] PHP Fatal error:  Uncaught exception 'DOMPDF_Exception' with message 'An input file is required (i.e. input_file _GET variable).' in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php:199
+Stack trace:
+#0 {main}
+  thrown in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php on line 199
+[08-Jul-2024 05:02:42 UTC] PHP Fatal error:  Uncaught exception 'DOMPDF_Exception' with message 'An input file is required (i.e. input_file _GET variable).' in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php:199
+Stack trace:
+#0 {main}
+  thrown in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php on line 199
+[13-Jul-2024 19:01:32 UTC] PHP Fatal error:  Class 'PHPExcel_Writer_HTML' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/Core.php on line 37
+[15-Jul-2024 10:23:11 UTC] PHP Fatal error:  Uncaught exception 'DOMPDF_Exception' with message 'An input file is required (i.e. input_file _GET variable).' in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php:199
+Stack trace:
+#0 {main}
+  thrown in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php on line 199
+[15-Jul-2024 18:39:25 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/mPDF.php on line 30
+[16-Jul-2024 10:27:15 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/tcPDF.php on line 30
+[17-Jul-2024 10:54:53 UTC] PHP Fatal error:  Uncaught exception 'DOMPDF_Exception' with message 'An input file is required (i.e. input_file _GET variable).' in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php:199
+Stack trace:
+#0 {main}
+  thrown in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php on line 199
+[17-Jul-2024 12:15:47 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/mPDF.php on line 30
+[20-Jul-2024 18:04:15 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/mPDF.php on line 30
+[21-Jul-2024 01:53:01 UTC] PHP Fatal error:  Uncaught exception 'DOMPDF_Exception' with message 'An input file is required (i.e. input_file _GET variable).' in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php:199
+Stack trace:
+#0 {main}
+  thrown in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php on line 199
+[26-Jul-2024 22:14:36 UTC] PHP Fatal error:  Class 'PHPExcel_Writer_HTML' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/Core.php on line 37
+[28-Jul-2024 02:51:19 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/mPDF.php on line 30
+[28-Jul-2024 16:50:51 UTC] PHP Fatal error:  Class 'PHPExcel_Writer_HTML' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/Core.php on line 37
+[01-Aug-2024 03:39:33 UTC] PHP Fatal error:  Class 'PHPExcel_Writer_HTML' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/Core.php on line 37
+[06-Aug-2024 01:22:55 UTC] PHP Fatal error:  Uncaught exception 'DOMPDF_Exception' with message 'An input file is required (i.e. input_file _GET variable).' in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php:199
+Stack trace:
+#0 {main}
+  thrown in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php on line 199
+[08-Aug-2024 07:34:41 UTC] PHP Fatal error:  Uncaught exception 'DOMPDF_Exception' with message 'An input file is required (i.e. input_file _GET variable).' in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php:199
+Stack trace:
+#0 {main}
+  thrown in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php on line 199
+[08-Aug-2024 17:36:11 UTC] PHP Fatal error:  Uncaught exception 'DOMPDF_Exception' with message 'An input file is required (i.e. input_file _GET variable).' in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php:199
+Stack trace:
+#0 {main}
+  thrown in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php on line 199
+[08-Aug-2024 20:42:07 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/mPDF.php on line 30
+[08-Aug-2024 23:09:32 UTC] PHP Fatal error:  Class 'PHPExcel_Writer_HTML' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/Core.php on line 37
+[09-Aug-2024 02:27:20 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/tcPDF.php on line 30
+[22-Aug-2024 17:10:57 UTC] PHP Fatal error:  Class 'PHPExcel_Writer_HTML' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/Core.php on line 37
+[01-Sep-2024 10:23:29 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/tcPDF.php on line 30
+[03-Sep-2024 21:35:11 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/tcPDF.php on line 30
+[09-Sep-2024 07:41:31 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/tcPDF.php on line 30
+[09-Sep-2024 11:22:25 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/mPDF.php on line 30
+[09-Sep-2024 14:44:18 UTC] PHP Fatal error:  Uncaught exception 'DOMPDF_Exception' with message 'An input file is required (i.e. input_file _GET variable).' in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php:199
+Stack trace:
+#0 {main}
+  thrown in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php on line 199
+[09-Sep-2024 18:13:45 UTC] PHP Fatal error:  Class 'PHPExcel_Writer_HTML' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/Core.php on line 37
+[12-Oct-2024 13:17:01 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/tcPDF.php on line 30
+[12-Oct-2024 21:23:39 UTC] PHP Fatal error:  Class 'PHPExcel_Writer_HTML' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/Core.php on line 37
+[12-Oct-2024 23:11:26 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/mPDF.php on line 30
+[13-Oct-2024 00:06:03 UTC] PHP Fatal error:  Uncaught exception 'DOMPDF_Exception' with message 'An input file is required (i.e. input_file _GET variable).' in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php:199
+Stack trace:
+#0 {main}
+  thrown in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php on line 199
+[14-Oct-2024 17:46:13 UTC] PHP Fatal error:  Uncaught exception 'DOMPDF_Exception' with message 'An input file is required (i.e. input_file _GET variable).' in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php:199
+Stack trace:
+#0 {main}
+  thrown in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php on line 199
+[15-Oct-2024 02:31:45 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/mPDF.php on line 30
+[16-Oct-2024 22:49:39 UTC] PHP Fatal error:  Class 'PHPExcel_Writer_HTML' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/Core.php on line 37
+[19-Oct-2024 12:52:31 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/tcPDF.php on line 30
+[15-Nov-2024 09:15:12 UTC] PHP Fatal error:  Uncaught exception 'DOMPDF_Exception' with message 'An input file is required (i.e. input_file _GET variable).' in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php:199
+Stack trace:
+#0 {main}
+  thrown in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php on line 199
+[15-Nov-2024 14:24:25 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/tcPDF.php on line 30
+[15-Nov-2024 16:11:08 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/mPDF.php on line 30
+[15-Nov-2024 21:15:14 UTC] PHP Fatal error:  Class 'PHPExcel_Writer_HTML' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/Core.php on line 37
+[07-Dec-2024 14:28:39 UTC] PHP Fatal error:  Class 'PHPExcel_Writer_HTML' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/Core.php on line 37
+[15-Dec-2024 01:14:50 UTC] PHP Fatal error:  Uncaught exception 'DOMPDF_Exception' with message 'An input file is required (i.e. input_file _GET variable).' in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php:199
+Stack trace:
+#0 {main}
+  thrown in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php on line 199
+[15-Dec-2024 05:02:30 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/tcPDF.php on line 30
+[15-Dec-2024 06:55:31 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/mPDF.php on line 30
+[15-Dec-2024 10:38:48 UTC] PHP Fatal error:  Class 'PHPExcel_Writer_HTML' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/Core.php on line 37
+[12-Jan-2025 04:15:07 UTC] PHP Fatal error:  Class 'PHPExcel_Writer_HTML' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/Core.php on line 37
+[12-Jan-2025 13:28:06 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/tcPDF.php on line 30
+[12-Jan-2025 16:51:11 UTC] PHP Fatal error:  Uncaught exception 'DOMPDF_Exception' with message 'An input file is required (i.e. input_file _GET variable).' in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php:199
+Stack trace:
+#0 {main}
+  thrown in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php on line 199
+[12-Jan-2025 18:26:27 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/mPDF.php on line 30
+[15-Jan-2025 12:20:35 UTC] PHP Fatal error:  Uncaught exception 'DOMPDF_Exception' with message 'An input file is required (i.e. input_file _GET variable).' in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php:199
+Stack trace:
+#0 {main}
+  thrown in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php on line 199
+[15-Jan-2025 19:30:31 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/mPDF.php on line 30
+[17-Jan-2025 08:36:14 UTC] PHP Fatal error:  Class 'PHPExcel_Writer_HTML' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/Core.php on line 37
+[19-Jan-2025 13:17:06 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/tcPDF.php on line 30
+[20-Jan-2025 13:05:46 UTC] PHP Fatal error:  Class 'PHPExcel_Writer_HTML' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/Core.php on line 37
+[08-Feb-2025 20:33:08 UTC] PHP Fatal error:  Class 'PHPExcel_Writer_HTML' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/Core.php on line 37
+[11-Feb-2025 17:46:09 UTC] PHP Fatal error:  Class 'PHPExcel_Writer_HTML' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/Core.php on line 37
+[12-Feb-2025 17:18:51 UTC] PHP Fatal error:  Class 'PHPExcel_Writer_HTML' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/Core.php on line 37
+[13-Feb-2025 17:40:54 UTC] PHP Fatal error:  Class 'PHPExcel_Writer_HTML' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/Core.php on line 37
+[13-Feb-2025 22:40:26 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/tcPDF.php on line 30
+[14-Feb-2025 01:49:53 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/mPDF.php on line 30
+[14-Feb-2025 04:49:26 UTC] PHP Fatal error:  Uncaught exception 'DOMPDF_Exception' with message 'An input file is required (i.e. input_file _GET variable).' in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php:199
+Stack trace:
+#0 {main}
+  thrown in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php on line 199
+[09-Mar-2025 13:27:00 UTC] PHP Fatal error:  Class 'PHPExcel_Writer_HTML' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/Core.php on line 37
+[12-Mar-2025 14:45:40 UTC] PHP Fatal error:  Class 'PHPExcel_Writer_HTML' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/Core.php on line 37
+[12-Mar-2025 16:50:01 UTC] PHP Fatal error:  Uncaught exception 'DOMPDF_Exception' with message 'An input file is required (i.e. input_file _GET variable).' in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php:199
+Stack trace:
+#0 {main}
+  thrown in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php on line 199
+[12-Mar-2025 21:54:42 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/mPDF.php on line 30
+[12-Mar-2025 23:30:49 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/tcPDF.php on line 30
+[08-Apr-2025 22:12:52 UTC] PHP Fatal error:  Class 'PHPExcel_Writer_HTML' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/Core.php on line 37
+[08-Apr-2025 22:39:36 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/mPDF.php on line 30
+[09-Apr-2025 02:19:27 UTC] PHP Fatal error:  Uncaught exception 'DOMPDF_Exception' with message 'An input file is required (i.e. input_file _GET variable).' in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php:199
+Stack trace:
+#0 {main}
+  thrown in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php on line 199
+[09-Apr-2025 06:47:36 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/tcPDF.php on line 30
+[18-Apr-2025 12:46:44 UTC] PHP Fatal error:  Uncaught exception 'DOMPDF_Exception' with message 'An input file is required (i.e. input_file _GET variable).' in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php:199
+Stack trace:
+#0 {main}
+  thrown in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php on line 199
+[18-Apr-2025 20:08:35 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/mPDF.php on line 30
+[22-Apr-2025 17:36:03 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/tcPDF.php on line 30
+[23-Apr-2025 17:59:35 UTC] PHP Fatal error:  Class 'PHPExcel_Writer_HTML' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/Core.php on line 37
+[06-May-2025 20:14:37 UTC] PHP Fatal error:  Uncaught exception 'DOMPDF_Exception' with message 'An input file is required (i.e. input_file _GET variable).' in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php:199
+Stack trace:
+#0 {main}
+  thrown in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php on line 199
+[06-May-2025 21:28:02 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/mPDF.php on line 30
+[06-May-2025 22:47:18 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/tcPDF.php on line 30
+[07-May-2025 06:11:52 UTC] PHP Fatal error:  Class 'PHPExcel_Writer_HTML' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/Core.php on line 37
+[21-Jun-2025 13:50:22 UTC] PHP Fatal error:  Uncaught exception 'DOMPDF_Exception' with message 'An input file is required (i.e. input_file _GET variable).' in /home/quikappspane/public_html/qaponline.quik-apps.com.co/php/PHPExcel/Writer/PDF/dompdf.php:199
+Stack trace:
+#0 {main}
+  thrown in /home/quikappspane/public_html/qaponline.quik-apps.com.co/php/PHPExcel/Writer/PDF/dompdf.php on line 199
+[22-Jun-2025 01:41:51 UTC] PHP Fatal error:  Class 'PHPExcel_Writer_HTML' not found in /home/quikappspane/public_html/qaponline.quik-apps.com.co/php/PHPExcel/Writer/PDF/Core.php on line 37
+[25-Jun-2025 05:15:30 UTC] PHP Fatal error:  Class 'PHPExcel_Writer_HTML' not found in /home/quikappspane/public_html/qaponline.quik-apps.com.co/php/PHPExcel/Writer/PDF/Core.php on line 37
+[28-Jun-2025 13:40:16 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/quikappspane/public_html/qaponline.quik-apps.com.co/php/PHPExcel/Writer/PDF/tcPDF.php on line 30
+[01-Jul-2025 17:24:08 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/quikappspane/public_html/qaponline.quik-apps.com.co/php/PHPExcel/Writer/PDF/tcPDF.php on line 30
+[01-Jul-2025 23:12:02 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/quikappspane/public_html/qaponline.quik-apps.com.co/php/PHPExcel/Writer/PDF/mPDF.php on line 30
+[07-Jul-2025 22:46:17 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/quikappspane/public_html/qaponline.quik-apps.com.co/php/PHPExcel/Writer/PDF/tcPDF.php on line 30
+[08-Jul-2025 04:51:57 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/quikappspane/public_html/qaponline.quik-apps.com.co/php/PHPExcel/Writer/PDF/mPDF.php on line 30
+[11-Jul-2025 10:14:16 UTC] PHP Fatal error:  Uncaught exception 'DOMPDF_Exception' with message 'An input file is required (i.e. input_file _GET variable).' in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php:199
+Stack trace:
+#0 {main}
+  thrown in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php on line 199
+[14-Jul-2025 07:00:30 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/mPDF.php on line 30
+[17-Jul-2025 16:15:42 UTC] PHP Fatal error:  Uncaught exception 'DOMPDF_Exception' with message 'An input file is required (i.e. input_file _GET variable).' in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php:199
+Stack trace:
+#0 {main}
+  thrown in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/dompdf.php on line 199
+[27-Jul-2025 01:23:43 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/quikappspane/public_html/qaponline.quik-apps.com.co/php/PHPExcel/Writer/PDF/mPDF.php on line 30
+[29-Jul-2025 22:59:22 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/quikappspane/public_html/qaponline.quik-apps.com.co/php/PHPExcel/Writer/PDF/tcPDF.php on line 30
+[30-Jul-2025 04:58:18 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/quikappspane/public_html/qaponline.quik-apps.com.co/php/PHPExcel/Writer/PDF/mPDF.php on line 30
+[02-Aug-2025 08:34:30 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/quikappspane/public_html/qaponline.quik-apps.com.co/php/PHPExcel/Writer/PDF/mPDF.php on line 30
+[05-Aug-2025 12:06:56 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/quikappspane/public_html/qaponline.quik-apps.com.co/php/PHPExcel/Writer/PDF/mPDF.php on line 30
+[08-Aug-2025 09:16:18 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/quikappspane/public_html/qaponline.quik-apps.com.co/php/PHPExcel/Writer/PDF/tcPDF.php on line 30
+[08-Aug-2025 15:21:40 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/quikappspane/public_html/qaponline.quik-apps.com.co/php/PHPExcel/Writer/PDF/mPDF.php on line 30
+[11-Aug-2025 18:43:56 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/quikappspane/public_html/qaponline.quik-apps.com.co/php/PHPExcel/Writer/PDF/mPDF.php on line 30
+[14-Aug-2025 17:25:28 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/quikappspane/public_html/qaponline.quik-apps.com.co/php/PHPExcel/Writer/PDF/tcPDF.php on line 30
+[14-Aug-2025 23:30:09 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/quikappspane/public_html/qaponline.quik-apps.com.co/php/PHPExcel/Writer/PDF/mPDF.php on line 30
+[17-Aug-2025 21:10:52 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/quikappspane/public_html/qaponline.quik-apps.com.co/php/PHPExcel/Writer/PDF/tcPDF.php on line 30
+[18-Aug-2025 03:07:19 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/quikappspane/public_html/qaponline.quik-apps.com.co/php/PHPExcel/Writer/PDF/mPDF.php on line 30
+[21-Aug-2025 00:40:39 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/quikappspane/public_html/qaponline.quik-apps.com.co/php/PHPExcel/Writer/PDF/tcPDF.php on line 30
+[21-Aug-2025 06:45:22 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/quikappspane/public_html/qaponline.quik-apps.com.co/php/PHPExcel/Writer/PDF/mPDF.php on line 30
+[24-Aug-2025 11:00:59 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/quikappspane/public_html/qaponline.quik-apps.com.co/php/PHPExcel/Writer/PDF/mPDF.php on line 30
+[27-Aug-2025 08:59:12 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/quikappspane/public_html/qaponline.quik-apps.com.co/php/PHPExcel/Writer/PDF/tcPDF.php on line 30
+[27-Aug-2025 15:03:01 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/quikappspane/public_html/qaponline.quik-apps.com.co/php/PHPExcel/Writer/PDF/mPDF.php on line 30
+[30-Aug-2025 18:39:55 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/quikappspane/public_html/qaponline.quik-apps.com.co/php/PHPExcel/Writer/PDF/mPDF.php on line 30
+[02-Sep-2025 22:06:41 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/quikappspane/public_html/qaponline.quik-apps.com.co/php/PHPExcel/Writer/PDF/mPDF.php on line 30
+[05-Sep-2025 19:32:39 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/quikappspane/public_html/qaponline.quik-apps.com.co/php/PHPExcel/Writer/PDF/tcPDF.php on line 30
+[06-Sep-2025 01:42:01 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/quikappspane/public_html/qaponline.quik-apps.com.co/php/PHPExcel/Writer/PDF/mPDF.php on line 30
+[08-Sep-2025 23:51:56 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/quikappspane/public_html/qaponline.quik-apps.com.co/php/PHPExcel/Writer/PDF/tcPDF.php on line 30
+[09-Sep-2025 05:56:57 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/quikappspane/public_html/qaponline.quik-apps.com.co/php/PHPExcel/Writer/PDF/mPDF.php on line 30

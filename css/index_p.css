@@ -1,0 +1,57 @@
+
+@media (min-width: 768px) {
+	.bd-sidebar {
+		height: calc(100vh - 4rem);
+	}
+}
+
+
+.per-graund {
+    background: url(patologia-anatomica.jpg) no-repeat fixed center;
+    background-size: cover;
+}
+
+.reto {
+    max-width: 1100px;
+}
+
+.preguntaNula {
+    background-color: rgba(255, 0, 0, 0.336) !important;
+}
+
+
+.tablePCM .minwidth {
+    width: 80px !important;
+}
+
+ol {
+    list-style-position: outside !important;
+}
+
+#open_reports {
+	position: relative;
+	color: #ffffff;
+}
+
+/*
+#open_reports::before {
+	content: "Nuevo";
+	position: absolute;
+	top: -10px;
+	right: -5px;
+	display: inline-block;
+	padding: 2px 3px;
+	background-color: rgb(21 53 74);	
+	color: rgb(255, 255, 255);
+	font-size: 13px;
+	border-radius: 5px;
+}
+*/
+
+.contenedor_help h5 {
+    font-weight: 400;
+}
+
+.contenedor_help .row {
+    margin-bottom: 20px;
+}

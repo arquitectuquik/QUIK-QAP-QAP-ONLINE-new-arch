@@ -1,0 +1,929 @@
+📁 QAP
+│   📄 .DS_Store 14.0KB
+│   📄 .dockerignore 524B
+│   📄 .env 434B
+│   📄 .gitignore 135B
+│   📄 .htaccess 246B
+│   📄 .user.ini 618B
+│   📄 CHANGELOG.md 1.1KB
+│   📄 Docker-Setup-README.md 2.6KB
+│   📄 Dockerfile 459B
+│   📄 Dockerfile.php 4.1KB
+│   📄 apache-config.conf 26B
+│   📄 bk210725proyectolocal.zip 50.6MB
+│   📄 clic_for_52.php 4.4KB
+│   📄 cronograma.php 4.4KB
+│   📄 digitacion.php 4.9KB
+│   📄 docker-compose.yml 2.0KB
+│   📄 estructura.txt 44.7KB
+│   📄 generacion_vacia.php 1.1KB
+│   📄 index.php 5.5KB
+│   📄 index_a.php 5.8KB
+│   📄 index_p.php 6.5KB
+│   📄 index_prueba.php 21B
+│   📄 index_u.php 14.3KB
+│   📄 informe_fin_ronda.php 2.6KB
+│   📄 inner_resultado_1.php 345.2KB
+│   📄 inner_resultado_2.php 3.2KB
+│   📄 inner_resultado_3.php 27.3KB
+│   📄 listado_digitacion.php 6.3KB
+│   📄 login.php 4.8KB
+│   📄 mysql_compatibility.php 5.6KB
+│   📄 panel_control.php 113.9KB
+│   📄 php.ini 795B
+│   📄 querysConsenso.sql 8.1KB
+│   📄 reportes.php 4.8KB
+│   📄 reset_admin.php 279B
+│   📄 resultado.php 16.1KB
+│   📄 resultado_pat.php 3.4KB
+│   📄 resultado_pat_intra.php 2.5KB
+│   📄 see_fin_ronda.php 974B
+│   📄 tablePrinter.php 20.4KB
+│   📄 test_connection.php 5.2KB
+│   🐍 tree_generator.py 3.3KB
+│   📄 uroanalisis.sql 8.8KB
+│   📄 visor_documento.php 1.6KB
+├── 📁 apache
+│       📄 000-default.conf 671B
+├── 📁 chart
+│       📄 GoogleChart.min.js 64.5KB
+├── 📁 database
+│       📄 mysql.cnf 1.4KB
+│       📄 panequik_qaponline_v4.sql 50.0MB
+├── 📁 fontawesome
+│   │   📄 LICENSE.txt 1.5KB
+│   ├── 📁 js
+│   │       📄 all.js 1.1MB
+│   │       📄 all.min.js 1.1MB
+│   │       📄 brands.js 417.2KB
+│   │       📄 brands.min.js 410.2KB
+│   │       📄 fontawesome.js 65.7KB
+│   │       📄 fontawesome.min.js 30.2KB
+│   │       📄 regular.js 104.9KB
+│   │       📄 regular.min.js 101.2KB
+│   │       📄 solid.js 558.9KB
+│   │       📄 solid.min.js 546.3KB
+│   │       📄 v4-shims.js 16.8KB
+│   │       📄 v4-shims.min.js 14.4KB
+│   ├── 📁 less
+│   │       📄 _animated.less 297B
+│   │       📄 _bordered-pulled.less 422B
+│   │       📄 _core.less 291B
+│   │       📄 _fixed-width.less 119B
+│   │       📄 _icons.less 88.0KB
+│   │       📄 _larger.less 454B
+│   │       📄 _list.less 320B
+│   │       📄 _mixins.less 1.2KB
+│   │       📄 _rotated-flipped.less 711B
+│   │       📄 _screen-reader.less 118B
+│   │       📄 _shims.less 59.2KB
+│   │       📄 _stacked.less 478B
+│   │       📄 _variables.less 37.1KB
+│   │       📄 brands.less 574B
+│   │       📄 fontawesome.less 319B
+│   │       📄 regular.less 593B
+│   │       📄 solid.less 586B
+│   │       📄 v4-shims.less 50B
+│   ├── 📁 metadata
+│   │       📄 categories.yml 28.9KB
+│   │       📄 icons.json 2.8MB
+│   │       📄 icons.yml 228.5KB
+│   │       📄 shims.json 23.0KB
+│   │       📄 shims.yml 4.5KB
+│   │       📄 sponsors.yml 11.1KB
+│   ├── 📁 scss
+│   │       📄 _animated.scss 300B
+│   │       📄 _bordered-pulled.scss 428B
+│   │       📄 _core.scss 326B
+│   │       📄 _fixed-width.scss 121B
+│   │       📄 _icons.scss 104.9KB
+│   │       📄 _larger.scss 393B
+│   │       📄 _list.scss 322B
+│   │       📄 _mixins.scss 1.3KB
+│   │       📄 _rotated-flipped.scss 771B
+│   │       📄 _screen-reader.scss 130B
+│   │       📄 _shims.scss 63.6KB
+│   │       📄 _stacked.scss 505B
+│   │       📄 _variables.scss 34.7KB
+│   │       📄 brands.scss 566B
+│   │       📄 fontawesome.scss 247B
+│   │       📄 regular.scss 585B
+│   │       📄 solid.scss 578B
+│   │       📄 v4-shims.scss 38B
+│   ├── 📁 sprites
+│   │       📄 brands.svg 451.7KB
+│   │       📄 regular.svg 116.0KB
+│   │       📄 solid.svg 639.2KB
+│   └── 📁 webfonts
+│           📄 fa-brands-400.eot 131.2KB
+│           📄 fa-brands-400.svg 733.4KB
+│           📄 fa-brands-400.ttf 131.0KB
+│           📄 fa-brands-400.woff 85.0KB
+│           📄 fa-brands-400.woff2 72.5KB
+│           📄 fa-regular-400.eot 39.4KB
+│           📄 fa-regular-400.svg 137.0KB
+│           📄 fa-regular-400.ttf 39.1KB
+│           📄 fa-regular-400.woff 17.7KB
+│           📄 fa-regular-400.woff2 14.5KB
+│           📄 fa-solid-900.eot 204.1KB
+│           📄 fa-solid-900.svg 778.1KB
+│           📄 fa-solid-900.ttf 203.9KB
+│           📄 fa-solid-900.woff 99.8KB
+│           📄 fa-solid-900.woff2 77.2KB
+├── 📁 javascript
+│   │   📄 alertarDigitacion.js 2.4KB
+│   │   📄 automatizacion_qapfor07.js 3.0KB
+│   │   📄 bootstrap.min.js 35.1KB
+│   │   📄 clic_for_52.js 11.9KB
+│   │   📄 configProgramaPAT.js 14.9KB
+│   │   📄 cronograma.js 10.2KB
+│   │   📄 digitacion.js 6.4KB
+│   │   📄 eliminarModal.js 381B
+│   │   📄 eliminarOptions.js 305B
+│   │   📄 evaluarGeneracionVitros.js 713B
+│   │   📄 eventoAgregarFilaGestion.js 10.9KB
+│   │   📄 eventoAsignarFloat.js 527B
+│   │   📄 eventoCalcularCV.js 917B
+│   │   📄 eventoChangeAnalizador.js 1.4KB
+│   │   📄 eventoEliminarFila.js 3.2KB
+│   │   📄 front_fin_ronda.js 17.4KB
+│   │   📄 gestionSelectsSolicitud.js 436B
+│   │   📄 index_a.js 2.9KB
+│   │   📄 index_p.js 19.1KB
+│   │   📄 index_u.js 52.9KB
+│   │   📄 informe_fin_ronda.js 8.1KB
+│   │   📄 inner_resultado_1.js 25.5KB
+│   │   📄 jquery-3.3.1.js 337.1KB
+│   │   📄 jquery-3.3.1.min.js 84.9KB
+│   │   📄 jquery.dataTables.min.js 80.7KB
+│   │   📄 listado_digitacion.js 95.7KB
+│   │   📄 listarElementos.js 985B
+│   │   📄 listarSelect.js 677B
+│   │   📄 loaderPersonalizado.js 649B
+│   │   📄 login.js 2.5KB
+│   │   📄 moment.min.js 50.4KB
+│   │   📄 panel_control.js 515.9KB
+│   │   📄 reportes.js 33.6KB
+│   │   📄 resaltarCampoDigitacion.js 162B
+│   │   📄 resultado.js 72.7KB
+│   │   📄 resultado_pat.js 5.2KB
+│   │   📄 resultado_pat_intra.js 4.6KB
+│   │   📄 see_fin_ronda.js 423B
+│   │   📄 sweetalert.min.js 39.9KB
+│   │   📄 tipoProgramaCualitativo.js 447B
+│   │   📄 validarDigitacion.js 19.6KB
+│   │   📄 validarItemsSeleccionados.js 368B
+│   │   📄 validarSiJSON.js 258B
+│   └── 📁 uroanalisis
+│           📄 configResultadosVerdaderos.js 42.8KB
+│           📄 digitacion.js 12.4KB
+│           📄 validarDigitacion.js 3.1KB
+├── 📁 jquery
+│   │   📄 jquery-2.1.4.min.js 82.4KB
+│   │   📄 jquery-ui.min.js 234.8KB
+│   │   📄 jquery.alphanum.js 23.9KB
+│   │   📄 jquery.cookie.js 3.2KB
+│   │   📄 jquery.fancytree.js 219.3KB
+│   │   📄 jquery.form.min.js 14.7KB
+│   │   📄 jquery.mathjs.js 421.9KB
+│   │   📄 jquery.md5.js 9.6KB
+│   │   📄 jquery.numericInput.min.js 1.1KB
+│   │   📄 jquery.statusBox.js 7.7KB
+│   │   📄 jquery.table2excel.min.js 2.4KB
+│   │   📄 jquery.vegas.js 22.2KB
+│   └── 📁 jquery-ui
+│       │   📄 AUTHORS.txt 12.7KB
+│       │   📄 LICENSE.txt 1.8KB
+│       │   📄 index.html 24.0KB
+│       │   📄 jquery-ui.css 20.1KB
+│       │   📄 jquery-ui.js 220.2KB
+│       │   📄 jquery-ui.min.css 16.7KB
+│       │   📄 jquery-ui.min.js 102.7KB
+│       │   📄 jquery-ui.structure.css 3.0KB
+│       │   📄 jquery-ui.structure.min.css 2.1KB
+│       │   📄 jquery-ui.theme.css 17.4KB
+│       │   📄 jquery-ui.theme.min.css 13.5KB
+│       │   📄 package-lock.json 183.7KB
+│       │   📄 package.json 1.8KB
+│       ├── 📁 external
+│       │   └── 📁 jquery
+│       │           📄 jquery.js 297.3KB
+│       └── 📁 images
+│               📄 ui-icons_444444_256x240.png 6.8KB
+│               📄 ui-icons_555555_256x240.png 6.8KB
+│               📄 ui-icons_777620_256x240.png 4.4KB
+│               📄 ui-icons_777777_256x240.png 6.8KB
+│               📄 ui-icons_cc0000_256x240.png 4.4KB
+│               📄 ui-icons_ffffff_256x240.png 6.2KB
+├── 📁 jquery.passwordchange
+│   │   📄 bootstrap.min.js 31.1KB
+│   │   📄 data_handler.php 11.0KB
+│   │   📄 jquery-3.2.1.min.js 84.6KB
+│   │   📄 jquery.md5.js 9.6KB
+│   │   📄 jquery.passwordchange.js 13.8KB
+│   │   📄 jquery.statusBox.js 7.7KB
+│   └── 📁 bootstrap
+│       └── 📁 fonts
+│               📄 glyphicons-halflings-regular.eot 19.7KB
+│               📄 glyphicons-halflings-regular.svg 106.5KB
+│               📄 glyphicons-halflings-regular.ttf 44.3KB
+│               📄 glyphicons-halflings-regular.woff 22.9KB
+│               📄 glyphicons-halflings-regular.woff2 17.6KB
+├── 📁 logs
+│       📄 slow.log 37.8KB
+├── 📁 passwordRecovery
+│   │   📄 .htaccess 495B
+│   │   📄 emailForm.php 2.7KB
+│   │   📄 index.php 1.3KB
+│   │   📄 passwordForm.php 2.9KB
+│   ├── 📁 javascript
+│   │       📄 emailForm.js 6.8KB
+│   │       📄 passwordForm.js 5.8KB
+│   ├── 📁 jquery
+│   │       📄 bootstrap.js 70.4KB
+│   │       📄 jquery-3.2.1.min.js 84.6KB
+│   │       📄 jquery-ui.min.js 247.7KB
+│   │       📄 jquery.cookie.js 3.2KB
+│   │       📄 jquery.md5.js 9.6KB
+│   │       📄 jquery.statusBox.js 7.7KB
+│   │       📄 moment.min.js 50.3KB
+│   └── 📁 php
+│       │   📄 passwordRecovery.php 18.3KB
+│       └── 📁 PHPMailer
+│           │   📄 PHPMailerAutoload.php 1.7KB
+│           │   📄 class.phpmailer.php 147.2KB
+│           │   📄 class.phpmaileroauth.php 7.2KB
+│           │   📄 class.phpmaileroauthgoogle.php 2.5KB
+│           │   📄 class.pop3.php 11.1KB
+│           │   📄 class.smtp.php 43.0KB
+│           │   📄 get_oauth_token.php 5.1KB
+│           ├── 📁 examples
+│           │   │   📄 DKIM.phps 1.3KB
+│           │   │   📄 code_generator.phps 26.8KB
+│           │   │   📄 contactform.phps 2.4KB
+│           │   │   📄 contents.html 662B
+│           │   │   📄 contentsutf8.html 929B
+│           │   │   📄 exceptions.phps 1.4KB
+│           │   │   📄 gmail.phps 2.1KB
+│           │   │   📄 gmail_xoauth.phps 2.6KB
+│           │   │   📄 index.html 6.2KB
+│           │   │   📄 mail.phps 1.0KB
+│           │   │   📄 mailing_list.phps 2.2KB
+│           │   │   📄 pop_before_smtp.phps 2.1KB
+│           │   │   📄 send_file_upload.phps 1.6KB
+│           │   │   📄 send_multiple_file_upload.phps 1.6KB
+│           │   │   📄 sendmail.phps 1.1KB
+│           │   │   📄 signed-mail.phps 4.1KB
+│           │   │   📄 smtp.phps 1.8KB
+│           │   │   📄 smtp_check.phps 1.9KB
+│           │   │   📄 smtp_no_auth.phps 1.7KB
+│           │   │   📄 ssl_options.phps 2.0KB
+│           │   ├── 📁 images
+│           │   │       📄 phpmailer.png 5.7KB
+│           │   │       📄 phpmailer_mini.png 1.8KB
+│           │   ├── 📁 scripts
+│           │   │       📄 XRegExp.js 29.4KB
+│           │   │       📄 shAutoloader.js 2.6KB
+│           │   │       📄 shBrushPhp.js 4.9KB
+│           │   │       📄 shCore.js 19.9KB
+│           │   │       📄 shLegacy.js 3.3KB
+│           │   └── 📁 styles
+│           │           📄 shCore.css 5.2KB
+│           │           📄 shCoreDefault.css 7.5KB
+│           │           📄 shCoreDjango.css 7.6KB
+│           │           📄 shCoreEclipse.css 7.8KB
+│           │           📄 shCoreEmacs.css 7.4KB
+│           │           📄 shCoreFadeToGrey.css 7.5KB
+│           │           📄 shCoreMDUltra.css 7.4KB
+│           │           📄 shCoreMidnight.css 7.4KB
+│           │           📄 shCoreRDark.css 7.4KB
+│           │           📄 shThemeAppleScript.css 1.8KB
+│           │           📄 shThemeDefault.css 2.3KB
+│           │           📄 shThemeDjango.css 2.3KB
+│           │           📄 shThemeEclipse.css 2.5KB
+│           │           📄 shThemeEmacs.css 2.2KB
+│           │           📄 shThemeFadeToGrey.css 2.3KB
+│           │           📄 shThemeMDUltra.css 2.2KB
+│           │           📄 shThemeMidnight.css 2.2KB
+│           │           📄 shThemeRDark.css 2.2KB
+│           │           📄 shThemeVisualStudio.css 2.3KB
+│           │           📄 wrapping.png 631B
+│           ├── 📁 extras
+│           │       📄 EasyPeasyICS.php 4.1KB
+│           │       📄 README.md 1.6KB
+│           │       📄 htmlfilter.php 39.5KB
+│           │       📄 ntlm_sasl_client.php 6.7KB
+│           └── 📁 language
+│                   📄 phpmailer.lang-am.php 2.2KB
+│                   📄 phpmailer.lang-ar.php 2.0KB
+│                   📄 phpmailer.lang-az.php 1.7KB
+│                   📄 phpmailer.lang-be.php 2.2KB
+│                   📄 phpmailer.lang-bg.php 2.2KB
+│                   📄 phpmailer.lang-ca.php 1.7KB
+│                   📄 phpmailer.lang-ch.php 1.6KB
+│                   📄 phpmailer.lang-cs.php 1.6KB
+│                   📄 phpmailer.lang-da.php 1.6KB
+│                   📄 phpmailer.lang-de.php 1.7KB
+│                   📄 phpmailer.lang-el.php 2.3KB
+│                   📄 phpmailer.lang-eo.php 1.7KB
+│                   📄 phpmailer.lang-es.php 1.7KB
+│                   📄 phpmailer.lang-et.php 1.7KB
+│                   📄 phpmailer.lang-fa.php 2.0KB
+│                   📄 phpmailer.lang-fi.php 1.7KB
+│                   📄 phpmailer.lang-fo.php 1.6KB
+│                   📄 phpmailer.lang-fr.php 2.0KB
+│                   📄 phpmailer.lang-gl.php 1.7KB
+│                   📄 phpmailer.lang-he.php 1.8KB
+│                   📄 phpmailer.lang-hr.php 1.7KB
+│                   📄 phpmailer.lang-hu.php 1.7KB
+│                   📄 phpmailer.lang-id.php 1.7KB
+│                   📄 phpmailer.lang-it.php 1.8KB
+│                   📄 phpmailer.lang-ja.php 1.9KB
+│                   📄 phpmailer.lang-ka.php 2.8KB
+│                   📄 phpmailer.lang-ko.php 1.8KB
+│                   📄 phpmailer.lang-lt.php 1.6KB
+│                   📄 phpmailer.lang-lv.php 1.6KB
+│                   📄 phpmailer.lang-ms.php 1.7KB
+│                   📄 phpmailer.lang-nb.php 1.5KB
+│                   📄 phpmailer.lang-nl.php 1.6KB
+│                   📄 phpmailer.lang-pl.php 1.8KB
+│                   📄 phpmailer.lang-pt.php 1.9KB
+│                   📄 phpmailer.lang-pt_br.php 1.9KB
+│                   📄 phpmailer.lang-ro.php 1.7KB
+│                   📄 phpmailer.lang-ru.php 2.3KB
+│                   📄 phpmailer.lang-sk.php 1.7KB
+│                   📄 phpmailer.lang-sl.php 1.7KB
+│                   📄 phpmailer.lang-sr.php 2.3KB
+│                   📄 phpmailer.lang-sv.php 1.6KB
+│                   📄 phpmailer.lang-tr.php 1.8KB
+│                   📄 phpmailer.lang-uk.php 2.3KB
+│                   📄 phpmailer.lang-vi.php 1.8KB
+│                   📄 phpmailer.lang-zh.php 1.7KB
+│                   📄 phpmailer.lang-zh_cn.php 1.6KB
+├── 📁 php
+│   │   📄 .DS_Store 10.0KB
+│   │   📄 .gitignore 19B
+│   │   📄 PHPExcel.php 30.8KB
+│   │   📄 back_fin_ronda.php 7.6KB
+│   │   📄 cierra_sesion.php 307B
+│   │   📄 comentarios_reporte_call_handler.php 14.2KB
+│   │   📄 cronograma_calls_handler.php 8.0KB
+│   │   📄 delete_document_temp.php 98B
+│   │   📄 digitacion_data_change_handler.php 97.4KB
+│   │   📄 front_fin_ronda.php 2.1KB
+│   │   📄 index_p_data_change_handler.php 167.4KB
+│   │   📄 index_u_calls_handler.php 36.0KB
+│   │   📄 index_u_data_change_handler.php 21.0KB
+│   │   📄 listar_select_basico.php 23.5KB
+│   │   📄 panelcontrol_calls_handler.php 142.7KB
+│   │   📄 panelcontrol_data_change_handler.php 211.0KB
+│   │   📄 panelcontrol_excel_printer.php 9.9KB
+│   │   📄 reportes_calls_handler.php 16.1KB
+│   │   📄 reportes_data_change_handler.php 9.3KB
+│   │   📄 resultado_calls_handler.php 28.4KB
+│   │   📄 resultado_data_change_handler.php 17.5KB
+│   │   📄 sql_connection.php 12.2KB
+│   │   📄 verifica_estado_sesion.php 312B
+│   │   📄 verifica_sesion.php 755B
+│   │   📄 verifica_usuario.php 2.1KB
+│   ├── 📁 LogicaNegocio
+│   │   └── 📁 MediaDeComparacion
+│   │       ├── 📁 App
+│   │       │   │   📄 ObResultadosParticipantesEstrategia.php 1.1KB
+│   │       │   │   📄 ObResultadosParticipantesMismaMetodogiaEstrategia.php 1.3KB
+│   │       │   │   📄 ParticipantesMismaMetodologiaFabrica.php 1.3KB
+│   │       │   │   📄 TodosParticipantesFabrica.php 1.4KB
+│   │       │   ├── 📁 CaluladoresMedia
+│   │       │   │       📄 CalculadorMediaCasoEspecialEstrategiaDecorador.php 2.4KB
+│   │       │   │       📄 CalculadorMediaConFiltrosAtipicosEstrategia.php 1.7KB
+│   │       │   └── 📁 FiltrosAtipicos
+│   │       │           📄 FiltroGrubbsFabrica.php 177B
+│   │       │           📄 FiltroIntercuartilicoFabrica.php 197B
+│   │       └── 📁 Domain
+│   │               📄 ObtenedorResultadosInterface.php 128B
+│   │               📄 ResultadosParticipantesFabrica.php 593B
+│   ├── 📁 PHPExcel
+│   │   │   📄 Autoloader.php 3.0KB
+│   │   │   📄 CachedObjectStorageFactory.php 8.4KB
+│   │   │   📄 Calculation.php 175.0KB
+│   │   │   📄 Cell.php 27.5KB
+│   │   │   📄 Chart.php 11.4KB
+│   │   │   📄 Comment.php 7.2KB
+│   │   │   📄 DocumentProperties.php 16.0KB
+│   │   │   📄 DocumentSecurity.php 5.0KB
+│   │   │   📄 Exception.php 1.7KB
+│   │   │   📄 HashTable.php 4.5KB
+│   │   │   📄 IComparable.php 1.3KB
+│   │   │   📄 IOFactory.php 8.1KB
+│   │   │   📄 NamedRange.php 6.0KB
+│   │   │   📄 ReferenceHelper.php 39.9KB
+│   │   │   📄 RichText.php 5.3KB
+│   │   │   📄 Settings.php 12.3KB
+│   │   │   📄 Style.php 24.3KB
+│   │   │   📄 Worksheet.php 91.8KB
+│   │   │   📄 WorksheetIterator.php 2.7KB
+│   │   ├── 📁 CachedObjectStorage
+│   │   │       📄 APC.php 9.9KB
+│   │   │       📄 CacheBase.php 9.1KB
+│   │   │       📄 DiscISAM.php 6.5KB
+│   │   │       📄 ICache.php 3.4KB
+│   │   │       📄 Igbinary.php 4.6KB
+│   │   │       📄 Memcache.php 9.7KB
+│   │   │       📄 Memory.php 3.8KB
+│   │   │       📄 MemoryGZip.php 4.3KB
+│   │   │       📄 MemorySerialized.php 4.2KB
+│   │   │       📄 PHPTemp.php 6.2KB
+│   │   │       📄 SQLite.php 9.6KB
+│   │   │       📄 SQLite3.php 10.4KB
+│   │   │       📄 Wincache.php 9.0KB
+│   │   ├── 📁 CalcEngine
+│   │   │       📄 CyclicReferenceStack.php 2.4KB
+│   │   │       📄 Logger.php 4.0KB
+│   │   ├── 📁 Calculation
+│   │   │   │   📄 Database.php 28.0KB
+│   │   │   │   📄 DateTime.php 55.8KB
+│   │   │   │   📄 Engineering.php 98.6KB
+│   │   │   │   📄 Exception.php 1.7KB
+│   │   │   │   📄 ExceptionHandler.php 1.6KB
+│   │   │   │   📄 Financial.php 87.9KB
+│   │   │   │   📄 FormulaParser.php 22.2KB
+│   │   │   │   📄 FormulaToken.php 5.5KB
+│   │   │   │   📄 Function.php 4.0KB
+│   │   │   │   📄 Functions.php 17.7KB
+│   │   │   │   📄 Logical.php 10.2KB
+│   │   │   │   📄 LookupRef.php 32.5KB
+│   │   │   │   📄 MathTrig.php 38.9KB
+│   │   │   │   📄 Statistical.php 110.2KB
+│   │   │   │   📄 TextData.php 17.9KB
+│   │   │   │   📄 functionlist.txt 2.8KB
+│   │   │   └── 📁 Token
+│   │   │           📄 Stack.php 3.0KB
+│   │   ├── 📁 Cell
+│   │   │       📄 AdvancedValueBinder.php 8.9KB
+│   │   │       📄 DataType.php 3.6KB
+│   │   │       📄 DataValidation.php 10.6KB
+│   │   │       📄 DefaultValueBinder.php 3.4KB
+│   │   │       📄 Hyperlink.php 3.0KB
+│   │   │       📄 IValueBinder.php 1.6KB
+│   │   ├── 📁 Chart
+│   │   │   │   📄 DataSeries.php 8.4KB
+│   │   │   │   📄 DataSeriesValues.php 7.7KB
+│   │   │   │   📄 Exception.php 1.6KB
+│   │   │   │   📄 Layout.php 8.6KB
+│   │   │   │   📄 Legend.php 4.3KB
+│   │   │   │   📄 PlotArea.php 3.0KB
+│   │   │   │   📄 Title.php 2.1KB
+│   │   │   └── 📁 Renderer
+│   │   │           📄 PHP Charting Libraries.txt 324B
+│   │   │           📄 jpgraph.php 28.4KB
+│   │   ├── 📁 Reader
+│   │   │   │   📄 Abstract.php 6.3KB
+│   │   │   │   📄 CSV.php 9.6KB
+│   │   │   │   📄 DefaultReadFilter.php 1.8KB
+│   │   │   │   📄 Excel2003XML.php 28.0KB
+│   │   │   │   📄 Excel2007.php 92.6KB
+│   │   │   │   📄 Excel5.php 231.9KB
+│   │   │   │   📄 Exception.php 1.6KB
+│   │   │   │   📄 Gnumeric.php 30.6KB
+│   │   │   │   📄 HTML.php 14.0KB
+│   │   │   │   📄 IReadFilter.php 1.5KB
+│   │   │   │   📄 IReader.php 1.6KB
+│   │   │   │   📄 OOCalc.php 26.4KB
+│   │   │   │   📄 SYLK.php 14.3KB
+│   │   │   ├── 📁 Excel2007
+│   │   │   │       📄 Chart.php 20.3KB
+│   │   │   │       📄 Theme.php 2.8KB
+│   │   │   └── 📁 Excel5
+│   │   │           📄 Escher.php 19.0KB
+│   │   │           📄 MD5.php 8.2KB
+│   │   │           📄 RC4.php 2.5KB
+│   │   ├── 📁 RichText
+│   │   │       📄 ITextElement.php 1.7KB
+│   │   │       📄 Run.php 2.6KB
+│   │   │       📄 TextElement.php 2.5KB
+│   │   ├── 📁 Shared
+│   │   │   │   📄 CodePage.php 4.6KB
+│   │   │   │   📄 Date.php 13.0KB
+│   │   │   │   📄 Drawing.php 8.5KB
+│   │   │   │   📄 Escher.php 2.3KB
+│   │   │   │   📄 Excel5.php 11.8KB
+│   │   │   │   📄 File.php 5.3KB
+│   │   │   │   📄 Font.php 23.3KB
+│   │   │   │   📄 OLE.php 15.2KB
+│   │   │   │   📄 OLERead.php 9.7KB
+│   │   │   │   📄 PasswordHasher.php 2.3KB
+│   │   │   │   📄 String.php 23.1KB
+│   │   │   │   📄 TimeZone.php 4.2KB
+│   │   │   │   📄 XMLWriter.php 3.3KB
+│   │   │   │   📄 ZipArchive.php 5.2KB
+│   │   │   │   📄 ZipStreamWrapper.php 5.3KB
+│   │   │   ├── 📁 Escher
+│   │   │   │   │   📄 DgContainer.php 2.0KB
+│   │   │   │   │   📄 DggContainer.php 4.2KB
+│   │   │   │   ├── 📁 DgContainer
+│   │   │   │   │   │   📄 SpgrContainer.php 2.8KB
+│   │   │   │   │   └── 📁 SpgrContainer
+│   │   │   │   │           📄 SpContainer.php 7.9KB
+│   │   │   │   └── 📁 DggContainer
+│   │   │   │       │   📄 BstoreContainer.php 1.9KB
+│   │   │   │       └── 📁 BstoreContainer
+│   │   │   │           │   📄 BSE.php 2.9KB
+│   │   │   │           └── 📁 BSE
+│   │   │   │                   📄 Blip.php 2.2KB
+│   │   │   ├── 📁 JAMA
+│   │   │   │   │   📄 CHANGELOG.TXT 516B
+│   │   │   │   │   📄 CholeskyDecomposition.php 3.4KB
+│   │   │   │   │   📄 EigenvalueDecomposition.php 23.0KB
+│   │   │   │   │   📄 LUDecomposition.php 6.3KB
+│   │   │   │   │   📄 Matrix.php 30.5KB
+│   │   │   │   │   📄 QRDecomposition.php 5.9KB
+│   │   │   │   │   📄 SingularValueDecomposition.php 13.2KB
+│   │   │   │   └── 📁 utils
+│   │   │   │           📄 Error.php 3.0KB
+│   │   │   │           📄 Maths.php 754B
+│   │   │   ├── 📁 OLE
+│   │   │   │   │   📄 ChainedBlockStream.php 6.5KB
+│   │   │   │   │   📄 PPS.php 6.7KB
+│   │   │   │   └── 📁 PPS
+│   │   │   │           📄 File.php 2.4KB
+│   │   │   │           📄 Root.php 14.4KB
+│   │   │   ├── 📁 PCLZip
+│   │   │   │       📄 gnu-lgpl.txt 26.3KB
+│   │   │   │       📄 pclzip.lib.php 198.1KB
+│   │   │   │       📄 readme.txt 21.5KB
+│   │   │   └── 📁 trend
+│   │   │           📄 bestFitClass.php 11.0KB
+│   │   │           📄 exponentialBestFitClass.php 4.3KB
+│   │   │           📄 linearBestFitClass.php 3.4KB
+│   │   │           📄 logarithmicBestFitClass.php 3.6KB
+│   │   │           📄 polynomialBestFitClass.php 6.3KB
+│   │   │           📄 powerBestFitClass.php 4.1KB
+│   │   │           📄 trendClass.php 5.7KB
+│   │   ├── 📁 Style
+│   │   │       📄 Alignment.php 10.3KB
+│   │   │       📄 Border.php 8.0KB
+│   │   │       📄 Borders.php 11.3KB
+│   │   │       📄 Color.php 13.0KB
+│   │   │       📄 Conditional.php 6.5KB
+│   │   │       📄 Fill.php 8.8KB
+│   │   │       📄 Font.php 12.7KB
+│   │   │       📄 NumberFormat.php 21.2KB
+│   │   │       📄 Protection.php 5.4KB
+│   │   │       📄 Supervisor.php 3.2KB
+│   │   ├── 📁 Worksheet
+│   │   │   │   📄 AutoFilter.php 31.7KB
+│   │   │   │   📄 BaseDrawing.php 10.4KB
+│   │   │   │   📄 CellIterator.php 4.0KB
+│   │   │   │   📄 ColumnDimension.php 5.4KB
+│   │   │   │   📄 Drawing.php 3.7KB
+│   │   │   │   📄 HeaderFooter.php 12.7KB
+│   │   │   │   📄 HeaderFooterDrawing.php 7.5KB
+│   │   │   │   📄 MemoryDrawing.php 4.9KB
+│   │   │   │   📄 PageMargins.php 4.3KB
+│   │   │   │   📄 PageSetup.php 24.4KB
+│   │   │   │   📄 Protection.php 10.5KB
+│   │   │   │   📄 Row.php 2.2KB
+│   │   │   │   📄 RowDimension.php 5.4KB
+│   │   │   │   📄 RowIterator.php 3.4KB
+│   │   │   │   📄 SheetView.php 4.5KB
+│   │   │   ├── 📁 AutoFilter
+│   │   │   │   │   📄 Column.php 9.7KB
+│   │   │   │   └── 📁 Column
+│   │   │   │           📄 Rule.php 16.5KB
+│   │   │   └── 📁 Drawing
+│   │   │           📄 Shadow.php 6.1KB
+│   │   ├── 📁 Writer
+│   │   │   │   📄 Abstract.php 4.8KB
+│   │   │   │   📄 CSV.php 7.5KB
+│   │   │   │   📄 Excel2007.php 19.0KB
+│   │   │   │   📄 Excel5.php 33.9KB
+│   │   │   │   📄 Exception.php 1.6KB
+│   │   │   │   📄 HTML.php 46.2KB
+│   │   │   │   📄 IWriter.php 1.5KB
+│   │   │   │   📄 PDF.php 3.3KB
+│   │   │   ├── 📁 Excel2007
+│   │   │   │       📄 Chart.php 38.3KB
+│   │   │   │       📄 Comments.php 8.8KB
+│   │   │   │       📄 ContentTypes.php 10.5KB
+│   │   │   │       📄 DocProps.php 9.0KB
+│   │   │   │       📄 Drawing.php 20.0KB
+│   │   │   │       📄 Rels.php 13.6KB
+│   │   │   │       📄 RelsRibbon.php 2.7KB
+│   │   │   │       📄 RelsVBA.php 2.6KB
+│   │   │   │       📄 StringTable.php 10.7KB
+│   │   │   │       📄 Style.php 24.6KB
+│   │   │   │       📄 Theme.php 25.1KB
+│   │   │   │       📄 Workbook.php 15.5KB
+│   │   │   │       📄 Worksheet.php 44.9KB
+│   │   │   │       📄 WriterPart.php 2.3KB
+│   │   │   ├── 📁 Excel5
+│   │   │   │       📄 BIFFwriter.php 7.8KB
+│   │   │   │       📄 Escher.php 13.7KB
+│   │   │   │       📄 Font.php 4.1KB
+│   │   │   │       📄 Parser.php 57.3KB
+│   │   │   │       📄 Workbook.php 47.0KB
+│   │   │   │       📄 Worksheet.php 124.7KB
+│   │   │   │       📄 Xf.php 17.1KB
+│   │   │   └── 📁 PDF
+│   │   │       │   📄 Core.php 14.1KB
+│   │   │       │   📄 DomPDF 4.4KB
+│   │   │       │   📄 dompdf.php 7.3KB
+│   │   │       │   📄 dompdf_config.custom.inc.php 1.2KB
+│   │   │       │   📄 dompdf_config.inc.php 12.9KB
+│   │   │       │   📄 load_font.php 5.4KB
+│   │   │       │   📄 mPDF.php 4.9KB
+│   │   │       │   📄 tcPDF.php 5.1KB
+│   │   │       └── 📁 include
+│   │   │               📄 absolute_positioner.cls.php 3.3KB
+│   │   │               📄 abstract_renderer.cls.php 23.1KB
+│   │   │               📄 attribute_translator.cls.php 15.4KB
+│   │   │               📄 autoload.inc.php 2.6KB
+│   │   │               📄 block_frame_decorator.cls.php 6.2KB
+│   │   │               📄 block_frame_reflower.cls.php 24.1KB
+│   │   │               📄 block_positioner.cls.php 1.5KB
+│   │   │               📄 block_renderer.cls.php 6.9KB
+│   │   │               📄 cached_pdf_decorator.cls.php 5.8KB
+│   │   │               📄 canvas.cls.php 9.5KB
+│   │   │               📄 canvas_factory.cls.php 1.6KB
+│   │   │               📄 cellmap.cls.php 19.8KB
+│   │   │               📄 cpdf_adapter.cls.php 25.3KB
+│   │   │               📄 css_color.cls.php 8.0KB
+│   │   │               📄 dompdf.cls.php 31.1KB
+│   │   │               📄 dompdf_exception.cls.php 577B
+│   │   │               📄 dompdf_image_exception.cls.php 579B
+│   │   │               📄 file.skel 228B
+│   │   │               📄 fixed_positioner.cls.php 2.8KB
+│   │   │               📄 font_metrics.cls.php 10.5KB
+│   │   │               📄 frame.cls.php 28.6KB
+│   │   │               📄 frame_decorator.cls.php 16.6KB
+│   │   │               📄 frame_factory.cls.php 6.8KB
+│   │   │               📄 frame_reflower.cls.php 13.1KB
+│   │   │               📄 frame_tree.cls.php 6.1KB
+│   │   │               📄 functions.inc.php 27.8KB
+│   │   │               📄 gd_adapter.cls.php 20.1KB
+│   │   │               📄 image_cache.cls.php 5.8KB
+│   │   │               📄 image_frame_decorator.cls.php 2.1KB
+│   │   │               📄 image_frame_reflower.cls.php 6.4KB
+│   │   │               📄 image_renderer.cls.php 3.5KB
+│   │   │               📄 inline_frame_decorator.cls.php 2.4KB
+│   │   │               📄 inline_frame_reflower.cls.php 1.9KB
+│   │   │               📄 inline_positioner.cls.php 1.9KB
+│   │   │               📄 inline_renderer.cls.php 7.5KB
+│   │   │               📄 javascript_embedder.cls.php 769B
+│   │   │               📄 line_box.cls.php 5.2KB
+│   │   │               📄 list_bullet_frame_decorator.cls.php 2.1KB
+│   │   │               📄 list_bullet_frame_reflower.cls.php 878B
+│   │   │               📄 list_bullet_image_frame_decorator.cls.php 4.6KB
+│   │   │               📄 list_bullet_positioner.cls.php 2.6KB
+│   │   │               📄 list_bullet_renderer.cls.php 6.5KB
+│   │   │               📄 null_frame_decorator.cls.php 602B
+│   │   │               📄 null_frame_reflower.cls.php 496B
+│   │   │               📄 null_positioner.cls.php 475B
+│   │   │               📄 page_cache.cls.php 3.9KB
+│   │   │               📄 page_frame_decorator.cls.php 17.4KB
+│   │   │               📄 page_frame_reflower.cls.php 5.5KB
+│   │   │               📄 pdflib_adapter.cls.php 28.6KB
+│   │   │               📄 php_evaluator.cls.php 1.1KB
+│   │   │               📄 positioner.cls.php 1.1KB
+│   │   │               📄 renderer.cls.php 7.4KB
+│   │   │               📄 style.cls.php 73.4KB
+│   │   │               📄 stylesheet.cls.php 41.0KB
+│   │   │               📄 table_cell_frame_decorator.cls.php 2.9KB
+│   │   │               📄 table_cell_frame_reflower.cls.php 3.7KB
+│   │   │               📄 table_cell_positioner.cls.php 744B
+│   │   │               📄 table_cell_renderer.cls.php 5.1KB
+│   │   │               📄 table_frame_decorator.cls.php 8.7KB
+│   │   │               📄 table_frame_reflower.cls.php 17.0KB
+│   │   │               📄 table_row_frame_decorator.cls.php 1.2KB
+│   │   │               📄 table_row_frame_reflower.cls.php 1.5KB
+│   │   │               📄 table_row_group_frame_decorator.cls.php 1.6KB
+│   │   │               📄 table_row_group_frame_reflower.cls.php 1.6KB
+│   │   │               📄 table_row_group_renderer.cls.php 1.1KB
+│   │   │               📄 table_row_positioner.cls.php 815B
+│   │   │               📄 tcpdf_adapter.cls.php 14.7KB
+│   │   │               📄 text_frame_decorator.cls.php 5.7KB
+│   │   │               📄 text_frame_reflower.cls.php 13.9KB
+│   │   │               📄 text_renderer.cls.php 5.0KB
+│   │   └── 📁 locale
+│   │       ├── 📁 bg
+│   │       │       📄 config 1.3KB
+│   │       ├── 📁 cs
+│   │       │       📄 config 1.3KB
+│   │       │       📄 functions 31.6KB
+│   │       ├── 📁 da
+│   │       │       📄 config 1.3KB
+│   │       │       📄 functions 32.3KB
+│   │       ├── 📁 de
+│   │       │       📄 config 1.3KB
+│   │       │       📄 functions 35.5KB
+│   │       ├── 📁 en
+│   │       │   └── 📁 uk
+│   │       │           📄 config 1.1KB
+│   │       ├── 📁 es
+│   │       │       📄 config 1.4KB
+│   │       │       📄 functions 35.2KB
+│   │       ├── 📁 fi
+│   │       │       📄 config 1.4KB
+│   │       │       📄 functions 32.4KB
+│   │       ├── 📁 fr
+│   │       │       📄 config 1.3KB
+│   │       │       📄 functions 36.6KB
+│   │       ├── 📁 hu
+│   │       │       📄 config 1.3KB
+│   │       │       📄 functions 35.2KB
+│   │       ├── 📁 it
+│   │       │       📄 config 1.3KB
+│   │       │       📄 functions 34.4KB
+│   │       ├── 📁 nl
+│   │       │       📄 config 1.3KB
+│   │       │       📄 functions 36.3KB
+│   │       ├── 📁 no
+│   │       │       📄 config 1.3KB
+│   │       │       📄 functions 32.3KB
+│   │       ├── 📁 pl
+│   │       │       📄 config 1.3KB
+│   │       │       📄 functions 33.1KB
+│   │       ├── 📁 pt
+│   │       │   │   📄 config 1.3KB
+│   │       │   │   📄 functions 31.3KB
+│   │       │   └── 📁 br
+│   │       │           📄 config 1.3KB
+│   │       │           📄 functions 31.0KB
+│   │       ├── 📁 ru
+│   │       │       📄 config 1.4KB
+│   │       │       📄 functions 53.6KB
+│   │       ├── 📁 sv
+│   │       │       📄 config 1.4KB
+│   │       │       📄 functions 29.6KB
+│   │       └── 📁 tr
+│   │               📄 config 1.3KB
+│   │               📄 functions 32.5KB
+│   ├── 📁 complementos
+│   │       📄 GrubbsV2.php 6.3KB
+│   │       📄 IntercuartilV2.php 5.4KB
+│   │       📄 dixon.php 7.8KB
+│   │       📄 grubbs.php 6.4KB
+│   │       📄 intercuartil.php 5.5KB
+│   ├── 📁 controllers
+│   │       📄 MediaDeComparacionController.php 16.3KB
+│   ├── 📁 correo
+│   │       📄 enviarCorreoCambioAnalito.php 6.1KB
+│   │       📄 enviarCorreoReporteLC.php 3.9KB
+│   │       📄 enviarCorreoReportePAT.php 3.9KB
+│   │       📄 envioCorreoLC.php 4.5KB
+│   │       📄 envioCorreoPAT.php 3.9KB
+│   ├── 📁 dom_parse
+│   │       📄 simple_html_dom.php 63.5KB
+│   ├── 📁 excelDoc
+│   │       📄 workbook.xlsx 78.4KB
+│   ├── 📁 informe
+│   │   │   📄 .DS_Store 6.0KB
+│   │   │   📄 generalInformeCAP_intra.php 56.2KB
+│   │   │   📄 generalInformeConsensoAnalito.php 9.4KB
+│   │   │   📄 generalInformePAT.php 29.2KB
+│   │   │   📄 generalInformePAT_intra.php 41.1KB
+│   │   │   📄 generalInformeResumen.php 12.1KB
+│   │   │   📄 informeCAPCYH_intra.php 32.2KB
+│   │   │   📄 informeCAPHER2_intra.php 22.8KB
+│   │   │   📄 informeCAPMK_intra.php 47.9KB
+│   │   │   📄 informeCAPNGC_intra.php 30.4KB
+│   │   │   📄 informeCAPPAP_intra.php 17.9KB
+│   │   │   📄 informeCAPPIP_intra.php 29.7KB
+│   │   │   📄 informeCAPPM2_intra.php 28.3KB
+│   │   │   📄 informeCITG.php 22.6KB
+│   │   │   📄 informeCITG_intra.php 29.7KB
+│   │   │   📄 informeCITLBC.php 22.6KB
+│   │   │   📄 informeCITLBC_intra.php 29.2KB
+│   │   │   📄 informeCitNG.php 22.5KB
+│   │   │   📄 informeCitNG_intra.php 27.9KB
+│   │   │   📄 informeConsensoAnalito.php 38.5KB
+│   │   │   📄 informeFinRondaController.php 36.5KB
+│   │   │   📄 informeInmuno.php 53.9KB
+│   │   │   📄 informeInmuno_intra.php 83.3KB
+│   │   │   📄 informePAT.php 1.4KB
+│   │   │   📄 informePAT_Intra.php 2.7KB
+│   │   │   📄 informePCM.php 101.0KB
+│   │   │   📄 informePCM_intra.php 106.3KB
+│   │   │   📄 informePatologiaQ.php 22.6KB
+│   │   │   📄 informePatologiaQ_intra.php 28.0KB
+│   │   │   📄 informeResumen.php 35.9KB
+│   │   │   📄 informeResumenPorLaboratorio.php 48.7KB
+│   │   │   📄 informe_clic_for_52.php 40.3KB
+│   │   └── 📁 fpdi
+│   │       │   📄 README.md 4.7KB
+│   │       │   📄 SECURITY.md 193B
+│   │       │   📄 composer.json 1.6KB
+│   │       └── 📁 src
+│   │           │   📄 FpdfTpl.php 439B
+│   │           │   📄 FpdfTplTrait.php 14.3KB
+│   │           │   📄 Fpdi.php 4.8KB
+│   │           │   📄 FpdiException.php 402B
+│   │           │   📄 FpdiTrait.php 18.8KB
+│   │           │   📄 TcpdfFpdi.php 607B
+│   │           │   📄 autoload.php 645B
+│   │           ├── 📁 PdfParser
+│   │           │   │   📄 PdfParser.php 11.7KB
+│   │           │   │   📄 PdfParserException.php 931B
+│   │           │   │   📄 StreamReader.php 12.1KB
+│   │           │   │   📄 Tokenizer.php 3.8KB
+│   │           │   ├── 📁 CrossReference
+│   │           │   │       📄 AbstractReader.php 2.6KB
+│   │           │   │       📄 CrossReference.php 10.1KB
+│   │           │   │       📄 CrossReferenceException.php 1.4KB
+│   │           │   │       📄 FixedReader.php 5.9KB
+│   │           │   │       📄 LineReader.php 5.1KB
+│   │           │   │       📄 ReaderInterface.php 854B
+│   │           │   ├── 📁 Filter
+│   │           │   │       📄 Ascii85.php 3.0KB
+│   │           │   │       📄 Ascii85Exception.php 592B
+│   │           │   │       📄 AsciiHex.php 1.2KB
+│   │           │   │       📄 FilterException.php 555B
+│   │           │   │       📄 FilterInterface.php 557B
+│   │           │   │       📄 Flate.php 2.6KB
+│   │           │   │       📄 FlateException.php 579B
+│   │           │   │       📄 Lzw.php 4.4KB
+│   │           │   │       📄 LzwException.php 514B
+│   │           │   └── 📁 Type
+│   │           │           📄 PdfArray.php 2.2KB
+│   │           │           📄 PdfBoolean.php 998B
+│   │           │           📄 PdfDictionary.php 3.6KB
+│   │           │           📄 PdfHexString.php 2.0KB
+│   │           │           📄 PdfIndirectObject.php 2.7KB
+│   │           │           📄 PdfIndirectObjectReference.php 1.2KB
+│   │           │           📄 PdfName.php 2.0KB
+│   │           │           📄 PdfNull.php 436B
+│   │           │           📄 PdfNumeric.php 1005B
+│   │           │           📄 PdfStream.php 10.5KB
+│   │           │           📄 PdfString.php 5.2KB
+│   │           │           📄 PdfToken.php 982B
+│   │           │           📄 PdfType.php 2.1KB
+│   │           │           📄 PdfTypeException.php 576B
+│   │           ├── 📁 PdfReader
+│   │           │   │   📄 Page.php 7.8KB
+│   │           │   │   📄 PageBoundaries.php 2.4KB
+│   │           │   │   📄 PdfReader.php 6.9KB
+│   │           │   │   📄 PdfReaderException.php 675B
+│   │           │   └── 📁 DataStructure
+│   │           │           📄 Rectangle.php 3.8KB
+│   │           ├── 📁 Tcpdf
+│   │           │       📄 Fpdi.php 8.5KB
+│   │           └── 📁 Tfpdf
+│   │                   📄 FpdfTpl.php 555B
+│   │                   📄 Fpdi.php 4.9KB
+│   ├── 📁 pchart
+│   │   ├── 📁 cache
+│   │   │       📄 cache.db 7.1KB
+│   │   │       📄 index.db 59B
+│   │   ├── 📁 class
+│   │   │       📄 pBarcode128.class.php 6.8KB
+│   │   │       📄 pBarcode39.class.php 7.1KB
+│   │   │       📄 pBubble.class.php 14.9KB
+│   │   │       📄 pCache.class.php 8.6KB
+│   │   │       📄 pData.class.php 30.7KB
+│   │   │       📄 pDraw.class.php 319.7KB
+│   │   │       📄 pImage.class.php 19.7KB
+│   │   │       📄 pIndicator.class.php 11.3KB
+│   │   │       📄 pPie.class.php 65.5KB
+│   │   │       📄 pRadar.class.php 33.9KB
+│   │   │       📄 pScatter.class.php 65.1KB
+│   │   │       📄 pSplit.class.php 4.9KB
+│   │   │       📄 pSpring.class.php 34.6KB
+│   │   │       📄 pStock.class.php 12.7KB
+│   │   │       📄 pSurface.class.php 12.6KB
+│   │   ├── 📁 data
+│   │   │       📄 128B.db 1.9KB
+│   │   │       📄 39.db 659B
+│   │   ├── 📁 fonts
+│   │   │       📄 Bedizen.ttf 41.9KB
+│   │   │       📄 Calibri_Bold.ttf 258.7KB
+│   │   │       📄 Forgotte.ttf 41.2KB
+│   │   │       📄 GeosansLight.ttf 58.7KB
+│   │   │       📄 MankSans.ttf 57.1KB
+│   │   │       📄 Silkscreen.ttf 15.8KB
+│   │   │       📄 advent_light.ttf 44.7KB
+│   │   │       📄 calibri.ttf 792.0KB
+│   │   │       📄 pf_arma_five.ttf 21.4KB
+│   │   │       📄 verdana.ttf 184.7KB
+│   │   └── 📁 palettes
+│   │           📄 autumn.color 96B
+│   │           📄 blind.color 85B
+│   │           📄 evening.color 84B
+│   │           📄 kitchen.color 88B
+│   │           📄 light.color 90B
+│   │           📄 navy.color 85B
+│   │           📄 shade.color 89B
+│   │           📄 spring.color 91B
+│   │           📄 summer.color 92B
+│   ├── 📁 repositorys
+│   │       📄 ConfiguracionLaboratorioRepository.php 830B
+│   │       📄 MediaEvaluacionEspecialRepository.php 1019B
+│   │       📄 MuestrasRepository.php 1.1KB
+│   │       📄 Repository.php 613B
+│   │       📄 ResultadosRepository.php 3.3KB
+│   └── 📁 uroanalisis
+│       │   📄 urinalysis_panel_control_calls_handler.php 8.2KB
+│       └── 📁 posiblesResultados
+│               📄 digitacion_data_change_handler.php 34.6KB
+├── 📁 public_html
+└── 📁 uroanalisis
+        📄 digitacion.php 5.2KB

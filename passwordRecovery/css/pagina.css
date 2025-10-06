@@ -1,0 +1,279 @@
+.vertical-center {	
+	margin-top: 15vh;
+}
+
+.loading {
+    background:url('loading2.gif') no-repeat center;
+	color: #F0F0F0;
+    outline: 0 !important;
+	border: 0 !important;
+	border-color: inherit !important;
+	-webkit-box-shadow: none !important;
+	box-shadow: none !important;
+}
+
+.no-margin {
+	margin: 0;
+}
+
+.no-padding {
+	padding: 0;
+}
+
+.unselectedInput {
+    outline: 0 !important;
+	border: 0 !important;
+	border-color: inherit !important;
+	-webkit-box-shadow: none !important;
+	box-shadow: none !important;	
+}
+
+.unselectable {
+   -moz-user-select: -moz-none;
+   -khtml-user-select: none;
+   -webkit-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+}
+	
+.shadow {
+	-webkit-box-shadow: 0px 0px 29px -1px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 0px 29px -1px rgba(0,0,0,0.75);
+	box-shadow: 0px 0px 29px -1px rgba(0,0,0,0.75);
+}
+
+.floating {
+	position: fixed; 
+	z-index: 99999;
+}
+
+.center {
+	margin: 0 auto;
+	margin-top: 4%;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
+}
+
+.pointer:hover {
+	cursor: pointer;
+}
+
+.margin-top-1 {
+	margin-top: 1% !important;
+}
+
+.margin-top-2 {
+	margin-top: 2% !important;
+}
+
+.margin-top-3 {
+	margin-top: 3% !important;
+}
+
+.margin-top-4 {
+	margin-top: 4% !important;
+}
+
+.margin-top-5 {
+	margin-top: 5% !important;
+}
+
+.margin-top-6 {
+	margin-top: 6% !important;
+}
+
+.margin-top-7 {
+	margin-top: 7% !important;
+}
+
+.margin-top-8 {
+	margin-top: 8% !important;
+}
+
+.margin-top-9 {
+	margin-top: 9% !important;
+}
+
+.margin-top-10 {
+	margin-top: 10% !important;
+}
+
+.margin-bottom-1 {
+	margin-bottom: 1% !important;
+}
+
+.margin-bottom-2 {
+	margin-bottom: 2% !important;
+}
+
+.margin-bottom-3 {
+	margin-bottom: 3% !important;
+}
+
+.margin-bottom-4 {
+	margin-bottom: 4% !important;
+}
+
+.margin-bottom-5 {
+	margin-bottom: 5% !important;
+}
+
+.margin-bottom-6 {
+	margin-bottom: 6% !important;
+}
+
+.margin-bottom-7 {
+	margin-bottom: 7% !important;
+}
+
+.margin-bottom-8 {
+	margin-bottom: 8% !important;
+}
+
+.margin-bottom-9 {
+	margin-bottom: 9% !important;
+}
+
+.margin-bottom-10 {
+	margin-bottom: 10% !important;
+}
+
+.sides-margin-1 {
+	margin-right: 1% !important;
+	margin-left: 1% !important;
+}
+
+.sides-margin-3 {
+	margin-right: 3% !important;
+	margin-left: 3% !important;
+}
+
+.sides-margin-10 {
+	margin-right: 10% !important;
+	margin-left: 10% !important;
+}
+
+.center-text {
+	text-align: center;
+	vertical-align: middle !important;
+}
+
+.body-color {
+	background-color: #e6e6e6;
+}
+
+.cube-box {
+	border-radius: 0 !important;	
+}
+
+.main-frame {
+	position: absolute; 
+	width: 100%; 
+	height: 93%; 
+	top: 51px; 
+	bottom: 0; 
+	left: 0; 
+	right: 0; 
+	z-index: 1	
+}
+
+hr {
+	border-top: 1px solid #008000 !important;
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;	
+}
+
+.nav li:hover {
+	background-color: #4286f4;
+	border-color: #4286f4;
+	color: white !important;
+}
+
+.nav a:hover{
+	color: white !important;
+}
+
+.navbar {
+	min-height:32px !important;
+	border: 0px;
+}
+
+.inner-nav > li > a {
+	padding-top: 5px !important; 
+	padding-bottom:5px !important;
+	border-right: 1px solid #ddd !important;
+	border-bottom: 1px solid #ddd !important;
+	border-left: 1px solid #ddd !important;	
+}
+
+.list-group li {
+	border-radius: 0 !important;
+	border-right: 0px;
+	border-left: 0px;
+}
+
+.list-group li:hover {
+	background-color: #4286f4;
+	color: white;
+}
+
+.active-tab > a {
+	color: white !important;
+}
+
+.active-tab {
+	background-color: #5bc0de !important;
+	background: -moz-linear-gradient(top,  #5bc0de 0%, #5bc0de 0%, #5bc0de 50%, #5bc0de 100%, #5bc0de 100%);
+	background: -webkit-linear-gradient(top,  #5bc0de 0%,#5bc0de 0%,#5bc0de 50%,#5bc0de 100%,#5bc0de 100%); 
+	background: linear-gradient(to bottom,  #5bc0de 0%,#5bc0de 0%,#5bc0de 50%,#5bc0de 100%,#5bc0de 100%); 	
+	border-color: #46b8da !important;
+	color: white !important;
+}
+
+.border-right {
+	border-right: 1px solid #008000 !important;
+}
+
+.border-left {
+	border-left: 1px solid #008000 !important;
+}
+
+.vh-100 {
+	height: 100vh; 
+	max-height: 100vh; 
+	overflow: auto;		
+}
+
+.vh-90 {
+	height: 90vh; 
+	max-height: 90vh; 
+	overflow: auto;		
+}
+
+.vh-75 {
+	height: 75vh; 
+	max-height: 75vh; 
+	overflow: auto;		
+}
+
+.vh-65 {
+	height: 65vh; 
+	max-height: 65vh; 
+	overflow: auto;		
+}
+
+.inherit-height {
+	height: inherit; 
+	max-height: inherit; 
+	overflow: inherit;	
+}
+
+.font-size-9 {
+	font-size: 9pt;
+}
+
+.font-size-8 {
+	font-size: 8pt;
+}

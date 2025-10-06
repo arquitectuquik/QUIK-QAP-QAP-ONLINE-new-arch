@@ -1,0 +1,104 @@
+.cont-tabla {
+    width: 100%;
+    height: auto;
+    overflow: auto;
+}
+
+
+#cont-tabla-gestiones { 
+    overflow: auto;
+    max-height: 500px;
+}
+
+.unidad_mc {
+    border: 2px solid #588e3b94 !important;
+    box-shadow: 0 0 2px #65bb36ab !important;
+}
+
+.resaltado_error_input {
+    box-shadow: 0px 0px 5px 1px rgb(211, 79, 79) !important;
+}
+
+
+.resaltado_alerta_input {
+    box-shadow: 0px 0px 5px 1px rgb(226, 179, 25) !important;
+}
+
+/* Filas impares y pares */
+.cont-tabla table tbody tr:nth-child(2n) {
+    background-color: #dfdfdf;
+}
+
+/* Barra de scroll personalizada */
+.cont-tabla::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+.cont-tabla::-webkit-scrollbar-track {
+    background: #bebebe;
+}
+
+.cont-tabla::-webkit-scrollbar-thumb {
+    background-color: #373845;
+}
+
+
+/* Personalidacion de TD */
+.cont-tabla table tr:first-child td {
+    padding-top: 6px;
+}
+
+.cont-tabla table td:first-child {
+    padding-left: 4px;
+}
+
+.cont-tabla table tbody tr td:nth-child(1) {
+    width: 120px !important;
+}
+
+.cont-tabla table tbody tr td:nth-child(2) {
+    width: 140px !important;
+}
+
+.cont-tabla table tbody tr td:nth-child(3) {
+    width: 140px !important;
+}
+
+.cont-tabla table tbody tr td:nth-child(4) {
+    width: 140px !important;
+}
+
+.cont-tabla table tbody tr td:nth-child(5) {
+    width: 140px !important;
+}
+
+.cont-tabla table tbody tr td:nth-child(6) {
+    width: 120px !important;
+}
+
+.cont-tabla table tbody tr td:nth-child(6) {
+    width: 60px !important;
+}
+
+.cont-tabla table tbody tr td:nth-child(8),
+.cont-tabla table tbody tr td:nth-child(9),
+.cont-tabla table tbody tr td:nth-child(10),
+.cont-tabla table tbody tr td:nth-child(11),
+.cont-tabla table tbody tr td:nth-child(12),
+.cont-tabla table tbody tr td:nth-child(13),
+.cont-tabla table tbody tr td:nth-child(14),
+.cont-tabla table tbody tr td:nth-child(15),
+.cont-tabla table tbody tr td:nth-child(16),
+.cont-tabla table tbody tr td:nth-child(17),
+.cont-tabla table tbody tr td:nth-child(18),
+.cont-tabla table tbody tr td:nth-child(19),
+.cont-tabla table tbody tr td:nth-child(20),
+.cont-tabla table tbody tr td:nth-child(21),
+.cont-tabla table tbody tr td:nth-child(22),
+.cont-tabla table tbody tr td:nth-child(23),
+.cont-tabla table tbody tr td:nth-child(24) {
+    width: 80px !important;
+    padding-left: 3px !important;
+    padding-right: 3px !important;
+}

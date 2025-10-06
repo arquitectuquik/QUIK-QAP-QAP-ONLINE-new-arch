@@ -1,0 +1,106 @@
+.fancytree-container {
+    background-color:transparent !important;
+}
+
+
+
+.analito-digitacion {
+    margin-left: 15px !important;    
+}
+
+
+.m-wwr {
+    margin-left: 5px !important;    
+}
+
+
+.m-jctlm {
+    margin-left: 5px !important;    
+}
+
+
+
+
+.fancytree-container li span.fancytree-title {
+    display: inline-block !important;
+    /* padding: 5px 10px !important;  */
+    /*color: rgba(255, 255, 255, 0.8) !important*/
+}
+
+.fancytree-icon {
+    display: none !important;
+}
+
+
+.fancytree-container li i {
+    font-style: normal !important;
+}
+
+.ui-fancytree:focus, 
+.fancytree-container:focus,
+.fancytree-plain:focus {
+    outline: none;
+    border: 0 solid transparent !important;
+}
+
+.fancytree-container li span.fancytree-title:hover {
+    background-color: rgba(207, 207, 207, 0.1) !important;
+    border: 1px solid #d2d5d6d0 !important;
+}
+
+
+.fancytree-container li span.fancytree-title select {
+    width: 250px !important;
+}
+
+
+.fancytree-expander {
+    position: relative;
+    top: 4px;
+}
+
+.fancytree-title:focus {
+    outline: none;
+}
+
+.icon-sede {
+    color: #f1f1f1;
+}
+
+
+.icon-laboratorio {
+    color: rgb(90, 136, 221);
+}
+
+
+.icon-lote {
+    color: rgb(204, 66, 66);
+}
+
+
+.icon-prueba {
+    color: rgb(22, 158, 90);
+}
+
+
+/*
+
+.SectionTree ul li .fancytree-expander {
+        display: inline-block !important;
+        margin: 6px 0px !important;
+    }
+
+    .SectionTree ul li span i {
+        opacity: 0.99;
+        margin-right: 10px !important;
+    }
+
+    
+
+
+    .SectionTree ul li span:hover {
+        background-color: rgba(232, 232, 232, 0.33);
+    }
+
+*/
+    
