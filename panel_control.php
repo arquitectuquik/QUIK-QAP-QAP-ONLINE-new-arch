@@ -3192,10 +3192,12 @@ actionRestriction_102();
 
 								<div class="form-group">
 									<center>
-        <button type="button" id="descargarExcelBtn" class="btn btn-success">
-            Descargar Enrolamiento
-        </button>
-    </center>
+										<input type="submit" class="btn btn-default" value="Agregar" />
+
+										<button type="button" id="descargarExcelBtn" class="btn btn-success">
+											Descargar Enrolamiento
+										</button>
+									</center>
 								</div>
 
 

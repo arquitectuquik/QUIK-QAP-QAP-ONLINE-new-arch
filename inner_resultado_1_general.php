@@ -1,7 +1,7 @@
 <?php
 // Cargar compatibilidad MySQL para PHP 7+
 if (!function_exists('mysql_connect')) {
-    require_once 'mysql_compatibility.php';
+	require_once 'mysql_compatibility.php';
 }
 
 
@@ -16,6 +16,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 */
+error_reporting(E_ERROR); // Report only errors
 
 
 
@@ -118,7 +119,8 @@ switch ($header) {
 
 		$fechaCorte = $filterArray[count($filterArray) - 1];
 
-		$arrayCalculosModificados = [];
+		$arrayCalculosModificadosConsenso = [];
+		$arrayCalculosModificadosInternacional = [];
 
 
 
@@ -1432,6 +1434,12 @@ switch ($header) {
 
 			$pageContent["labconfigurationitemsforthewholeround"]["media"][$x] = array();
 
+			$pageContent["labconfigurationitemsforthewholeround"]["mediana"][$x] = array();
+
+			$pageContent["labconfigurationitemsforthewholeround"]["q1"][$x] = array();
+
+			$pageContent["labconfigurationitemsforthewholeround"]["q3"][$x] = array();
+
 			$pageContent["labconfigurationitemsforthewholeround"]["tipo_media_consenso"][$x] = array();
 
 			$pageContent["labconfigurationitemsforthewholeround"]["media_cualitativa"][$x] = array();
@@ -1444,9 +1452,17 @@ switch ($header) {
 
 			$pageContent["labconfigurationitemsforthewholeround"]["media_participantes_qap"][$x] = array();
 
+			$pageContent["labconfigurationitemsforthewholeround"]["mediana_participantes_qap"][$x] = array();
+
+			$pageContent["labconfigurationitemsforthewholeround"]["s_participantes_qap"][$x] = array();
+
+			$pageContent["labconfigurationitemsforthewholeround"]["iqr_participantes_qap"][$x] = array();
+
 			$pageContent["labconfigurationitemsforthewholeround"]["de_participantes_qap"][$x] = array();
 
 			$pageContent["labconfigurationitemsforthewholeround"]["zscore_participantes_qap"][$x] = array();
+
+			$pageContent["labconfigurationitemsforthewholeround"]["zscore_robusto_participantes_qap"][$x] = array();
 
 			$pageContent["labconfigurationitemsforthewholeround"]["criterio_zscore_participantes_qap"][$x] = array();
 
@@ -1622,7 +1638,13 @@ switch ($header) {
 
 				$pageContent["labconfigurationitemsforthewholeround"]["media_participantes_qap"][$x][$y] = $qryData_participantes_cs['media'];
 
+				$pageContent["labconfigurationitemsforthewholeround"]["mediana_participantes_qap"][$x][$y] = $qryData_participantes_cs['mediana'];
+
 				$pageContent["labconfigurationitemsforthewholeround"]["de_participantes_qap"][$x][$y] = $qryData_participantes_cs['de'];
+
+				$pageContent["labconfigurationitemsforthewholeround"]["s_participantes_qap"][$x][$y] = $qryData_participantes_cs['s'];
+
+				$pageContent["labconfigurationitemsforthewholeround"]["iqr_participantes_qap"][$x][$y] = $qryData_participantes_cs['iqr'];
 
 				$pageContent["labconfigurationitemsforthewholeround"]["n_participantes_qap"][$x][$y] = $qryData_participantes_cs['n'];
 
@@ -1659,7 +1681,7 @@ switch ($header) {
 
 				// Consulta para obtener la media de mundial
 
-				$qry = "SELECT media_estandar,desviacion_estandar,coeficiente_variacion,tipo_digitacion_wwr, n_evaluacion 
+				$qry = "SELECT percentil_25,media_estandar,percentil_75,desviacion_estandar,coeficiente_variacion,tipo_digitacion_wwr, n_evaluacion 
 
 						FROM $tbl_media_evaluacion_caso_especial 
 
@@ -1682,6 +1704,10 @@ switch ($header) {
 					$innerTempValue_2 = $qryData_2['desviacion_estandar'];
 
 					$innerTempValue_4 = $qryData_2['tipo_digitacion_wwr'];
+
+					$innerTempValue_5 = $qryData_2['percentil_25'];
+
+					$innerTempValue_6 = $qryData_2['percentil_75'];
 				}
 
 
@@ -1695,6 +1721,10 @@ switch ($header) {
 				$pageContent["labconfigurationitemsforthewholeround"]["media"][$x][$y] = $innerTempValue_1;
 
 				$pageContent["labconfigurationitemsforthewholeround"]["de"][$x][$y] = $innerTempValue_2;
+
+				$pageContent["labconfigurationitemsforthewholeround"]["q1"][$x][$y] = $innerTempValue_5;
+
+				$pageContent["labconfigurationitemsforthewholeround"]["q3"][$x][$y] = $innerTempValue_6;
 
 				$pageContent["labconfigurationitemsforthewholeround"]["n"][$x][$y] = 10; // Establecer el minimo valor para N;
 
@@ -1751,9 +1781,11 @@ switch ($header) {
 
 					// Consenso QAP igual a WWR
 
-					$pageContent["labconfigurationitemsforthewholeround"]["media_participantes_qap"][$x][$y] = $pageContent["labconfigurationitemsforthewholeround"]["media"][$x][$y];
+					$pageContent["labconfigurationitemsforthewholeround"]["mediana_participantes_qap"][$x][$y] = $pageContent["labconfigurationitemsforthewholeround"]["media"][$x][$y];
 
-					$pageContent["labconfigurationitemsforthewholeround"]["de_participantes_qap"][$x][$y] = $pageContent["labconfigurationitemsforthewholeround"]["de"][$x][$y];
+					$pageContent["labconfigurationitemsforthewholeround"]["iqr_participantes_qap"][$x][$y] = $pageContent["labconfigurationitemsforthewholeround"]["q3"][$x][$y] - $pageContent["labconfigurationitemsforthewholeround"]["q1"][$x][$y];
+
+					$pageContent["labconfigurationitemsforthewholeround"]["s_participantes_qap"][$x][$y] = $pageContent["labconfigurationitemsforthewholeround"]["de"][$x][$y];
 
 					$pageContent["labconfigurationitemsforthewholeround"]["n_participantes_qap"][$x][$y] = $pageContent["labconfigurationitemsforthewholeround"]["n"][$x][$y];
 
@@ -1820,7 +1852,7 @@ switch ($header) {
 									";
 
 
-				$objIntercuartil = new Intercuartil();
+				$obgrubbs = new Intercuartil();
 
 
 
@@ -1842,10 +1874,10 @@ switch ($header) {
 
 					);
 				}
-				$objIntercuartil->test_intercuartil($qryArrayFinalConsenso, "resultado");
+				$objIntercuartil->test_intercuartil($qryArrayFinalConsenso, "resultado", false, true);
 				$qryData_participantes = $objIntercuartil->getPromediosNormales("resultado");
 				$aux = 0;
-				if (floatval($pageContent["labconfigurationitemsforthewholeround"]["de_participantes_qap"][$x][$y]) === 0) {
+				if (floatval($pageContent["labconfigurationitemsforthewholeround"]["s_participantes_qap"][$x][$y]) === 0) {
 
 					$pageContent["labconfigurationitemsforthewholeround"]["zscore_participantes_qap"][$x][$y] = 0;
 				} else if (
@@ -1856,7 +1888,7 @@ switch ($header) {
 
 					// $pageContent["labconfigurationitemsforthewholeround"]["de_participantes_qap"][$x][$y] == null ||
 
-					$pageContent["labconfigurationitemsforthewholeround"]["media_participantes_qap"][$x][$y] == "" ||
+					$pageContent["labconfigurationitemsforthewholeround"]["mediana_participantes_qap"][$x][$y] == "" ||
 
 					// $pageContent["labconfigurationitemsforthewholeround"]["de_participantes_qap"][$x][$y] == "" ||
 
@@ -1870,10 +1902,9 @@ switch ($header) {
 
 					$pageContent["labconfigurationitemsforthewholeround"]["zscore_participantes_qap"][$x][$y] = "";
 				} else {
-					//No veo cambios en el informe
+					//zscore de la gráfica sección 4
 
-					//$pageContent["labconfigurationitemsforthewholeround"]["zscore_participantes_qap"][$x][$y] = ($innerQryData_2['valor_resultado'] - $qryData_participantes["mediana"]) / $qryData_participantes["iqrt"] * 0.7413;
-					$pageContent["labconfigurationitemsforthewholeround"]["zscore_participantes_qap"][$x][$y] = ($innerQryData_2['valor_resultado'] - $qryData_participantes["media"]) / $qryData_participantes["de"];
+					$pageContent["labconfigurationitemsforthewholeround"]["zscore_participantes_qap"][$x][$y] = ($innerQryData_2['valor_resultado'] - $pageContent["labconfigurationitemsforthewholeround"]["mediana_participantes_qap"][$x][$y]) / ($pageContent["labconfigurationitemsforthewholeround"]["iqr_participantes_qap"][$x][$y] * 0.7413);
 
 				}
 
@@ -2392,7 +2423,7 @@ switch ($header) {
 
 
 
-				// Asignación de valors de media JCTLM
+				// Asignación de valores de media JCTLM
 
 				if (
 
@@ -2531,22 +2562,30 @@ switch ($header) {
 				$pageContent["labconfigurationitems"]["diff"][$x] = ((($pageContent["labconfigurationitems"]["valor_resultado"][$x] - $pageContent["labconfigurationitems"]["media_estandar"][$x]) / $pageContent["labconfigurationitems"]["media_estandar"][$x]) * 100);
 			}
 
+			if (($pageContent["labconfigurationitems"]["valor_resultado"][$x] - $pageContent["labconfigurationitems"]["media_estandar"][$x]) == 0 && $pageContent["labconfigurationitems"]["media_estandar"][$x] != 0) { // Si la media es igual al VRL, colorizar verde
 
-
-			if ($pageContent["labconfigurationitems"]["zscore"][$x] == "") {
+				$pageContent["labconfigurationitems"]["zscoreperformance"][$x] = 1;
+			} else if ($pageContent["labconfigurationitems"]["zscore"][$x] == "") {
 
 				$pageContent["labconfigurationitems"]["zscoreperformance"][$x] = null;
-			} else if (abs($pageContent["labconfigurationitems"]["zscore"][$x]) < 2) {
-				$pageContent["labconfigurationitems"]["zscoreperformance"][$x] = 1;
-			} else if (abs($pageContent["labconfigurationitems"]["zscore"][$x]) >= 2 && abs($pageContent["labconfigurationitems"]["zscore"][$x]) < 3) {
-
-				$pageContent["labconfigurationitems"]["zscoreperformance"][$x] = 2;
-			} else if (abs($pageContent["labconfigurationitems"]["zscore"][$x]) >= 3) {
-
-				$pageContent["labconfigurationitems"]["zscoreperformance"][$x] = 3;
 			} else {
 
-				$pageContent["labconfigurationitems"]["zscoreperformance"][$x] = null;
+
+				if ($pageContent["labconfigurationitems"]["zscore"][$x] == "") {
+
+					$pageContent["labconfigurationitems"]["zscoreperformance"][$x] = null;
+				} else if (abs($pageContent["labconfigurationitems"]["zscore"][$x]) < 2) {
+					$pageContent["labconfigurationitems"]["zscoreperformance"][$x] = 1;
+				} else if (abs($pageContent["labconfigurationitems"]["zscore"][$x]) >= 2 && abs($pageContent["labconfigurationitems"]["zscore"][$x]) < 3) {
+
+					$pageContent["labconfigurationitems"]["zscoreperformance"][$x] = 2;
+				} else if (abs($pageContent["labconfigurationitems"]["zscore"][$x]) >= 3) {
+
+					$pageContent["labconfigurationitems"]["zscoreperformance"][$x] = 3;
+				} else {
+
+					$pageContent["labconfigurationitems"]["zscoreperformance"][$x] = null;
+				}
 			}
 
 
@@ -5063,12 +5102,12 @@ switch ($header) {
 								break;
 							} else {
 
-								if ($pageContent["labconfigurationitemsforthewholeround"]["tipo_media_comparacion"][$x][$xi] == 4) { // Si es consenso
-		
-									array_push($array_zscore_chart, $pageContent["labconfigurationitemsforthewholeround"]["zscore_participantes_qap"][$x][$xi]);
-								} else {
-
+								if (!empty($pageContent["labconfigurationitemsforthewholeround"]["zscore"][$x][$xi])) {
+									// Si el z-score de la tabla de casos especiales no está vacío, se utiliza ese.
 									array_push($array_zscore_chart, $pageContent["labconfigurationitemsforthewholeround"]["zscore"][$x][$xi]);
+								} else {
+									// Si no existe, se utiliza el z-score del consenso de participantes.
+									array_push($array_zscore_chart, $pageContent["labconfigurationitemsforthewholeround"]["zscore_participantes_qap"][$x][$xi]);
 								}
 							}
 						}
@@ -5112,11 +5151,11 @@ switch ($header) {
 
 
 						if (isset($pageContent["labconfigurationitems"]["limitvalue"][$x])) {
-    $chartValues_13 = round(($tempMax * ($pageContent["labconfigurationitems"]["limitvalue"][$x] / 100)), 2);
-} else {
-    // Si no existe el índice, puedes asignar un valor por defecto
-    $chartValues_13 = 0;  // o null, según tu lógica
-}
+							$chartValues_13 = round(($tempMax * ($pageContent["labconfigurationitems"]["limitvalue"][$x] / 100)), 2);
+						} else {
+							// Si no existe el índice, puedes asignar un valor por defecto
+							$chartValues_13 = 0;  // o null, según tu lógica
+						}
 
 
 
@@ -5255,10 +5294,10 @@ switch ($header) {
 						$chartValues_21 = implode("|", $chartValues_21);
 
 						if (isset($pageContent["labconfigurationitems"]["limitvalue"][$x]) && isset($pageContent["labconfigurationitems"]["limitname"][$x])) {
-    $chartValues_18 = $pageContent["labconfigurationitems"]["limitvalue"][$x] . " - " . $pageContent["labconfigurationitems"]["limitname"][$x];
-} else {
-    $chartValues_18 = "N/A - N/A";
-}
+							$chartValues_18 = $pageContent["labconfigurationitems"]["limitvalue"][$x] . " - " . $pageContent["labconfigurationitems"]["limitname"][$x];
+						} else {
+							$chartValues_18 = "N/A - N/A";
+						}
 
 
 						echo "<span style='color:white;' data-chart-container='2' data-chart-content='1' hidden='hidden'>" . $chartValues_5 . "</span>";
@@ -5298,35 +5337,35 @@ switch ($header) {
 
 
 
-						$nombreAnalito    = isset($pageContent["labconfigurationitems"]["nombre_analito"][$x]) 
-    ? $pageContent["labconfigurationitems"]["nombre_analito"][$x] 
-    : "N/A";
+						$nombreAnalito = isset($pageContent["labconfigurationitems"]["nombre_analito"][$x])
+							? $pageContent["labconfigurationitems"]["nombre_analito"][$x]
+							: "N/A";
 
-$valorResultado   = isset($pageContent["labconfigurationitems"]["valor_resultado"][$x]) 
-    ? $pageContent["labconfigurationitems"]["valor_resultado"][$x] 
-    : "";
+						$valorResultado = isset($pageContent["labconfigurationitems"]["valor_resultado"][$x])
+							? $pageContent["labconfigurationitems"]["valor_resultado"][$x]
+							: "";
 
-$unidad           = isset($pageContent["labconfigurationitems"]["nombre_unidad"][$x]) 
-    ? $pageContent["labconfigurationitems"]["nombre_unidad"][$x] 
-    : "";
+						$unidad = isset($pageContent["labconfigurationitems"]["nombre_unidad"][$x])
+							? $pageContent["labconfigurationitems"]["nombre_unidad"][$x]
+							: "";
 
-$analizador       = isset($pageContent["labconfigurationitems"]["nombre_analizador"][$x]) 
-    ? $pageContent["labconfigurationitems"]["nombre_analizador"][$x] 
-    : "N/A";
+						$analizador = isset($pageContent["labconfigurationitems"]["nombre_analizador"][$x])
+							? $pageContent["labconfigurationitems"]["nombre_analizador"][$x]
+							: "N/A";
 
-$metodologia      = isset($pageContent["labconfigurationitems"]["nombre_metodologia"][$x]) 
-    ? $pageContent["labconfigurationitems"]["nombre_metodologia"][$x] 
-    : "N/A";
+						$metodologia = isset($pageContent["labconfigurationitems"]["nombre_metodologia"][$x])
+							? $pageContent["labconfigurationitems"]["nombre_metodologia"][$x]
+							: "N/A";
 
-$limitName        = isset($pageContent["labconfigurationitems"]["limitname"][$x]) 
-    ? $pageContent["labconfigurationitems"]["limitname"][$x] 
-    : "N/A";
+						$limitName = isset($pageContent["labconfigurationitems"]["limitname"][$x])
+							? $pageContent["labconfigurationitems"]["limitname"][$x]
+							: "N/A";
 
-$limitValue       = isset($pageContent["labconfigurationitems"]["limitvalue"][$x]) 
-    ? $pageContent["labconfigurationitems"]["limitvalue"][$x] 
-    : " - - ";
+						$limitValue = isset($pageContent["labconfigurationitems"]["limitvalue"][$x])
+							? $pageContent["labconfigurationitems"]["limitvalue"][$x]
+							: " - - ";
 
-	echo "
+						echo "
 <table style='width: 100%'>
     <tbody>
         <tr>
@@ -5336,11 +5375,11 @@ $limitValue       = isset($pageContent["labconfigurationitems"]["limitvalue"][$x
             <td style='width: 18%; font-size:9pt;text-align:right;'>{$metodologia}</td>
             <td style='width: 7%; font-size:9pt; text-align:right;'>{$limitName}</td>
             <td style='width: 10%; font-size:9pt; text-align:right;'>{$limitValue}% APS</td>
-        </tr>
-    </tbody>
-</table>
-";
-	
+									</tr>
+								</tbody>
+							</table>
+						";
+
 
 
 
@@ -5567,7 +5606,7 @@ $limitValue       = isset($pageContent["labconfigurationitems"]["limitvalue"][$x
 											echo "<td style='text-align:center;width: 6.5%'>" . round($datosAUsar["s"], 2) . "</td>";
 											echo "<td style='text-align:center;width: 6.5%'>" . round($datosAUsar["n"], 2) . "</td>";
 											echo "<td style='text-align:center;width: 11%'>" . round($datosAUsar["incertidumbre"], 2) . "</td>";
-											echo "<td style='text-align:center;width: 10%'>" . round($datosAUsar["diff"], 2) . "</td>";
+											echo "<td style='text-align:center;width: 10%'>" . round($datosAUsar["diferencia_robusta"], 2) . "</td>";
 											echo "<td style='text-align:center;width: 7%'>" . round($datosAUsar["zscore"], 2) . "</td>";
 											if ($indicadorAUsar == 1) {
 												$rendimiento = "Satisfactorio";
@@ -5616,7 +5655,7 @@ $limitValue       = isset($pageContent["labconfigurationitems"]["limitvalue"][$x
 											echo "<td style='border-bottom:1px solid #B2BABB;text-align:center;width: 6.5%'>" . round($datosAUsar["s"], 2) . "</td>";
 											echo "<td style='border-bottom:1px solid #B2BABB;text-align:center;width: 6.5%'>" . round($datosAUsar["n"], 2) . "</td>";
 											echo "<td style='border-bottom:1px solid #B2BABB;text-align:center;width: 11%'>" . round($datosAUsar["incertidumbre"], 2) . "</td>";
-											echo "<td style='border-bottom:1px solid #B2BABB;text-align:center;width: 10%'>" . round($datosAUsar["diff"], 2) . "</td>";
+											echo "<td style='border-bottom:1px solid #B2BABB;text-align:center;width: 10%'>" . round($datosAUsar["diferencia_robusta"], 2) . "</td>";
 											echo "<td style='border-bottom:1px solid #B2BABB;text-align:center;width: 7%'>" . round($datosAUsar["zscore"], 2) . "</td>";
 
 											if ($indicadorAUsar == 1) {
@@ -5715,10 +5754,15 @@ $limitValue       = isset($pageContent["labconfigurationitems"]["limitvalue"][$x
 								}
 
 								// Diferencia porcentual
-								if (isset($pageContent["labconfigurationitems"]["diff_porcentual"][$x])) {
-									echo "<td style='width: 10%;" . $pageContent["tablestyle_text_center"] . "'>" . round($pageContent["labconfigurationitems"]["diff_porcentual"][$x], 2) . "</td>";
+								if ($pageContent["labconfigurationitems"]["media_estandar"][$x] == "" || $pageContent["labconfigurationitems"]["media_estandar"][$x] == 0 || $pageContent["labconfigurationitems"]["valor_resultado"][$x] == "") {
+
+									$pageContent["labconfigurationitems"]["diff_porcentual"][$x] = "N/A";
+
+									echo "<td style='width: 10%;" . $pageContent["tablestyle_text_center"] . "'>" . $pageContent["labconfigurationitems"]["diff_porcentual"][$x] . "</td>";
 								} else {
-									echo "<td style='width: 10%;" . $pageContent["tablestyle_text_center"] . "'>N/A</td>";
+									$pageContent["labconfigurationitems"]["diff_porcentual"][$x] = (($pageContent["labconfigurationitems"]["valor_resultado"][$x] - $pageContent["labconfigurationitems"]["media_estandar"][$x]) / $pageContent["labconfigurationitems"]["media_estandar"][$x]) * 100;
+
+									echo "<td style='width: 10%;" . $pageContent["tablestyle_text_center"] . "'>" . round($pageContent["labconfigurationitems"]["diff_porcentual"][$x], 2) . "</td>";
 								}
 
 								// Z-Score
@@ -5759,7 +5803,7 @@ $limitValue       = isset($pageContent["labconfigurationitems"]["limitvalue"][$x
 										echo "<td style='text-align:center;width: 6.5%'>" . round($datosAUsar["s"], 2) . "</td>";
 										echo "<td style='text-align:center;width: 6.5%'>" . round($datosAUsar["n"], 2) . "</td>";
 										echo "<td style='text-align:center;width: 11%'>" . round($datosAUsar["incertidumbre"], 2) . "</td>";
-										echo "<td style='text-align:center;width: 10%'>" . round($datosAUsar["diff"], 2) . "</td>";
+										echo "<td style='text-align:center;width: 10%'>" . round($datosAUsar["diferencia_robusta"], 2) . "</td>";
 										echo "<td style='text-align:center;width: 7%'>" . round($datosAUsar["zscore"], 2) . "</td>";
 
 										if ($indicadorAUsar == 1) {
@@ -5809,7 +5853,7 @@ $limitValue       = isset($pageContent["labconfigurationitems"]["limitvalue"][$x
 										echo "<td style='border-bottom:1px solid #B2BABB;text-align:center;width: 6.5%'>" . round($datosAUsar["s"], 2) . "</td>";
 										echo "<td style='border-bottom:1px solid #B2BABB;text-align:center;width: 6.5%'>" . round($datosAUsar["n"], 2) . "</td>";
 										echo "<td style='border-bottom:1px solid #B2BABB;text-align:center;width: 11%'>" . round($datosAUsar["incertidumbre"], 2) . "</td>";
-										echo "<td style='border-bottom:1px solid #B2BABB;text-align:center;width: 10%'>" . round($datosAUsar["diff"], 2) . "</td>";
+										echo "<td style='border-bottom:1px solid #B2BABB;text-align:center;width: 10%'>" . round($datosAUsar["diferencia_robusta"], 2) . "</td>";
 										echo "<td style='border-bottom:1px solid #B2BABB;text-align:center;width: 7%'>" . round($datosAUsar["zscore"], 2) . "</td>";
 
 										if ($indicadorAUsar == 1) {
@@ -6374,33 +6418,30 @@ $limitValue       = isset($pageContent["labconfigurationitems"]["limitvalue"][$x
 									$configurationids["id_unidad"][$itemCounterLocal],
 									$configurationids["id_analizador"][$itemCounterLocal]
 								);
-$FECHA_INICIO_NUEVA_FORMULA_ZSCORE = strtotime("2025-06-01");
-// la siguiente comparacion puede fallar luego del 2038 por el overflow de la unix epoch
-if (isset($fechasMuestras[$sampleIdActual]) && strtotime($fechasMuestras[$sampleIdActual]) < $FECHA_INICIO_NUEVA_FORMULA_ZSCORE) {
-    // Validar que la desviación estándar de consenso exista y no sea 0
-    if (isset($calculoAnalitoMuestra["de"]) && $calculoAnalitoMuestra["de"] != 0) {
-        // zscore = ((resultado reportado por el lab) - (media de consenso)) / desviación estándar de consenso
-        $calculoAnalitoMuestra["zscore"] = (floatval($calculoAnalitoMuestra["valor_lab"]) - $calculoAnalitoMuestra["media"]) / $calculoAnalitoMuestra["de"];
-    } else {
-        // Si no se puede calcular, dejarlo como null
-        $calculoAnalitoMuestra["zscore"] = null;
-    }
-}
 
-if ($calculoAnalitoMuestra["n"] >= 4 && $fechasMuestras[$sampleIdActual] <= $fechasMuestras[$sampleid]) {
-    $arrayCalculosModificados[] = $calculoAnalitoMuestra;
-}
 
-$calculoAnalitoMuestra["color"] = "";
-if ($calculoAnalitoMuestra["zscore"] !== "" && $calculoAnalitoMuestra["zscore"] !== null && is_numeric($calculoAnalitoMuestra["zscore"]) && $calculoAnalitoMuestra["n"] >= 4) {
-    if (abs($calculoAnalitoMuestra["zscore"]) <= 2) {
-        $calculoAnalitoMuestra["color"] = "#afffaf"; // Verde
-    } else if (abs($calculoAnalitoMuestra["zscore"]) > 2 && abs($calculoAnalitoMuestra["zscore"]) <= 3) {
-        $calculoAnalitoMuestra["color"] = "#ffff7d"; // Amarillo
-    } else if (abs($calculoAnalitoMuestra["zscore"]) > 3) {
-        $calculoAnalitoMuestra["color"] = "#ff7d7d"; // Rojo
-    }
-}
+								$FECHA_INICIO_NUEVA_FORMULA_ZSCORE = strtotime("2025-06-01");
+								// la siguiente comparacion puede fallar luego del 2038 por el overflow de la unix epoch
+								if (isset($fechasMuestras[$sampleIdActual]) && strtotime($fechasMuestras[$sampleIdActual]) < $FECHA_INICIO_NUEVA_FORMULA_ZSCORE) {
+									// zscore = ((resultado reportado por el lab) - (media de consenso)) / desviación estándar de consenso
+									$calculoAnalitoMuestra["zscore"] = (floatval($calculoAnalitoMuestra["valor_lab"]) - $calculoAnalitoMuestra["media"]) / $calculoAnalitoMuestra["de"];
+								}
+								if ($calculoAnalitoMuestra["n"] >= 4 && $fechasMuestras[$sampleIdActual] <= $fechasMuestras[$sampleid]) {
+									$arrayCalculosModificadosConsenso[] = $calculoAnalitoMuestra;
+								}
+
+
+
+								$calculoAnalitoMuestra["color"] = "";
+								if ($calculoAnalitoMuestra["zscore"] !== "" && $calculoAnalitoMuestra["zscore"] !== null && is_numeric($calculoAnalitoMuestra["zscore"]) && $calculoAnalitoMuestra["n"] >= 4) {
+									if (abs($calculoAnalitoMuestra["zscore"]) <= 2) {
+										$calculoAnalitoMuestra["color"] = "#afffaf"; // Verde
+									} else if (abs($calculoAnalitoMuestra["zscore"]) > 2 && abs($calculoAnalitoMuestra["zscore"]) <= 3) {
+										$calculoAnalitoMuestra["color"] = "#ffff7d"; // Amarillo
+									} else if (abs($calculoAnalitoMuestra["zscore"]) > 3) {
+										$calculoAnalitoMuestra["color"] = "#ff7d7d"; // Rojo
+									}
+								}
 
 								if (($indiceOriginalMuestra + 1) <= $pageContent["programsamplenumber"]) {
 									$badge = "";
@@ -6499,6 +6540,12 @@ if ($calculoAnalitoMuestra["zscore"] !== "" && $calculoAnalitoMuestra["zscore"] 
 									// zscore 6.
 									echo "<td style='" . $pageContent["tablestyle_text_center"] . ";background-color:" . $alertColor2 . ";'>" . (($pageContent["labconfigurationitemsforthewholeround"]["deviationpercentagereference"][$itemCounterLocal][$indiceOriginalMuestra] === "") ? "N/A" : $pageContent["labconfigurationitemsforthewholeround"]["deviationpercentagereference"][$itemCounterLocal][$indiceOriginalMuestra]) . "</td>";
 									echo "<td style='" . $pageContent["tablestyle_text_center"] . ";background-color:" . $alertColor . ";'>" . (($pageContent["labconfigurationitemsforthewholeround"]["zscore"][$itemCounterLocal][$indiceOriginalMuestra] === "") ? "N/A" : $pageContent["labconfigurationitemsforthewholeround"]["zscore"][$itemCounterLocal][$indiceOriginalMuestra]) . "</td>";
+									if ($pageContent["labconfigurationitemsforthewholeround"]["zscore"][$itemCounterLocal][$indiceOriginalMuestra] !== "") {
+										$arrayCalculosModificadosInternacional[] = [
+											"zscore" => $pageContent["labconfigurationitemsforthewholeround"]["zscore"][$itemCounterLocal][$indiceOriginalMuestra],
+											"n" => 10
+										];
+									}
 									echo "<td style='" . (($y + 1) == sizeof($muestrasActuales) ? $pageContent["tablestyle_border_right"] : "") . $pageContent["tablestyle_text_center"] . ";background-color:" . $calculoAnalitoMuestra["color"] . ";'>" . (($calculoAnalitoMuestra["n"] < 4) ? "N/A" : round($calculoAnalitoMuestra["zscore"], 2)) . "</td>";
 
 									$badge = "";
@@ -6881,16 +6928,26 @@ if ($calculoAnalitoMuestra["zscore"] !== "" && $calculoAnalitoMuestra["zscore"] 
 		// Crea una instancia del controlador para acceder al método de cálculo
 		$mediaController = new MediaDeComparacionController();
 
-		// Recalcula los porcentajes con el método y tu array de resultados modificado
-		$nuevosIndicadores = $mediaController->calcularPorcentajesDesdeArraySimple($arrayCalculosModificados);
+		// Recalcula los porcentajes con el método y el array de resultados modificado
+		$nuevosIndicadoresInternacional = $mediaController->calcularPorcentajesDesdeArraySimple($arrayCalculosModificadosInternacional);
+		$nuevosIndicadoresConsenso = $mediaController->calcularPorcentajesDesdeArraySimple($arrayCalculosModificadosConsenso);
 
-		// Sobrescribe los porcentajes de la variable global
-		$indicadoresGenerales["porcentaje"]["satisfactorio"] = $nuevosIndicadores["porcentaje"]["satisfactorio"];
-		$indicadoresGenerales["porcentaje"]["alarma"] = $nuevosIndicadores["porcentaje"]["alarma"];
-		$indicadoresGenerales["porcentaje"]["no_satisfactorio"] = $nuevosIndicadores["porcentaje"]["no_satisfactorio"];
-		$indicadoresGenerales["resultados"]["satisfactorio"] = $nuevosIndicadores["resultados"]["satisfactorio"];
-		$indicadoresGenerales["resultados"]["alarma"] = $nuevosIndicadores["resultados"]["alarma"];
-		$indicadoresGenerales["resultados"]["no_satisfactorio"] = $nuevosIndicadores["resultados"]["no_satisfactorio"];
+		// Sobrescribe los porcentajes de la variable global para el consenso
+		$indicadoresGenerales["porcentaje"]["satisfactorio"] = $nuevosIndicadoresConsenso["porcentaje"]["satisfactorio"];
+		$indicadoresGenerales["porcentaje"]["alarma"] = $nuevosIndicadoresConsenso["porcentaje"]["alarma"];
+		$indicadoresGenerales["porcentaje"]["no_satisfactorio"] = $nuevosIndicadoresConsenso["porcentaje"]["no_satisfactorio"];
+		$indicadoresGenerales["resultados"]["satisfactorio"] = $nuevosIndicadoresConsenso["resultados"]["satisfactorio"];
+		$indicadoresGenerales["resultados"]["alarma"] = $nuevosIndicadoresConsenso["resultados"]["alarma"];
+		$indicadoresGenerales["resultados"]["no_satisfactorio"] = $nuevosIndicadoresConsenso["resultados"]["no_satisfactorio"];
+
+
+		// Sobrescribe los porcentajes de la variable global para la media Internacional
+		$indicadoresGeneralesInternacional["porcentaje"]["satisfactorio"] = $nuevosIndicadoresInternacional["porcentaje"]["satisfactorio"];
+		$indicadoresGeneralesInternacional["porcentaje"]["alarma"] = $nuevosIndicadoresInternacional["porcentaje"]["alarma"];
+		$indicadoresGeneralesInternacional["porcentaje"]["no_satisfactorio"] = $nuevosIndicadoresInternacional["porcentaje"]["no_satisfactorio"];
+		$indicadoresGeneralesInternacional["resultados"]["satisfactorio"] = $nuevosIndicadoresInternacional["resultados"]["satisfactorio"];
+		$indicadoresGeneralesInternacional["resultados"]["alarma"] = $nuevosIndicadoresInternacional["resultados"]["alarma"];
+		$indicadoresGeneralesInternacional["resultados"]["no_satisfactorio"] = $nuevosIndicadoresInternacional["resultados"]["no_satisfactorio"];
 
 
 
@@ -6902,11 +6959,9 @@ if ($calculoAnalitoMuestra["zscore"] !== "" && $calculoAnalitoMuestra["zscore"] 
 
 				$chartValues_17 = md5(uniqid(rand(), true));
 
-				$chartValues_18 = round(($pageContent["ammountofsatisfactoryresultsforthewholeround"] * 100) / $pageContent["ammounttotalofreportedanalytes"], 2) . "|" .
-
-					round(($pageContent["ammountofhalfsatisfactoryresultsforthewholeround"] * 100) / $pageContent["ammounttotalofreportedanalytes"], 2) . "|" .
-
-					round(($pageContent["ammountofunsatisfactoryresultsforthewholeround"] * 100) / $pageContent["ammounttotalofreportedanalytes"], 2);
+				$chartValues_18 = $indicadoresGeneralesInternacional["porcentaje"]["satisfactorio"] . "|" .
+					$indicadoresGeneralesInternacional["porcentaje"]["alarma"] . "|" .
+					$indicadoresGeneralesInternacional["porcentaje"]["no_satisfactorio"];
 
 
 
@@ -7022,11 +7077,11 @@ if ($calculoAnalitoMuestra["zscore"] !== "" && $calculoAnalitoMuestra["zscore"] 
 
 				echo "<tr style='font-size:8px;'>";
 
-				echo "<td style='" . $pageContent["tablestyle_border_all"] . $pageContent["tablestyle_text_center"] . "' colspan='2'>" . $pageContent["ammountofsatisfactoryresultsforthewholeround"] . "</td>";
+				echo "<td style='" . $pageContent["tablestyle_border_all"] . $pageContent["tablestyle_text_center"] . "' colspan='2'>" . $indicadoresGeneralesInternacional["resultados"]["satisfactorio"] . "</td>";
 
-				echo "<td style='" . $pageContent["tablestyle_border_all"] . $pageContent["tablestyle_text_center"] . "' colspan='2'>" . $pageContent["ammountofhalfsatisfactoryresultsforthewholeround"] . "</td>";
+				echo "<td style='" . $pageContent["tablestyle_border_all"] . $pageContent["tablestyle_text_center"] . "' colspan='2'>" . $indicadoresGeneralesInternacional["resultados"]["alarma"] . "</td>";
 
-				echo "<td style='" . $pageContent["tablestyle_border_all"] . $pageContent["tablestyle_text_center"] . "' colspan='2'>" . $pageContent["ammountofunsatisfactoryresultsforthewholeround"] . "</td>";
+				echo "<td style='" . $pageContent["tablestyle_border_all"] . $pageContent["tablestyle_text_center"] . "' colspan='2'>" . $indicadoresGeneralesInternacional["resultados"]["no_satisfactorio"] . "</td>";
 
 
 
@@ -7048,11 +7103,11 @@ if ($calculoAnalitoMuestra["zscore"] !== "" && $calculoAnalitoMuestra["zscore"] 
 
 				echo "<tr style='font-size:8px;'>";
 
-				echo "<td style='" . $pageContent["tablestyle_border_all"] . $pageContent["tablestyle_text_center"] . "' colspan='2'>" . round(($pageContent["ammountofsatisfactoryresultsforthewholeround"] * 100) / $pageContent["ammounttotalofreportedanalytes"], 2) . "%</td>";
+				echo "<td style='" . $pageContent["tablestyle_border_all"] . $pageContent["tablestyle_text_center"] . "' colspan='2'>" . $indicadoresGeneralesInternacional["porcentaje"]["satisfactorio"] . "%</td>";
 
-				echo "<td style='" . $pageContent["tablestyle_border_all"] . $pageContent["tablestyle_text_center"] . "' colspan='2'>" . round(($pageContent["ammountofhalfsatisfactoryresultsforthewholeround"] * 100) / $pageContent["ammounttotalofreportedanalytes"], 2) . "%</td>";
+				echo "<td style='" . $pageContent["tablestyle_border_all"] . $pageContent["tablestyle_text_center"] . "' colspan='2'>" . $indicadoresGeneralesInternacional["porcentaje"]["alarma"] . "%</td>";
 
-				echo "<td style='" . $pageContent["tablestyle_border_all"] . $pageContent["tablestyle_text_center"] . "' colspan='2'>" . round(($pageContent["ammountofunsatisfactoryresultsforthewholeround"] * 100) / $pageContent["ammounttotalofreportedanalytes"], 2) . "%</td>";
+				echo "<td style='" . $pageContent["tablestyle_border_all"] . $pageContent["tablestyle_text_center"] . "' colspan='2'>" . $indicadoresGeneralesInternacional["porcentaje"]["no_satisfactorio"] . "%</td>";
 
 
 

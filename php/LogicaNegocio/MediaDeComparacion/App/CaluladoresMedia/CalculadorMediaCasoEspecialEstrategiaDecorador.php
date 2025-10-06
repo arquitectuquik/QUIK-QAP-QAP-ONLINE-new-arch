@@ -50,6 +50,8 @@ class CalculadorMediaCasoEspecialEstrategiaDecorador extends CalculadorMediaConF
                     "q1" => $mediaEvaluacionEspecial[0]["percentil_25"],
                     "q3" => $mediaEvaluacionEspecial[0]["percentil_75"],
                     "mediana" => $mediaEvaluacionEspecial[0]["media_estandar"],
+                    "media" => $mediaEvaluacionEspecial[0]["media_estandar"],
+                    "de" => $mediaEvaluacionEspecial[0]["desviacion_estandar"],
                     "cv" => $mediaEvaluacionEspecial[0]["coeficiente_variacion"],
                     "n" => $mediaEvaluacionEspecial[0]["n_evaluacion"],
                     "s" => $s,

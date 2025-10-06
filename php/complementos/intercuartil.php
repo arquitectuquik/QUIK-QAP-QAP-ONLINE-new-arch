@@ -29,7 +29,7 @@ class Intercuartil
 
 
 
-    function test_intercuartil($array_resultados, $columna, $estado = false)
+    function test_intercuartil($array_resultados, $columna, $estado = false, $todos = false)
     {
 
         $this->new_array_resultados = array();
@@ -136,7 +136,13 @@ class Intercuartil
 
 
 
-       if ($estado == true) {
+
+        if ($todos == true) {
+            foreach ($array_resultados as $row_result) {
+                array_push($this->new_array_resultados, $row_result);
+
+            }
+        } else if ($estado == true) {
 
             foreach ($array_resultados as $row_result) {
 
@@ -146,7 +152,6 @@ class Intercuartil
                 }
             }
         } else {
-
             foreach ($array_resultados as $row_result) {
                 array_push($this->new_array_resultados, $row_result);
 
@@ -159,45 +164,79 @@ class Intercuartil
 
     }
 
-    function getPromediosNormales($columna)
+    public function getPromediosNormales($columna)
     {
+        // Define los valores por defecto para cuando el array de resultados está vacío
+        $defaults = array(
+            "media" => 0,
+            "de" => 0,
+            "cv" => 0,
+            "cv_robusto" => 0,
+            "n" => 0,
+            "mediana" => 0,
+            "q1" => 0,
+            "q3" => 0,
+            "iqr" => 0,
+            "s" => 0
+        );
 
+        $resultados_columna = array_column($this->new_array_resultados, $columna);
 
-
-        $media = $this->stats_average(array_column($this->new_array_resultados, $columna));
-
-        $de = $this->stats_standard_deviation(array_column($this->new_array_resultados, $columna), true);
-
-
-
-        if ($media == 0) {
-
-            $cv = 0;
-
-        } else {
-
-            $cv = (($de / $media) * 100);
-
+        // Si la columna de datos está vacía, retorna los valores por defecto
+        if (empty($resultados_columna)) {
+            return $defaults;
         }
 
+        // Calcula las métricas estadísticas normales
+        $media = $this->stats_average($resultados_columna);
+        $de = $this->stats_standard_deviation($resultados_columna, true);
 
+        // Calcula el Coeficiente de Variación (CV)
+        if ($media == 0) {
+            $cv = 0;
+        } else {
+            $cv = (($de / $media) * 100);
+        }
 
-        $n = sizeof(array_column($this->new_array_resultados, $columna));
+        $n = count($resultados_columna);
 
+        // Calcula las métricas estadísticas robustas
+        $mediana = $this->stats_quartile($resultados_columna, 2);
+        $q1 = $this->stats_quartile($resultados_columna, 1);
+        $q3 = $this->stats_quartile($resultados_columna, 3);
+        $iqr = $q3 - $q1;
+        $s = ($q3 - $q1) / 1.349;
+        $cv_robusto = ($mediana == 0) ? 0 : ($s / $mediana) * 100;
 
-
+        // Retorna un array con todas las métricas calculadas
         return [
-
             "media" => $media,
-
             "de" => $de,
-
             "cv" => $cv,
-
-            "n" => $n
-
+            "cv_robusto" => $cv_robusto,
+            "n" => $n,
+            "mediana" => $mediana,
+            "q1" => $q1,
+            "q3" => $q3,
+            "iqr" => $iqr,
+            "s" => $s
         ];
+    }
 
+    private function stats_quartile($a, $q)
+    {
+        // Aseguramos que el array está ordenado para calcular los cuartiles
+        sort($a);
+        $pos = (count($a) - 1) * $q / 4;
+        $floor = floor($pos);
+        $ceil = ceil($pos);
+
+        if ($floor == $ceil) {
+            return $a[$floor];
+        }
+
+        // Interpolación para mayor precisión
+        return $a[$floor] + ($a[$ceil] - $a[$floor]) * ($pos - $floor);
     }
 
     function stats_standard_deviation(array $a, $sample = true)
