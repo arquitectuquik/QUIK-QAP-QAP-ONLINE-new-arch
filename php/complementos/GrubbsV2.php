@@ -256,39 +256,41 @@ class GrubbsV2
     }
     private function calcularCuartiles()
     {
-        $n = count($this->resultados);
+        // Asegurar que resultados es numérico
+        $valores = is_array($this->resultados[0])
+            ? array_column($this->resultados, "resultado")
+            : $this->resultados;
 
+        $n = count($valores);
         if ($n == 0) {
             $this->q1 = $this->q2 = $this->q3 = 0;
             $this->iqr = 0;
             return;
         }
 
-        sort($this->resultados, SORT_NUMERIC);
+        sort($valores, SORT_NUMERIC);
 
-        // Método de interpolación lineal para cuartiles
-        $this->q1 = $this->calcularPercentil(0.25);
-        $this->q2 = $this->calcularPercentil(0.50); // Mediana
-        $this->q3 = $this->calcularPercentil(0.75);
+        $this->q1 = $this->calcularPercentilBase($valores, 0.25);
+        $this->q2 = $this->calcularPercentilBase($valores, 0.50);
+        $this->q3 = $this->calcularPercentilBase($valores, 0.75);
         $this->iqr = $this->q3 - $this->q1;
     }
 
-
-    private function calcularPercentil($percentil)
+    private function calcularPercentilBase($array, $percentil)
     {
-        $n = count($this->resultados);
+        $n = count($array);
         $position = ($n - 1) * $percentil;
-
         $low = floor($position);
         $high = ceil($position);
 
         if ($low == $high) {
-            return $this->resultados[$low];
+            return $array[$low];
         }
 
-        return $this->resultados[$low] + ($position - $low) *
-            ($this->resultados[$high] - $this->resultados[$low]);
+        return $array[$low] + ($position - $low) *
+            ($array[$high] - $array[$low]);
     }
+
 
     public function getPromediosNormales($columna)
     {

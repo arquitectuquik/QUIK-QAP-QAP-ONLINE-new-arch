@@ -8,6 +8,7 @@ if (!function_exists('mysql_connect')) {
 session_start();
 include_once "verifica_sesion.php";
 include_once "complementos/grubbs.php";
+include_once "complementos/grubbsv2.php";
 
 header('Content-Type: text/xml');
 echo "<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>";
@@ -1075,7 +1076,7 @@ switch ($tipo) {
                         mysqlException(mysql_error(), "_23_");
                         $nom_unidad_cs = $qryData_sub["nombre_unidad"];
 
-                        $objGrubbs = new Grubbs();
+
 
                         $qry_participantes = "SELECT 
                                 resultado.valor_resultado as 'resultado'
@@ -1105,15 +1106,29 @@ switch ($tipo) {
                             );
                         }
                         // Realizar consenso para dicho analito
-                        $objGrubbs->exclusionAtipicos($qryArrayFinalConsenso, "resultado");
-                        $qryData_participantes = $objGrubbs->getPromediosNormales("resultado");
+                        $FECHA_INICIO_NUEVA_FORMULA_ZSCORE = strtotime("2025-06-01");
+                        if (strtotime($fecha_corte_procesada) < $FECHA_INICIO_NUEVA_FORMULA_ZSCORE) {
+                            $objGrubbs = new Grubbsv2();
+                            $objGrubbs->exclusionAtipicos($qryArrayFinalConsenso, true);
+                            $qryData_participantes = $objGrubbs->getPromediosNormales("resultado");
 
-                        $p_25_ce = $qryData_participantes["q1"];
-                        $media_ce = $qryData_participantes["mediana"];
-                        $p_75_ce = $qryData_participantes["q3"];
-                        $de_ce = $qryData_participantes["s"];
-                        $cv_ce = $qryData_participantes["cv_robusto"];
-                        $n_ce = $qryData_participantes["n"];
+                            $media_ce = $qryData_participantes["media"];
+                            $de_ce = $qryData_participantes["de"];
+                            $cv_ce = $qryData_participantes["cv"];
+                            $n_ce = $qryData_participantes["n"];
+
+                        } else {
+                            $objGrubbs = new Grubbs();
+                            $objGrubbs->exclusionAtipicos($qryArrayFinalConsenso, "resultado");
+                            $qryData_participantes = $objGrubbs->getPromediosNormales("resultado");
+
+                            $p_25_ce = $qryData_participantes["q1"];
+                            $media_ce = $qryData_participantes["mediana"];
+                            $p_75_ce = $qryData_participantes["q3"];
+                            $de_ce = $qryData_participantes["s"];
+                            $cv_ce = $qryData_participantes["cv_robusto"];
+                            $n_ce = $qryData_participantes["n"];
+                        }
                     }
 
                     $id_configuracion_pa = $id_configlab_av; // Identifica la configuracion del laboratorio

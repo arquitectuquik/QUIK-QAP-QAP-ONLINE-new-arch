@@ -28,6 +28,15 @@ function initialize() {
 			$("#form1input4").children().each(function () {
 				appendFechaCorteMuestra($(this).text(), $(this).val());
 			});
+
+			var idLaboratorio = $("#form1input1").val();
+			var idPrograma = $("#form1input2").val();
+			var idRonda = $("#form1input3").val();
+
+			// Llama a la función solo si los valores están definidos
+			if (idLaboratorio && idPrograma && idRonda) {
+				obtenerFechasDeDB(idLaboratorio, idPrograma, idRonda);
+			}
 		}
 	});
 
@@ -77,7 +86,6 @@ function initialize() {
 		if ($(".fecha_corte_muestra").length > 0) {
 			fechas_corte = {};
 			$(".fecha_corte_muestra").each(function (fechaCorteItem) {
-				console.log("Fecha corte", $(this).val(), "id", $(this).data("muestraid"));
 				fechas_corte[$(this).data("muestraid")] = $(this).val();
 			});
 			fechas_corte = btoa(JSON.stringify(fechas_corte));
@@ -113,7 +121,6 @@ function initialize() {
 		if ($(".fecha_corte_muestra").length > 0) {
 			fechas_corte = {};
 			$(".fecha_corte_muestra").each(function (fechaCorteItem) {
-				console.log("Fecha corte", $(this).val(), "id", $(this).data("muestraid"));
 				fechas_corte[$(this).data("muestraid")] = $(this).val();
 			});
 			fechas_corte = btoa(JSON.stringify(fechas_corte));
@@ -441,7 +448,7 @@ function responseHandler(val, val2, val3, val4, val5) {
 				var level2Counter = 0;
 				var level3Counter = 0;
 
-				// Esto nos ayudará a crear los TD e Inputs de forma más organizada para los niveles CUANTITATIVOS
+				// Esto ayuda a crear los TD e Inputs de forma más organizada para los niveles CUANTITATIVOS
 				const quantitativeLevelColumns = [
 					{ name: "P25", dataCol: "p25", isReadOnly: false, isCalculated: false },
 					{ name: "ME", dataCol: "me", isReadOnly: false, isCalculated: false },
@@ -568,22 +575,16 @@ function responseHandler(val, val2, val3, val4, val5) {
 
 
 						// Construir la celda para Nivel 0 (CUALITATIVO)
+
 						var tdQualitative = document.createElement("td");
 						tdQualitative.setAttribute('class', 'unselectable center-text');
+						tdQualitative.innerHTML = returnValues_9lvl0[level0Counter];
 						tdQualitative.dataset.lvl = "0"; // Identificador de nivel
 						tdQualitative.dataset.col = "cualitativo"; // Identificador de columna cualitativa
-
-						var inputQualitative = document.createElement("input");
-						inputQualitative.setAttribute("type", "text");
-						inputQualitative.setAttribute("class", "form-control input-sm");
-						inputQualitative.setAttribute("style", "width: 100px; padding-left: 5px !important;"); // Ajusta el ancho si es necesario
-						inputQualitative.value = (returnValues_9lvl0[level0Counter] !== undefined && returnValues_9lvl0[level0Counter] !== null && returnValues_9lvl0[level0Counter] !== '') ? returnValues_9lvl0[level0Counter] : "N/A";
-
-						inputQualitative.addEventListener("keyup", function () {
-							$(this).parent().parent().get(0).dataset.edited = "true";
+						tdQualitative.setAttribute('data-id', '0');
+						tdQualitative.addEventListener('dblclick', function () {
+							table23Editor(this);
 						});
-
-						tdQualitative.appendChild(inputQualitative);
 						tr.appendChild(tdQualitative);
 						level0Counter++; // Incrementa en 1 para el valor cualitativo
 
@@ -621,25 +622,25 @@ function responseHandler(val, val2, val3, val4, val5) {
 
 				// Lógica para ocultar/mostrar columnas según returnValues_11 (nivel del lote)
 				switch (returnValues_11) {
-					case 0: // Asumo que el caso 0 oculta todos los cuantitativos y solo deja el cualitativo
+					case 0: // El caso 0 oculta todos los cuantitativos y solo deja el cualitativo
 						functionHandler("hideColumn", "table23Input1", "table23", "1"); // Nivel 1
 						functionHandler("hideColumn", "table23Input2", "table23", "1"); // Nivel 2
 						functionHandler("hideColumn", "table23Input3", "table23", "1"); // Nivel 3
 						functionHandler("hideColumn", "table23Input4", "table23", "0"); // Nivel 0 (cualitativo)
 						break;
-					case 1: // Asumo que el caso 1 muestra Nivel 1 y oculta los demás
+					case 1: // El caso 1 muestra Nivel 1 y oculta los demás
 						functionHandler("hideColumn", "table23Input1", "table23", "0");
 						functionHandler("hideColumn", "table23Input2", "table23", "1");
 						functionHandler("hideColumn", "table23Input3", "table23", "1");
 						functionHandler("hideColumn", "table23Input4", "table23", "1");
 						break;
-					case 2: // Asumo que el caso 2 muestra Nivel 2 y oculta los demás
+					case 2: // El caso 2 muestra Nivel 2 y oculta los demás
 						functionHandler("hideColumn", "table23Input1", "table23", "1");
 						functionHandler("hideColumn", "table23Input2", "table23", "0");
 						functionHandler("hideColumn", "table23Input3", "table23", "1");
 						functionHandler("hideColumn", "table23Input4", "table23", "1");
 						break;
-					case 3: // Asumo que el caso 3 muestra Nivel 3 y oculta los demás
+					case 3: // El caso 3 muestra Nivel 3 y oculta los demás
 						functionHandler("hideColumn", "table23Input1", "table23", "1");
 						functionHandler("hideColumn", "table23Input2", "table23", "1");
 						functionHandler("hideColumn", "table23Input3", "table23", "0");
@@ -715,7 +716,14 @@ function responseHandler(val, val2, val3, val4, val5) {
 
 					statusBox(boxType, 'NULL', txt, 'add', 'NULL');
 				}
-
+				break;
+			case "saveFechaCorte":
+				var code = parseInt(response.getAttribute("code"), 10);
+				if (code === 1) {
+					statusBox('success', 'NULL', response.textContent, 'add', 'NULL');
+				} else {
+					statusBox('warning', 'NULL', response.textContent, 'add', 'NULL');
+				}
 				break;
 			case "showReferenceValue":
 
@@ -921,7 +929,6 @@ function callsHandler(val, val2, val3, val4, val5) {
 
 			let direccion_url = "php/informe/informeResumenPorLaboratorio.php?id_programa=" + programa_cd + "&id_laboratorio=" + laboratorio_cd + "&id_muestra=" + muestra_cd + "&id_ronda=" + ronda_cd;
 
-			console.log(direccion_url);
 			window.open(direccion_url);
 			break;
 
@@ -1081,29 +1088,6 @@ function dataChangeHandler(val, val2, val3, val4, val5) {
 				} else {
 					var labId = "NULL";
 				}
-				console.log("Datos nivel 1:");
-				console.log("P25:", p25lvl1);
-				console.log("ME:", melvl1);
-				console.log("P75:", p75lvl1);
-				console.log("DE:", delvl1);
-				console.log("CV:", cvlvl1);
-				console.log("N:", nlvl1);
-
-				console.log("Datos nivel 2:");
-				console.log("P25:", p25lvl2);
-				console.log("ME:", melvl2);
-				console.log("P75:", p75lvl2);
-				console.log("DE:", delvl2);
-				console.log("CV:", cvlvl2);
-				console.log("N:", nlvl2);
-
-				console.log("Datos nivel 3:");
-				console.log("P25:", p25lvl3);
-				console.log("ME:", melvl3);
-				console.log("P75:", p75lvl3);
-				console.log("DE:", delvl3);
-				console.log("CV:", cvlvl3);
-				console.log("N:", nlvl3);
 
 				// Unir los arrays en cadenas separadas por "|"
 
@@ -1303,7 +1287,7 @@ function table23Editor(val) {
 	tdId = parseInt(td.getAttribute("data-id"), 10);
 
 	switch (tdId) {
-		case 1:
+		case 0:
 
 			var input = document.createElement("select");
 			var txt = new RegExp(val.innerHTML.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&"), "g");
@@ -1921,12 +1905,97 @@ function functionHandler(val, val2, val3, val4, val5) {
 			break;
 	}
 }
+// Función appendFechaCorteMuestra corregida
 function appendFechaCorteMuestra(muestraLabel, muestraId) {
-	var child = '<div class="form-group">' +
-		'<label for="fecha_corte">Fecha Corte ' + muestraLabel + '</label>' +
-		'<input class="form-control input-sm fecha_corte_muestra" data-muestraid="' + muestraId + '" type="date" id="fecha_corte_' + muestraId + '"  name="fecha_corte[]">' +
+	// Verificar si ya existe para evitar duplicados
+	if ($('#fecha_corte_' + muestraId).length > 0) {
+		return;
+	}
+
+	var child = '<div class="form-group fecha-corte-group" data-muestra-id="' + muestraId + '">' +
+		'<label for="fecha_corte_' + muestraId + '">Fecha Corte ' + muestraLabel + '</label>' +
+		'<input class="form-control input-sm fecha_corte_muestra" ' +
+		'data-muestraid="' + muestraId + '" ' +
+		'type="date" ' +
+		'id="fecha_corte_' + muestraId + '" ' +
+		'name="fecha_corte[]">' +
 		'</div>';
+
 	$("#fechas_corte").append(child);
+
+
+
+	// Asociar el evento change al nuevo input
+	$('#fecha_corte_' + muestraId).off('change').on('change', function () {
+		var fecha = $(this).val();
+		var idMuestra = $(this).data('muestraid');
+
+		// Verificar que tenemos todos los valores necesarios
+		var idLaboratorio = $("#form1input1").val();
+		var idPrograma = $("#form1input2").val();
+		var idRonda = $("#form1input3").val();
+
+		// Validar que todos los campos tienen valor
+		if (!fecha || !idMuestra || !idLaboratorio || !idPrograma || !idRonda) {
+			alert('Error: Faltan datos necesarios para guardar la fecha. Verifique que haya seleccionado laboratorio, programa y ronda.');
+			return;
+		}
+
+		// Llamar a la función para guardar
+		guardarFechaEnDB(fecha, idMuestra, idLaboratorio, idRonda, idPrograma);
+
+	});
+}
+
+// Función guardarFechaEnDB mejorada
+function guardarFechaEnDB(fecha, idMuestra, idLaboratorio, idRonda, idPrograma) {
+	// Verificación adicional
+	if (!fecha || !idMuestra || !idLaboratorio || !idRonda || !idPrograma) {
+		return;
+	}
+
+	var datos = {
+		header: 'saveFechaCorte',
+		fecha: fecha,
+		id_muestra: idMuestra,
+		id_laboratorio: idLaboratorio,
+		id_ronda: idRonda,
+		id_programa: idPrograma
+	};
+
+	$.ajax({
+		url: 'php/resultado_data_change_handler.php',
+		type: 'POST',
+		data: datos,
+		dataType: 'xml'
+	});
+}
+// También añade un log en la función de llenado para verificar el proceso
+function obtenerFechasDeDB(idLaboratorio, idPrograma, idRonda) {
+	var datos = {
+		header: 'getFechasCorte',
+		id_laboratorio: idLaboratorio,
+		id_programa: idPrograma,
+		id_ronda: idRonda
+	};
+
+	$.ajax({
+		url: 'php/resultado_data_change_handler.php',
+		type: 'POST',
+		data: datos,
+		dataType: 'xml',
+		success: function (xml) {
+			$(xml).find('fecha_corte').each(function () {
+				var idMuestra = $(this).find('id_muestra').text();
+				var fecha = $(this).find('fecha').text();
+				// Llenar el campo de fecha correspondiente
+				$('#fecha_corte_' + idMuestra).val(fecha);
+			});
+		},
+		error: function (jqXHR, textStatus, errorThrown) {
+			console.log('AJAX ERROR:', textStatus, errorThrown);
+		}
+	});
 }
 function errorHandler(val) {
 	alert(val);
@@ -1998,7 +2067,7 @@ function setupVentanaResultadosConsenso() {
 			var idConfigConsensoActual = idConfigElement ? idConfigElement.textContent : null;
 
 			var fechaCorteSeleccionada = $("#fecha-corte").val();
-			var idMuestraSeleccionada = $("#form1input4").val(); 
+			var idMuestraSeleccionada = $("#form1input4").val();
 			// ************************************************************
 
 			if (!idConfigConsensoActual || idConfigConsensoActual === 'N/A') {
@@ -2097,7 +2166,7 @@ function cargarResultadosParaVentanaConsenso(idConfigConsenso) {
 	console.log("Muestra seleccionada:", idMuestraSeleccionada);
 
 
-	
+
 	var urlCompleta = window.location.origin + window.location.pathname.replace(/[^/]*$/, '') + 'php/obtener_resultados_lab_consenso.php';
 
 	if (!fechaCorteSeleccionada) {

@@ -206,18 +206,18 @@ class MediaDeComparacionController
                         $muestra
                     );
                     $resultadosParticipantes = $estrategiaObtenedoraResultados->getResultados();
-    
-    
+
+
                     if (count($resultadosParticipantes) > 0) {
                         $valoresParticipantes = array_column($resultadosParticipantes, "valor_resultado");
-    
+
                         $grubbs = new GrubbsV2();
                         $grubbs->exclusionAtipicos($valoresParticipantes);
                         $resultadoParticipantes = $grubbs->getPromediosNormales();
-    
-    
+
+
                         //$matrizValoresLaboratorios[$configAnalito["id_analito"]][$muestra["id_muestra"]] = $filtroIntercuartilico->getResultadosEscogidos();
-    
+
                         // $matrizCalculosCoordenadasParticipantes[$x][$y] = $resultadoParticipantes;
                         $matriz["calculo"] = $resultadoParticipantes;
                         //$matrizCalculosResultadosIdsParticipantes[$configAnalito['id_analito']][$muestra["id_muestra"]] = $resultadoParticipantes;
@@ -323,7 +323,7 @@ class MediaDeComparacionController
         $this->indicadores = $indicadores;
         return $indicadores;
     }
-	/**
+    /**
      * Calcula los indicadores de satisfacción, alarma y no satisfactorio
      * a partir de un array de resultados de cálculo sin niveles anidados,
      * devolviendo una estructura de datos completa.
@@ -453,8 +453,13 @@ class MediaDeComparacionController
 
         $diferencia = 0;
 
+        if ($resultadosParticipantes["de"] != 0) {
+            $diferencia = (($resultadoLaboratorio - $resultadosParticipantes["media"]) / $resultadosParticipantes["media"]) * 100;
+        }
+        $diferencia_robusta = 0;
+
         if ($mediana != 0) {
-            $diferencia = (($resultadoLaboratorio - $mediana) / $mediana) * 100;
+            $diferencia_robusta = (($resultadoLaboratorio - $mediana) / $mediana) * 100;
         }
         $incerctidumbreSup = "N/A";
         $incerctidumbreInf = "N/A";
@@ -490,7 +495,8 @@ class MediaDeComparacionController
             "incertidumbre_inf" => round($incerctidumbreInf, 2) . "",
             "incertidumbre" => round($incertidumbre_robusta, 4),
             "cv" => round($cv, 4),
-            "s" => round($s, 4)
+            "s" => round($s, 4),
+            "diferencia_robusta" => round($diferencia_robusta, 4)
         ];
 
         return $caclulo;

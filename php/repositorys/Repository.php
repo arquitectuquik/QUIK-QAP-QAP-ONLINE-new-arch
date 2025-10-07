@@ -15,8 +15,6 @@ class Repository
      */
     protected function ejecutarQuery($query)
     {
-        // Log de la consulta para debugging
-        error_log("QUERY_DEBUG: " . $query);
 
         $resultadoQuery = mysql_query($query);
 

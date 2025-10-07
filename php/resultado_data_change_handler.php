@@ -1,7 +1,7 @@
 <?php
 // Cargar compatibilidad MySQL para PHP 7+
 if (!function_exists('mysql_connect')) {
-    require_once '../mysql_compatibility.php';
+	require_once '../mysql_compatibility.php';
 }
 
 session_start();
@@ -15,6 +15,91 @@ actionRestriction_102();
 $header = $_POST['header'];
 
 switch ($header) {
+	// --- CASE PARA OBTENER LAS FECHAS ---
+	case 'getFechasCorte':
+		// Validar que todos los parámetros requeridos estén presentes
+		if (
+			!isset($_POST['id_laboratorio']) || !isset($_POST['id_programa']) ||
+			!isset($_POST['id_ronda'])
+		) {
+			http_response_code(400);
+			break;
+		}
+
+		$id_laboratorio = mysql_real_escape_string($_POST['id_laboratorio']);
+		$id_programa = mysql_real_escape_string($_POST['id_programa']);
+		$id_ronda = mysql_real_escape_string($_POST['id_ronda']);
+
+		// Construir la consulta SQL
+		$sql = "SELECT id_muestra, fecha FROM fechas_corte_personalizadas 
+				WHERE id_laboratorio = '$id_laboratorio' 
+				AND id_programa = '$id_programa' 
+				AND id_ronda = '$id_ronda'";
+
+		// Ejecutar la consulta
+		$result = mysql_query($sql);
+
+		if (!$result) {
+			$mysql_error = mysql_error();
+			mysqlException($mysql_error, $header . "_01");
+		} else {
+			header('Content-type: text/xml');
+			// Se elimina la línea del encabezado XML, ya que es generada en otro lugar
+			echo '<fechas_corte>';
+			while ($row = mysql_fetch_assoc($result)) {
+				echo '<fecha_corte>';
+				echo '<id_muestra>' . htmlspecialchars($row['id_muestra']) . '</id_muestra>';
+				echo '<fecha>' . htmlspecialchars($row['fecha']) . '</fecha>';
+				echo '</fecha_corte>';
+			}
+			echo '</fechas_corte>';
+		}
+		break;
+	// --- CASE PARA GUARDAR LA FECHA ---
+	case 'saveFechaCorte':
+		// Validar que todos los parámetros requeridos estén presentes
+		if (
+			!isset($_POST['fecha']) || !isset($_POST['id_muestra']) ||
+			!isset($_POST['id_laboratorio']) || !isset($_POST['id_ronda']) ||
+			!isset($_POST['id_programa'])
+		) {
+			http_response_code(400);
+			break;
+		}
+
+		$fecha = mysql_real_escape_string($_POST['fecha']);
+		$id_muestra = mysql_real_escape_string($_POST['id_muestra']);
+		$id_laboratorio = mysql_real_escape_string($_POST['id_laboratorio']);
+		$id_ronda = mysql_real_escape_string($_POST['id_ronda']);
+		$id_programa = mysql_real_escape_string($_POST['id_programa']);
+
+		// Validar formato de fecha
+		if (!DateTime::createFromFormat('Y-m-d', $fecha)) {
+			error_log("ERROR: Formato de fecha inválido: $fecha");
+			echo '<response code="422">Formato de fecha inválido</response>';
+			break;
+		}
+
+		// Construir la consulta SQL
+		$sql = "INSERT INTO fechas_corte_personalizadas (fecha, id_muestra, id_laboratorio, id_ronda, id_programa) 
+            VALUES ('$fecha', '$id_muestra', '$id_laboratorio', '$id_ronda', '$id_programa')
+            ON DUPLICATE KEY UPDATE fecha = VALUES(fecha)";
+
+		// Ejecutar la consulta
+		$result = mysql_query($sql);
+
+		if (!$result) {
+			$mysql_error = mysql_error();
+			mysqlException($mysql_error, $header . "_01");
+		} else {
+			$affected_rows = mysql_affected_rows();
+			if ($affected_rows > 0) {
+				echo '<response code="1">Fecha de corte guardada exitosamente</response>';
+			} else {
+				echo '<response code="1">Fecha de corte ya existía con el mismo valor</response>';
+			}
+		}
+		break;
 	case 'saveTempPdf':
 
 		$filename = $_POST['filename'];
@@ -293,7 +378,7 @@ switch ($header) {
 		}
 
 		switch ($which) {
-			case 1:
+			case 0:
 
 				if ($wichTable == 1) {
 					$qry = "SELECT id_media_analito FROM $tableToEdit WHERE id_configuracion = $id AND id_muestra = $sampleid AND id_laboratorio = $labid";
