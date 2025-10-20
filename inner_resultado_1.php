@@ -582,49 +582,49 @@ $analitos["comparacion_vav_muestra"] = $comparacion_vav;
 
 				$nombreLote = $rowQryData["nombre_lote"];
 				$nombrePrograma = $rowQryData["nombre_programa"];
+$qryLaboratoriosHanReportado = "
+SELECT DISTINCT
+    resultado.valor_resultado AS 'resultado',
+    resultado.fecha_resultado AS 'fecha_resultado',
+    programa.nombre_programa AS 'nombre_programa',
+    ronda.no_ronda AS 'no_ronda',
+    contador_muestra.no_contador AS 'no_contador',
+    muestra.id_muestra AS 'id_muestra',
+    muestra.codigo_muestra AS 'codigo_muestra',
+    carqc.id_configuracion AS 'id_configuracion',
+    laboratorio.no_laboratorio AS 'no_laboratorio',
+    laboratorio.nombre_laboratorio AS 'nombre_laboratorio',
+    metodologia.nombre_metodologia AS 'nombre_metodologia',
+    resultado.id_analito_resultado_reporte_cualitativo AS 'id_result_cualitativo',
+    analito_resultado_reporte_cualitativo.desc_resultado_reporte_cualitativo,
+    puntuaciones.valor AS 'puntuacion'
+FROM 
+    programa
+    JOIN muestra_programa ON programa.id_programa = muestra_programa.id_programa
+    JOIN muestra ON muestra.id_muestra = muestra_programa.id_muestra
+    JOIN contador_muestra ON muestra.id_muestra = contador_muestra.id_muestra
+    JOIN ronda ON ronda.id_ronda = contador_muestra.id_ronda
+    JOIN lote ON lote.id_lote = muestra_programa.id_lote
+    JOIN resultado ON muestra.id_muestra = resultado.id_muestra
+    JOIN configuracion_laboratorio_analito ON configuracion_laboratorio_analito.id_configuracion = resultado.id_configuracion
+    JOIN laboratorio ON laboratorio.id_laboratorio = configuracion_laboratorio_analito.id_laboratorio
+    JOIN unidad ON unidad.id_unidad = configuracion_laboratorio_analito.id_unidad
+    JOIN analito ON analito.id_analito = configuracion_laboratorio_analito.id_analito
+    JOIN metodologia ON metodologia.id_metodologia = configuracion_laboratorio_analito.id_metodologia
+    LEFT JOIN configuracion_analito_resultado_reporte_cualitativo AS carqc 
+        ON carqc.id_configuracion = configuracion_laboratorio_analito.id_configuracion
+    LEFT JOIN analito_resultado_reporte_cualitativo 
+        ON analito_resultado_reporte_cualitativo.id_analito_resultado_reporte_cualitativo = resultado.id_analito_resultado_reporte_cualitativo
+    LEFT JOIN puntuaciones 
+        ON puntuaciones.id = analito_resultado_reporte_cualitativo.id_puntuacion
+WHERE 
+    resultado.valor_resultado IS NOT NULL
+    AND resultado.valor_resultado != ''
+    AND analito.nombre_analito = '$nombreAnalito'
+    AND lote.nombre_lote = '$nombreLote'
+    AND resultado.fecha_resultado <= '$fechaCorte'
+";
 
-				$qryLaboratoriosHanReportado = "SELECT 
-										resultado.valor_resultado AS 'resultado',
-										resultado.fecha_resultado AS 'fecha_resultado',
-										programa.nombre_programa AS 'nombre_programa',
-										ronda.no_ronda AS 'no_ronda',
-										contador_muestra.no_contador AS 'no_contador',
-										muestra.id_muestra AS 'id_muestra',
-										muestra.codigo_muestra AS 'codigo_muestra',
-										carqc.id_configuracion AS 'id_configuracion',
-										laboratorio.no_laboratorio AS 'no_laboratorio',
-										laboratorio.nombre_laboratorio AS 'nombre_laboratorio',
-										metodologia.nombre_metodologia AS 'nombre_metodologia',
-										resultado.id_analito_resultado_reporte_cualitativo AS 'id_result_cualitativo',
-										analito_resultado_reporte_cualitativo.desc_resultado_reporte_cualitativo,
-										puntuaciones.valor AS 'puntuacion'
-									FROM 
-										programa
-										JOIN muestra_programa ON programa.id_programa = muestra_programa.id_programa
-										JOIN muestra ON muestra.id_muestra = muestra_programa.id_muestra
-										JOIN contador_muestra ON muestra.id_muestra = contador_muestra.id_muestra
-										JOIN ronda ON ronda.id_ronda = contador_muestra.id_ronda
-										JOIN lote ON lote.id_lote = muestra_programa.id_lote
-										JOIN resultado ON muestra.id_muestra = resultado.id_muestra
-										JOIN configuracion_laboratorio_analito ON configuracion_laboratorio_analito.id_configuracion = resultado.id_configuracion
-										JOIN laboratorio ON laboratorio.id_laboratorio = configuracion_laboratorio_analito.id_laboratorio
-										JOIN unidad ON unidad.id_unidad = configuracion_laboratorio_analito.id_unidad
-										JOIN analito ON analito.id_analito = configuracion_laboratorio_analito.id_analito
-										JOIN metodologia ON metodologia.id_metodologia = configuracion_laboratorio_analito.id_metodologia
-										
-										LEFT JOIN configuracion_analito_resultado_reporte_cualitativo AS carqc 
-											ON carqc.id_configuracion = configuracion_laboratorio_analito.id_configuracion
-											
-										LEFT JOIN analito_resultado_reporte_cualitativo ON analito_resultado_reporte_cualitativo.id_analito_resultado_reporte_cualitativo = resultado.id_analito_resultado_reporte_cualitativo
-										LEFT JOIN puntuaciones ON puntuaciones.id = analito_resultado_reporte_cualitativo.id_puntuacion
-											
-									WHERE 
-										resultado.valor_resultado IS NOT NULL
-										AND resultado.valor_resultado != ''
-			 							AND analito.nombre_analito = '$nombreAnalito'
-				 						AND lote.nombre_lote = '$nombreLote'
-				 						AND resultado.fecha_resultado <= '$fechaCorte'
-				 						";
 
 				$QryArrayLaboratoriosHanReportado = mysql_query($qryLaboratoriosHanReportado);
 				mysqlException(mysql_error(), "_07");
@@ -9012,6 +9012,7 @@ $analitos["comparacion_vav_muestra"] = $comparacion_vav;
 						$comparacionInternacional = $mesurandos[$a]["comparacion_internacional"][0]["ids_resultados_verdaderos"];
 					}
 					$comparacionVAV = $mesurandos[$a]["comparacion_vav"];
+					echo "<pre style='font-size:10px; background:#eef; border:1px solid #ccc;'>";
 					$consenso = $mesurandos[$a]["resultados_consenso"];
 					$posicionValoracionTxt = floor(count($mesurandos[$a]["descripcion_posibles_resultados"]) / 2);
 
