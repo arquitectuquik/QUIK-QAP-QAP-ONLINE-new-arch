@@ -187,9 +187,30 @@ class ResultadosRepository extends Repository
                 $base_query .= " AND r.id_resultado IN ($ids_string)";
             }
         }
-
+        // El resultado final de la query
         $base_query .= " ORDER BY CAST(r.valor_resultado AS DECIMAL(10, 4))";
         $final_result = $this->ejecutarQuery($base_query);
+
+        // --- INICIO: CONVERSIÓN DE TIPO A FLOAT ---
+        $resultados_convertidos = [];
+        if (is_array($final_result)) {
+            foreach ($final_result as $row) {
+                $valor_original = $row['valor_resultado'];
+
+                // Aplicamos el casting directo a float
+                $valor_procesado = (float) $valor_original;
+
+                // Mantenemos la verificación para evitar nulos o cadenas vacías que
+                // se convierten a 0.0 cuando el valor original no tenía intención de ser 0.
+                if ($valor_original !== '' && $valor_original !== null) {
+                    // Actualizamos el valor_resultado en el array con el tipo float
+                    $row['valor_resultado'] = $valor_procesado;
+                    $resultados_convertidos[] = $row;
+                }
+            }
+        }
+        $final_result = $resultados_convertidos;
+        // --- FIN: CONVERSIÓN DE TIPO A FLOAT ---
 
         $FECHA_INICIO_NUEVA_FORMULA_ZSCORE = strtotime("2025-06-01");
         // la siguiente comparacion puede fallar luego del 2038 por el overflow de la unix epoch
@@ -295,8 +316,31 @@ class ResultadosRepository extends Repository
             }
         }
 
-        $base_query .= " ORDER BY CAST(r.valor_resultado AS DECIMAL(10, 3))";
-        return $this->ejecutarQuery($base_query);
-    }
 
+        // El resultado final de la query
+        $base_query .= " ORDER BY CAST(r.valor_resultado AS DECIMAL(10, 3))";
+        $final_result = $this->ejecutarQuery($base_query);
+
+        // --- INICIO: CONVERSIÓN DE TIPO A FLOAT ---
+        $resultados_convertidos = [];
+        if (is_array($final_result)) {
+            foreach ($final_result as $row) {
+                $valor_original = $row['valor_resultado'];
+
+                // Aplicamos el casting directo a float
+                $valor_procesado = (float) $valor_original;
+
+                // Mantenemos la verificación para evitar nulos o cadenas vacías
+                if ($valor_original !== '' && $valor_original !== null) {
+                    // Actualizamos el valor_resultado en el array con el tipo float
+                    $row['valor_resultado'] = $valor_procesado;
+                    $resultados_convertidos[] = $row;
+                }
+            }
+        }
+        $final_result = $resultados_convertidos;
+        // --- FIN: CONVERSIÓN DE TIPO A FLOAT ---
+
+        return $final_result;
+    }
 }

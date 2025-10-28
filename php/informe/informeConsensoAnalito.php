@@ -226,8 +226,13 @@ if (
 
     $array_para_grubbs = [];
     foreach ($qryArrayFinalConsenso as $item) {
-        if (isset($item['resultado']) && is_numeric($item['resultado'])) {
-            $array_para_grubbs[] = ['resultado' => $item['resultado']];
+        // Intenta convertir a flotante (más seguro para números decimales)
+        $resultado_convertido = (float) $item['resultado'];
+
+
+        // Luego, verifica si el resultado de la conversión es un número válido 
+        if (is_numeric($resultado_convertido)) {
+            $array_para_grubbs[] = ['resultado' => $resultado_convertido];
         }
     }
 
