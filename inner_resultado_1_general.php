@@ -861,13 +861,23 @@ switch ($header) {
 
 							if ($query_result_participantes) {
 								while ($qryDataConsenso = mysql_fetch_assoc($query_result_participantes)) {
-									// Solo añadir el 'valor_resultado' si es numérico
-									if (isset($qryDataConsenso["resultado"]) && is_numeric($qryDataConsenso["resultado"])) {
-										array_push(
-											$qryArrayFinalConsenso,
-											// Grubbs/Intercuartil esperan un array de arrays asociativos con la clave 'resultado'
-											array("resultado" => floatval($qryDataConsenso["resultado"]))
-										);
+
+									$valor_original = $qryDataConsenso["resultado"];
+
+									// 1. Verificamos que el campo exista antes de intentar procesarlo
+									if (isset($valor_original)) {
+
+
+										// Forzamos la conversión a flotante. floatval() o (float)
+										$valor_procesado = (float) $valor_original;
+
+										if (!empty($valor_original) && is_numeric($valor_procesado)) {
+
+											array_push(
+												$qryArrayFinalConsenso,
+												array("resultado" => $valor_procesado)
+											);
+										}
 									}
 								}
 							}

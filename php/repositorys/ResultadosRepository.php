@@ -44,7 +44,6 @@ class ResultadosRepository extends Repository
         $idAnalito,
         $fechaCorte
     ) {
-        $idPrograma_escaped = mysql_real_escape_string($idPrograma);
         $idUnidad_escaped = mysql_real_escape_string($idUnidad);
         $idLote_escaped = mysql_real_escape_string($idLote);
         $idAnalito_escaped = mysql_real_escape_string($idAnalito);
@@ -77,7 +76,7 @@ class ResultadosRepository extends Repository
     LEFT JOIN laboratorio l ON l.id_laboratorio = cla.id_laboratorio
     LEFT JOIN metodologia met ON met.id_metodologia = cla.id_metodologia
     LEFT JOIN programa p ON p.id_programa = cla.id_programa
-    WHERE cla.id_programa = '" . $idPrograma_escaped . "' AND
+    WHERE
     cla.id_unidad = '" . $idUnidad_escaped . "' AND
     cla.id_analito = '" . $idAnalito_escaped . "' AND
     mp.id_lote = '" . $idLote_escaped . "' AND
@@ -119,7 +118,6 @@ class ResultadosRepository extends Repository
         $fechaSeleccionConsenso = null
     ) {
 
-        $idPrograma_escaped = mysql_real_escape_string($idPrograma);
         $idUnidad_escaped = mysql_real_escape_string($idUnidad);
         $idLote_escaped = mysql_real_escape_string($idLote);
         $idAnalito_escaped = mysql_real_escape_string($idAnalito);
@@ -138,7 +136,7 @@ class ResultadosRepository extends Repository
         from resultado r 
         join configuracion_laboratorio_analito cla on cla.id_configuracion  = r.id_configuracion
         join muestra_programa mp on mp.id_programa = cla.id_programa  and mp.id_muestra = r.id_muestra 
-                WHERE cla.id_programa  = '" . $idPrograma_escaped . "' AND 
+                WHERE 
         cla.id_unidad = '" . $idUnidad_escaped . "' AND
         cla.id_analito = '" . $idAnalito_escaped . "' AND
         mp.id_lote = '" . $idLote_escaped . "' AND
@@ -187,9 +185,30 @@ class ResultadosRepository extends Repository
                 $base_query .= " AND r.id_resultado IN ($ids_string)";
             }
         }
-
+        // El resultado final de la query
         $base_query .= " ORDER BY CAST(r.valor_resultado AS DECIMAL(10, 4))";
         $final_result = $this->ejecutarQuery($base_query);
+
+        // --- INICIO: CONVERSIÓN DE TIPO A FLOAT ---
+        $resultados_convertidos = [];
+        if (is_array($final_result)) {
+            foreach ($final_result as $row) {
+                $valor_original = $row['valor_resultado'];
+
+                // Aplicamos el casting directo a float
+                $valor_procesado = (float) $valor_original;
+
+                // Mantenemos la verificación para evitar nulos o cadenas vacías que
+                // se convierten a 0.0 cuando el valor original no tenía intención de ser 0.
+                if ($valor_original !== '' && $valor_original !== null) {
+                    // Actualizamos el valor_resultado en el array con el tipo float
+                    $row['valor_resultado'] = $valor_procesado;
+                    $resultados_convertidos[] = $row;
+                }
+            }
+        }
+        $final_result = $resultados_convertidos;
+        // --- FIN: CONVERSIÓN DE TIPO A FLOAT ---
 
         $FECHA_INICIO_NUEVA_FORMULA_ZSCORE = strtotime("2025-06-01");
         // la siguiente comparacion puede fallar luego del 2038 por el overflow de la unix epoch
@@ -231,7 +250,6 @@ class ResultadosRepository extends Repository
         $idMuestraConsenso = null,
         $fechaSeleccionConsenso = null
     ) {
-        $idPrograma_escaped = mysql_real_escape_string($idPrograma);
         $idUnidad_escaped = mysql_real_escape_string($idUnidad);
         $idLote_escaped = mysql_real_escape_string($idLote);
         $idAnalito_escaped = mysql_real_escape_string($idAnalito);
@@ -250,7 +268,7 @@ class ResultadosRepository extends Repository
             FROM resultado r
         JOIN configuracion_laboratorio_analito cla ON cla.id_configuracion  = r.id_configuracion
             JOIN muestra_programa mp ON mp.id_programa = cla.id_programa AND mp.id_muestra = r.id_muestra
-        WHERE cla.id_programa  = '" . $idPrograma_escaped . "' AND 
+        WHERE
         cla.id_unidad = '" . $idUnidad_escaped . "' AND
         cla.id_analito = '" . $idAnalito_escaped . "' AND
         cla.id_metodologia = '" . $idMetodologia_escaped . "' AND
@@ -295,8 +313,31 @@ class ResultadosRepository extends Repository
             }
         }
 
-        $base_query .= " ORDER BY CAST(r.valor_resultado AS DECIMAL(10, 3))";
-        return $this->ejecutarQuery($base_query);
-    }
 
+        // El resultado final de la query
+        $base_query .= " ORDER BY CAST(r.valor_resultado AS DECIMAL(10, 3))";
+        $final_result = $this->ejecutarQuery($base_query);
+
+        // --- INICIO: CONVERSIÓN DE TIPO A FLOAT ---
+        $resultados_convertidos = [];
+        if (is_array($final_result)) {
+            foreach ($final_result as $row) {
+                $valor_original = $row['valor_resultado'];
+
+                // Aplicamos el casting directo a float
+                $valor_procesado = (float) $valor_original;
+
+                // Mantenemos la verificación para evitar nulos o cadenas vacías
+                if ($valor_original !== '' && $valor_original !== null) {
+                    // Actualizamos el valor_resultado en el array con el tipo float
+                    $row['valor_resultado'] = $valor_procesado;
+                    $resultados_convertidos[] = $row;
+                }
+            }
+        }
+        $final_result = $resultados_convertidos;
+        // --- FIN: CONVERSIÓN DE TIPO A FLOAT ---
+
+        return $final_result;
+    }
 }
