@@ -24,20 +24,23 @@ if (!function_exists('mysql_connect')) {
     }
 }
 
-// Configuración para Docker
+
+// Configuración BD
+// [credentials - PROD]
 // $db_host = "127.0.0.1";
 // $db_user = "panequik_qap";
 // $db_pass = "QuikSAS2019*";
 // $db_name = "panequik_qaponline_v4";
-// para servidor 
+// [credentials - TEST]
 $db_host = "localhost"; 
-$db_user = "quikappspane_qaponline_user";
-$db_pass = "qaponline_v1";
-$db_name = "quikappspane_qaponline_v1";
+$db_user = "panequik_qap_test";
+$db_pass = "QuikSAS2019*";
+$db_name = "panequik_qaponline_test";
+// [credentials - local]
 // $db_host = "localhost";
 // $db_user = "root";
 // $db_pass = ''; // o tu contraseña si la configuraste
-// $db_name = "u669796078_panequik_qap"; // el nombre de la BD que importaste
+// $db_name = "u669796078_panequik_qap"; //
 
 // Conexión usando compatibilidad MySQL mejorada
 // Compatible con PHP 7+ usando mysqli internamente
