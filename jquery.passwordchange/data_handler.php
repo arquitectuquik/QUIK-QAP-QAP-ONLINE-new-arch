@@ -39,19 +39,28 @@ if (!function_exists('mysql_connect')) {
 	$logHour = $serverDateInfo['hours'].":".$serverDateInfo['minutes'].":".$serverDateInfo['seconds'];			
 	ini_set('max_execution_time', 300);	
 	
-	//define the database info
-						$dataBaseInfo = array(
+	// Configuración BD
+					// [credentials - PROD]
+					// $dataBaseInfo = array(
+					// 	"db_hostname"=>"127.0.0.1"
+					// 	,"db_username"=>"panequik_qap"
+					// 	,"db_password"=>"QuikSAS2019*"
+					// 	,"db_name"=>"panequik_qaponline_v4"
+					// );
+					// [credentials - TEST]
+					$dataBaseInfo = array(
 						"db_hostname"=>"localhost"
-						,"db_username"=>"quikappspane_qaponline_user"
-						,"db_password"=>"qaponline_v1"
-						,"db_name"=>"quikappspane_qaponline_v1"
+						,"db_username"=>"panequik_qap_test"
+						,"db_password"=>"QuikSAS2019*"
+						,"db_name"=>"panequik_qaponline_test"
 					);
-	// $dataBaseInfo = array(
-	// 					"db_hostname"=>"localhost"
-	// 					,"db_username"=>"root"
-	// 					,"db_password"=>""
-	// 					,"db_name"=>"u669796078_panequik_qap"
-	// 				);
+					// [credentials - local]
+					// $dataBaseInfo = array(
+					// 	"db_hostname"=>"localhost"
+					// 	,"db_username"=>"root"
+					// 	,"db_password"=>"QuikSAS2019*"
+					// 	,"db_name"=>"u669796078_panequik_qap"
+					// );
 	//define the user table info
 	$tableInfo = array(
 		"tbl_name"=>"usuario"
