@@ -471,7 +471,9 @@ switch ($header) {
 
 				$tbl_gen_vitros.valor_gen_vitros,
 
-				$tbl_material.nombre_material 
+				$tbl_material.nombre_material,
+
+				$tbl_configuracion_laboratorio_analito.activo 
 
 			FROM $tbl_configuracion_laboratorio_analito 
 
@@ -805,8 +807,7 @@ switch ($header) {
 								}
 							}
 
-							// Convertir a un array asociativo para búsqueda rápida si fuera necesario,
-							// o simplemente usar $previamente_seleccionados_db directamente para el IN clause.
+
 							$ids_seleccionados_personalizados_db = $previamente_seleccionados_db;
 							$hay_selecciones_db = !empty($ids_seleccionados_personalizados_db);
 
@@ -836,7 +837,7 @@ switch ($header) {
 							// 3. Si hay selecciones personalizadas EN LA DB, modificar la consulta para usarlas
 							if ($hay_selecciones_db) {
 								$ids_escapados_para_sql = [];
-								foreach ($ids_seleccionados_personalizados_db as $id_sel) { // Iterar sobre los IDs de la DB
+								foreach ($ids_seleccionados_personalizados_db as $id_sel) {
 									if (is_numeric($id_sel)) {
 										$ids_escapados_para_sql[] = intval($id_sel);
 									}
@@ -863,12 +864,9 @@ switch ($header) {
 								while ($qryDataConsenso = mysql_fetch_assoc($query_result_participantes)) {
 
 									$valor_original = $qryDataConsenso["resultado"];
-
-									// 1. Verificamos que el campo exista antes de intentar procesarlo
 									if (isset($valor_original)) {
 
 
-										// Forzamos la conversión a flotante. floatval() o (float)
 										$valor_procesado = (float) $valor_original;
 
 										if (!empty($valor_original) && is_numeric($valor_procesado)) {
@@ -904,7 +902,7 @@ switch ($header) {
 
 							$pageContent["labconfigurationitems"]["comp"][$x] = $qryData_2['tipo_consenso_wwr'];
 
-							$pageContent["labconfigurationitems"]["nombre_unidad_comp"][$x] = $pageContent["labconfigurationitems"]["nombre_unidad"][$x]; // Si es por participantes QAP de deja la misma unidades
+							$pageContent["labconfigurationitems"]["nombre_unidad_comp"][$x] = $pageContent["labconfigurationitems"]["nombre_unidad"][$x]; // Si es por participantes QAP deja la misma unidades
 
 						} else {
 
