@@ -2564,7 +2564,12 @@ switch ($header) {
 				} else if ($pageContent["labconfigurationitems"]["n_evaluacion"][$x] < 4) {
 					$pageContent["labconfigurationitems"]["zscore"][$x] = null;
 				} else {
-					$pageContent["labconfigurationitems"]["zscore"][$x] = ($pageContent["labconfigurationitems"]["valor_resultado"][$x] - $pageContent["labconfigurationitems"]["mediana"][$x]) / ($pageContent["labconfigurationitems"]["iqr"][$x] * 0.7413);
+					$incertidumbre_calculada_ = 1.25 * ($pageContent["labconfigurationitems"]["desviacion_estandar"][$x] / sqrt($pageContent["labconfigurationitems"]["n_evaluacion"][$x])); // 1.25 es un factor de ajuste para la incertidumbre
+					if ($incertidumbre_calculada_ > (0.3 * $pageContent["labconfigurationitems"]["desviacion_estandar"][$x])) {
+						$pageContent["labconfigurationitems"]["zscore"][$x] = ($pageContent["labconfigurationitems"]["valor_resultado"][$x] - $pageContent["labconfigurationitems"]["mediana"][$x]) / sqrt(pow($pageContent["labconfigurationitems"]["desviacion_estandar"][$x], 2) + pow($incertidumbre_calculada_, 2));
+					} else {
+						$pageContent["labconfigurationitems"]["zscore"][$x] = ($pageContent["labconfigurationitems"]["valor_resultado"][$x] - $pageContent["labconfigurationitems"]["mediana"][$x]) / ($pageContent["labconfigurationitems"]["iqr"][$x] * 0.7413);
+					}
 				}
 
 				$pageContent["labconfigurationitems"]["diff"][$x] = ((($pageContent["labconfigurationitems"]["valor_resultado"][$x] - $pageContent["labconfigurationitems"]["media_estandar"][$x]) / $pageContent["labconfigurationitems"]["media_estandar"][$x]) * 100);
@@ -5576,11 +5581,15 @@ switch ($header) {
 
 									$mostrarTodosParticipantes = true;
 									$mostrarMismaMetodologia = true;
-									$leyendaCV = "";
 									$leyendaDatosInsuficientes = "";
 
 									// Lógica para la leyenda y la visualización
-		
+									if (isset($calculoAnalitoMuestra["n"]) && $calculoAnalitoMuestra["n"] < 4 && isset($calculoAnalitoMuestraMisma["n"]) && $calculoAnalitoMuestraMisma["n"] < 4) {
+										$mostrarTodosParticipantes = false;
+										$mostrarMismaMetodologia = false;
+										$leyendaDatosInsuficientes = "No hay suficientes datos para la comparación de todos los participantes QAP y con la misma metodología.";
+									}
+
 									if (isset($calculoAnalitoMuestra["n"]) && $calculoAnalitoMuestra["n"] < 4) {
 										$mostrarTodosParticipantes = false;
 										$leyendaDatosInsuficientes = "No hay suficientes datos para la comparación de todos los participantes QAP. ";
@@ -5591,11 +5600,7 @@ switch ($header) {
 										$leyendaDatosInsuficientes = "No hay suficientes datos para la comparación de la misma metodología.";
 									}
 
-									if (isset($calculoAnalitoMuestra["n"]) && $calculoAnalitoMuestra["n"] < 4 && isset($calculoAnalitoMuestraMisma["n"]) && $calculoAnalitoMuestraMisma["n"] < 4) {
-										$mostrarTodosParticipantes = false;
-										$mostrarMismaMetodologia = false;
-										$leyendaDatosInsuficientes = "No hay suficientes datos para la comparación de todos los participantes QAP y con la misma metodología.";
-									}
+
 
 									// ---------------------- IMPRESIÓN DE LA TABLA ----------------------
 									// Fila para "Todos los participantes de QAP"
@@ -5712,11 +5717,16 @@ switch ($header) {
 								// Determinar qué datos mostrar según la lógica del CV
 								$mostrarTodosParticipantes = true;
 								$mostrarMismaMetodologia = true;
-								$leyendaCV = "";
 								$leyendaDatosInsuficientes = "";
 
 								// Lógica para la leyenda y la visualización
 		
+								if (isset($calculoAnalitoMuestra["n"]) && $calculoAnalitoMuestra["n"] < 4 && isset($calculoAnalitoMuestraMisma["n"]) && $calculoAnalitoMuestraMisma["n"] < 4) {
+									$mostrarTodosParticipantes = false;
+									$mostrarMismaMetodologia = false;
+									$leyendaDatosInsuficientes = "No hay suficientes datos para la comparación de todos los participantes QAP y con la misma metodología.";
+								}
+
 								if (isset($calculoAnalitoMuestra["n"]) && $calculoAnalitoMuestra["n"] < 4) {
 									$mostrarTodosParticipantes = false;
 									$leyendaDatosInsuficientes = "No hay suficientes datos para la comparación de todos los participantes QAP. ";
@@ -5727,11 +5737,7 @@ switch ($header) {
 									$leyendaDatosInsuficientes = "No hay suficientes datos para la comparación de la misma metodología.";
 								}
 
-								if (isset($calculoAnalitoMuestra["n"]) && $calculoAnalitoMuestra["n"] < 4 && isset($calculoAnalitoMuestraMisma["n"]) && $calculoAnalitoMuestraMisma["n"] < 4) {
-									$mostrarTodosParticipantes = false;
-									$mostrarMismaMetodologia = false;
-									$leyendaDatosInsuficientes = "No hay suficientes datos para la comparación de todos los participantes QAP y con la misma metodología.";
-								}
+
 
 								// ---------------------- IMPRESIÓN DE LA TABLA ----------------------
 								// Fila para "Media de inserto" o "Media de comparación internacional"
@@ -5899,9 +5905,6 @@ switch ($header) {
 								// Leyendas
 								if (!empty($leyendaDatosInsuficientes)) {
 									echo "<tr><td colspan='10' style='font-size: 7pt;'>" . $leyendaDatosInsuficientes . "</td></tr>";
-								}
-								if (!empty($leyendaCV)) {
-									echo "<tr><td colspan='10' style='font-size: 7pt;'>" . $leyendaCV . "</td></tr>";
 								}
 								break;
 

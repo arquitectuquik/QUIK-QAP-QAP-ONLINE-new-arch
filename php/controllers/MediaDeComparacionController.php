@@ -445,10 +445,15 @@ class MediaDeComparacionController
         } else {
             // Fórmula desviación estándar robusta usando IQR
             $s = $iqr * 0.7413; // El factor 0.7413 escala el IQR para que sea comparable a la DE en distribuciones normales
-            // Fórmula robusta de Z-Score usando mediana e IQR
-            $zscore_cal = ($resultadoLaboratorio - $mediana) / ($s);
             // Fórmula de incertidumbre basada en IQR
             $incertidumbre_robusta = 1.25 * ($s / sqrt($n)); // 1.25 es un factor de ajuste para la incertidumbre
+            if ($incertidumbre_robusta > (0.3 * $s)) { // Según la ISO 13528
+                $zscore_cal = ($resultadoLaboratorio - $mediana) / (sqrt(pow($s, 2) + pow($incertidumbre_robusta, 2)));
+            } else {
+                // Fórmula robusta de Z-Score usando mediana e IQR
+                $zscore_cal = ($resultadoLaboratorio - $mediana) / ($s);
+            }
+
         }
 
         $diferencia = 0;
