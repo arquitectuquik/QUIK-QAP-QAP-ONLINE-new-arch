@@ -23,26 +23,26 @@ if (!function_exists('mysql_connect')) {
 			switch ($sitevalue) {
 				case 'qap':
 					
-					//para trabajar en local
+					// Configuración BD
+					// [credentials - PROD]
 					// $dataBaseInfo = array(
-					// 	"db_hostname"=>"localhost"
+					// 	"db_hostname"=>"127.0.0.1"
 					// 	,"db_username"=>"panequik_qap"
 					// 	,"db_password"=>"QuikSAS2019*"
 					// 	,"db_name"=>"panequik_qaponline_v4"
 					// );
-					
-					// en servidor
+					// [credentials - TEST]
 					$dataBaseInfo = array(
 						"db_hostname"=>"localhost"
-						,"db_username"=>"quikappspane_qaponline_user"
-						,"db_password"=>"qaponline_v1"
-						,"db_name"=>"quikappspane_qaponline_v1"
+						,"db_username"=>"panequik_qap_test"
+						,"db_password"=>"QuikSAS2019*"
+						,"db_name"=>"panequik_qaponline_test"
 					);
-					// para trabajar local con xampp
+					// [credentials - local]
 					// $dataBaseInfo = array(
 					// 	"db_hostname"=>"localhost"
 					// 	,"db_username"=>"root"
-					// 	,"db_password"=>""
+					// 	,"db_password"=>"QuikSAS2019*"
 					// 	,"db_name"=>"u669796078_panequik_qap"
 					// );
 					//define the user table info
@@ -181,20 +181,28 @@ if (!function_exists('mysql_connect')) {
 			switch ($sitevalue) {
 				case 'qap':
 					
-					// en xampp
+					// Configuración BD
+					// [credentials - PROD]
+					// $dataBaseInfo = array(
+					// 	"db_hostname"=>"127.0.0.1"
+					// 	,"db_username"=>"panequik_qap"
+					// 	,"db_password"=>"QuikSAS2019*"
+					// 	,"db_name"=>"panequik_qaponline_v4"
+					// );
+					// [credentials - TEST]
+					$dataBaseInfo = array(
+						"db_hostname"=>"localhost"
+						,"db_username"=>"panequik_qap_test"
+						,"db_password"=>"QuikSAS2019*"
+						,"db_name"=>"panequik_qaponline_test"
+					);
+					// [credentials - local]
 					// $dataBaseInfo = array(
 					// 	"db_hostname"=>"localhost"
 					// 	,"db_username"=>"root"
-					// 	,"db_password"=>""
+					// 	,"db_password"=>"QuikSAS2019*"
 					// 	,"db_name"=>"u669796078_panequik_qap"
 					// );
-					//para trabajar en servidor
-					$dataBaseInfo = array(
-						"db_hostname"=>"localhost"
-						,"db_username"=>"quikappspane_qaponline_user"
-						,"db_password"=>"qaponline_v1"
-						,"db_name"=>"quikappspane_qaponline_v1"
-					);
 					$db_host = "localhost";
 					//define the user table info
 					$tableInfo = array(
