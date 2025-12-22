@@ -1887,8 +1887,8 @@ actionRestriction_102();
 
 											<th class="center-text">Puntuacion</th>
 
-
-											<!-- <th class="center-text">Eliminar</th> -->
+											<!-- Nueva sección de eliminar -->
+											<th class="center-text">Eliminar</th>
 
 										</tr>
 

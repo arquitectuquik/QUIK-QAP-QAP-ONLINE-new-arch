@@ -471,7 +471,9 @@ switch ($header) {
 
 				$tbl_gen_vitros.valor_gen_vitros,
 
-				$tbl_material.nombre_material 
+				$tbl_material.nombre_material,
+
+				$tbl_configuracion_laboratorio_analito.activo 
 
 			FROM $tbl_configuracion_laboratorio_analito 
 
@@ -805,8 +807,7 @@ switch ($header) {
 								}
 							}
 
-							// Convertir a un array asociativo para búsqueda rápida si fuera necesario,
-							// o simplemente usar $previamente_seleccionados_db directamente para el IN clause.
+
 							$ids_seleccionados_personalizados_db = $previamente_seleccionados_db;
 							$hay_selecciones_db = !empty($ids_seleccionados_personalizados_db);
 
@@ -836,7 +837,7 @@ switch ($header) {
 							// 3. Si hay selecciones personalizadas EN LA DB, modificar la consulta para usarlas
 							if ($hay_selecciones_db) {
 								$ids_escapados_para_sql = [];
-								foreach ($ids_seleccionados_personalizados_db as $id_sel) { // Iterar sobre los IDs de la DB
+								foreach ($ids_seleccionados_personalizados_db as $id_sel) {
 									if (is_numeric($id_sel)) {
 										$ids_escapados_para_sql[] = intval($id_sel);
 									}
@@ -863,12 +864,9 @@ switch ($header) {
 								while ($qryDataConsenso = mysql_fetch_assoc($query_result_participantes)) {
 
 									$valor_original = $qryDataConsenso["resultado"];
-
-									// 1. Verificamos que el campo exista antes de intentar procesarlo
 									if (isset($valor_original)) {
 
 
-										// Forzamos la conversión a flotante. floatval() o (float)
 										$valor_procesado = (float) $valor_original;
 
 										if (!empty($valor_original) && is_numeric($valor_procesado)) {
@@ -904,7 +902,7 @@ switch ($header) {
 
 							$pageContent["labconfigurationitems"]["comp"][$x] = $qryData_2['tipo_consenso_wwr'];
 
-							$pageContent["labconfigurationitems"]["nombre_unidad_comp"][$x] = $pageContent["labconfigurationitems"]["nombre_unidad"][$x]; // Si es por participantes QAP de deja la misma unidades
+							$pageContent["labconfigurationitems"]["nombre_unidad_comp"][$x] = $pageContent["labconfigurationitems"]["nombre_unidad"][$x]; // Si es por participantes QAP deja la misma unidades
 
 						} else {
 
@@ -2566,7 +2564,12 @@ switch ($header) {
 				} else if ($pageContent["labconfigurationitems"]["n_evaluacion"][$x] < 4) {
 					$pageContent["labconfigurationitems"]["zscore"][$x] = null;
 				} else {
-					$pageContent["labconfigurationitems"]["zscore"][$x] = ($pageContent["labconfigurationitems"]["valor_resultado"][$x] - $pageContent["labconfigurationitems"]["mediana"][$x]) / ($pageContent["labconfigurationitems"]["iqr"][$x] * 0.7413);
+					$incertidumbre_calculada_ = 1.25 * ($pageContent["labconfigurationitems"]["desviacion_estandar"][$x] / sqrt($pageContent["labconfigurationitems"]["n_evaluacion"][$x])); // 1.25 es un factor de ajuste para la incertidumbre
+					if ($incertidumbre_calculada_ > (0.3 * $pageContent["labconfigurationitems"]["desviacion_estandar"][$x])) {
+						$pageContent["labconfigurationitems"]["zscore"][$x] = ($pageContent["labconfigurationitems"]["valor_resultado"][$x] - $pageContent["labconfigurationitems"]["mediana"][$x]) / sqrt(pow($pageContent["labconfigurationitems"]["desviacion_estandar"][$x], 2) + pow($incertidumbre_calculada_, 2));
+					} else {
+						$pageContent["labconfigurationitems"]["zscore"][$x] = ($pageContent["labconfigurationitems"]["valor_resultado"][$x] - $pageContent["labconfigurationitems"]["mediana"][$x]) / ($pageContent["labconfigurationitems"]["iqr"][$x] * 0.7413);
+					}
 				}
 
 				$pageContent["labconfigurationitems"]["diff"][$x] = ((($pageContent["labconfigurationitems"]["valor_resultado"][$x] - $pageContent["labconfigurationitems"]["media_estandar"][$x]) / $pageContent["labconfigurationitems"]["media_estandar"][$x]) * 100);
@@ -5578,11 +5581,15 @@ switch ($header) {
 
 									$mostrarTodosParticipantes = true;
 									$mostrarMismaMetodologia = true;
-									$leyendaCV = "";
 									$leyendaDatosInsuficientes = "";
 
 									// Lógica para la leyenda y la visualización
-		
+									if (isset($calculoAnalitoMuestra["n"]) && $calculoAnalitoMuestra["n"] < 4 && isset($calculoAnalitoMuestraMisma["n"]) && $calculoAnalitoMuestraMisma["n"] < 4) {
+										$mostrarTodosParticipantes = false;
+										$mostrarMismaMetodologia = false;
+										$leyendaDatosInsuficientes = "No hay suficientes datos para la comparación de todos los participantes QAP y con la misma metodología.";
+									}
+
 									if (isset($calculoAnalitoMuestra["n"]) && $calculoAnalitoMuestra["n"] < 4) {
 										$mostrarTodosParticipantes = false;
 										$leyendaDatosInsuficientes = "No hay suficientes datos para la comparación de todos los participantes QAP. ";
@@ -5593,11 +5600,7 @@ switch ($header) {
 										$leyendaDatosInsuficientes = "No hay suficientes datos para la comparación de la misma metodología.";
 									}
 
-									if (isset($calculoAnalitoMuestra["n"]) && $calculoAnalitoMuestra["n"] < 4 && isset($calculoAnalitoMuestraMisma["n"]) && $calculoAnalitoMuestraMisma["n"] < 4) {
-										$mostrarTodosParticipantes = false;
-										$mostrarMismaMetodologia = false;
-										$leyendaDatosInsuficientes = "No hay suficientes datos para la comparación de todos los participantes QAP y con la misma metodología.";
-									}
+
 
 									// ---------------------- IMPRESIÓN DE LA TABLA ----------------------
 									// Fila para "Todos los participantes de QAP"
@@ -5714,11 +5717,16 @@ switch ($header) {
 								// Determinar qué datos mostrar según la lógica del CV
 								$mostrarTodosParticipantes = true;
 								$mostrarMismaMetodologia = true;
-								$leyendaCV = "";
 								$leyendaDatosInsuficientes = "";
 
 								// Lógica para la leyenda y la visualización
 		
+								if (isset($calculoAnalitoMuestra["n"]) && $calculoAnalitoMuestra["n"] < 4 && isset($calculoAnalitoMuestraMisma["n"]) && $calculoAnalitoMuestraMisma["n"] < 4) {
+									$mostrarTodosParticipantes = false;
+									$mostrarMismaMetodologia = false;
+									$leyendaDatosInsuficientes = "No hay suficientes datos para la comparación de todos los participantes QAP y con la misma metodología.";
+								}
+
 								if (isset($calculoAnalitoMuestra["n"]) && $calculoAnalitoMuestra["n"] < 4) {
 									$mostrarTodosParticipantes = false;
 									$leyendaDatosInsuficientes = "No hay suficientes datos para la comparación de todos los participantes QAP. ";
@@ -5729,11 +5737,7 @@ switch ($header) {
 									$leyendaDatosInsuficientes = "No hay suficientes datos para la comparación de la misma metodología.";
 								}
 
-								if (isset($calculoAnalitoMuestra["n"]) && $calculoAnalitoMuestra["n"] < 4 && isset($calculoAnalitoMuestraMisma["n"]) && $calculoAnalitoMuestraMisma["n"] < 4) {
-									$mostrarTodosParticipantes = false;
-									$mostrarMismaMetodologia = false;
-									$leyendaDatosInsuficientes = "No hay suficientes datos para la comparación de todos los participantes QAP y con la misma metodología.";
-								}
+
 
 								// ---------------------- IMPRESIÓN DE LA TABLA ----------------------
 								// Fila para "Media de inserto" o "Media de comparación internacional"
@@ -5901,9 +5905,6 @@ switch ($header) {
 								// Leyendas
 								if (!empty($leyendaDatosInsuficientes)) {
 									echo "<tr><td colspan='10' style='font-size: 7pt;'>" . $leyendaDatosInsuficientes . "</td></tr>";
-								}
-								if (!empty($leyendaCV)) {
-									echo "<tr><td colspan='10' style='font-size: 7pt;'>" . $leyendaCV . "</td></tr>";
 								}
 								break;
 

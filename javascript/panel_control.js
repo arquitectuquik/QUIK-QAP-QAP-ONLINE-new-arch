@@ -10649,7 +10649,7 @@ function responseHandler(val, val2, val3, val4, val5) {
 
 						var td3 = document.createElement("td");
 
-						// var td3 = document.createElement("td");
+						var td4 = document.createElement("td");
 
 
 
@@ -10659,7 +10659,7 @@ function responseHandler(val, val2, val3, val4, val5) {
 
 						td3.setAttribute('class', 'unselectable center-text');
 
-						// td3.setAttribute('class','unselectable center-text');
+						td4.setAttribute('class', 'center-text');
 
 
 
@@ -10677,7 +10677,7 @@ function responseHandler(val, val2, val3, val4, val5) {
 
 						td3.innerHTML = returnValues_4[x];
 
-						// td3.appendChild(button);
+						td4.appendChild(button);
 
 
 
@@ -10693,7 +10693,7 @@ function responseHandler(val, val2, val3, val4, val5) {
 
 						tr.appendChild(td3);
 
-						// tr.appendChild(td3);
+						tr.appendChild(td4);
 
 
 
