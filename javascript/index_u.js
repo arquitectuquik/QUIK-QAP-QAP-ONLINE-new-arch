@@ -1,10 +1,10 @@
 function initialize() {
 
-	$("#form2input1").bind("mouseup",function(event){
+	$("#form2input1").bind("mouseup", function (event) {
 
 		window.location.href = "php/cierra_sesion.php";
 
-	});	
+	});
 
 
 
@@ -12,169 +12,186 @@ function initialize() {
 
 
 
-	$("#open_reports").click(function(e){
+	$("#open_reports").click(function (e) {
 
 		e.preventDefault();
 
-		window.open("reportes.php?filter="+$("#form1input1").val()+"&filterid=id_laboratorio", "Consultar reportes QAP", "width=1000, height=600")
+		window.open("reportes.php?filter=" + $("#form1input1").val() + "&filterid=id_laboratorio", "Consultar reportes QAP", "width=1000, height=600")
 
-		window.open("reportes.php?filter="+$("#form1input1").val()+"&filterid=id_laboratorio", "Consultar reportes QAP")
+		window.open("reportes.php?filter=" + $("#form1input1").val() + "&filterid=id_laboratorio", "Consultar reportes QAP")
 
 	})
 
 
 
-	$("#table250input1").bind("click",function(event){
+	$("#table250input1").bind("click", function (event) {
 
-		dataChangeHandler("saveAnalitCualitativeTypeOfResult",$("#w250p").attr("data-id-holder"),"NULL","NULL","NULL");
+		dataChangeHandler("saveAnalitCualitativeTypeOfResult", $("#w250p").attr("data-id-holder"), "NULL", "NULL", "NULL");
 
 		event.preventDefault();
 
-	});	
+	});
 
 
 
-	$("#form2Button1").bind("mouseup",function(event){
+	$("#form2Button1").bind("mouseup", function (event) {
 
 		var _confirm = confirm("¿Está seguro que desea reportar los valores ingresados?\n\nUna vez haya envíado los resultados solo podrá editarlos tras pasar el proceso de revaloración\n\n¿Está seguro que desea continuar?");
 
-		
+
 
 		if (_confirm) {
 
-			dataChangeHandler("saveAnalitResults","NULL",$("#form3").get(0),"NULL","NULL");
+			dataChangeHandler("saveAnalitResults", "NULL", $("#form3").get(0), "NULL", "NULL");
 
 		}
 
-		
+
 
 		event.preventDefault();
 
 	});
 
-	$("#form6").bind("submit",function(event){
+	$("#form6").bind("submit", function (event) {
 
-		dataChangeHandler("labAnalitAssignation","NULL",$("#form6").get(0),"NULL","NULL");
+		dataChangeHandler("labAnalitAssignation", "NULL", $("#form6").get(0), "NULL", "NULL");
 
 		event.preventDefault();
 
-	});	
+	});
 
-	
 
-	$("#form1input1").bind("change",function(event) {
 
-		functionHandler("selectFiller","form1input2","showAssignedLabProgram&filter="+this.value+"&filterid=id_laboratorio"," | ");
+	$("#form1input1").bind("change", function (event) {
 
-		callsHandler("showLabData",this.value,"id_laboratorio","NULL","NULL");
+		functionHandler("selectFiller", "form1input2", "showAssignedLabProgram&filter=" + this.value + "&filterid=id_laboratorio", " | ");
 
-		statusBox('loading','NULL','NULL','add','NULL');
+		callsHandler("showLabData", this.value, "id_laboratorio", "NULL", "NULL");
 
-		var timer_1 = setInterval(function() {
+		statusBox('loading', 'NULL', 'NULL', 'add', 'NULL');
+
+		var timer_1 = setInterval(function () {
 
 			if ($("#form1input2").attr("data-active") == "true") {
 
-				statusBox('loading','NULL','NULL','remove','NULL');
+				statusBox('loading', 'NULL', 'NULL', 'remove', 'NULL');
 
 				$("#form1input2").change();
 
-				clearInterval(timer_1);							
+				clearInterval(timer_1);
 
 			}
 
-		},100);	
+		}, 100);
 
 	});
 
-	$("#form1input2").bind("change",function(event) {
+	$("#form1input2").bind("change", function (event) {
 
-		functionHandler("selectFiller","form1input3","showAssignedLabRound&filter="+this.value+"|"+$("#form1input1").val()+"&filterid=id_laboratorio"," | ");
+		functionHandler("selectFiller", "form1input3", "showAssignedLabRound&filter=" + this.value + "|" + $("#form1input1").val() + "&filterid=id_laboratorio", " | ");
 
-		functionHandler("selectFiller","form6input3","showAnalit&filter="+this.value+"&filterid=id_programa"," | ","false");
+		functionHandler("selectFiller", "form6input3", "showAnalit&filter=" + this.value + "&filterid=id_programa", " | ", "false");
 
 		$("#form1input4").val("");
 
-		callsHandler("showAssignedLabAnalitSimple",$("#form1input1").val()+"|"+$("#form1input2").val(),"id_array","NULL","NULL");
+		callsHandler("showAssignedLabAnalitSimple", $("#form1input1").val() + "|" + $("#form1input2").val(), "id_array", "NULL", "NULL");
 
-		callsHandler("showAssignedProgramType",this.value,"id_programa","form1input4","NULL");
+		callsHandler("showAssignedProgramType", this.value, "id_programa", "form1input4", "NULL");
 
-		
 
-		statusBox('loading','NULL','NULL','add','NULL');
 
-		var timer_2 = setInterval(function() {
+		statusBox('loading', 'NULL', 'NULL', 'add', 'NULL');
+
+		var timer_2 = setInterval(function () {
 
 			if ($("#form1input3").attr("data-active") == "true") {
 
-				statusBox('loading','NULL','NULL','remove','NULL');
+				statusBox('loading', 'NULL', 'NULL', 'remove', 'NULL');
 
 				$("#form1input3").change();
 
-				clearInterval(timer_2);	
+				clearInterval(timer_2);
 
 			}
 
-		},100);
+		}, 100);
 
-		statusBox('loading','NULL','NULL','add','NULL');
+		statusBox('loading', 'NULL', 'NULL', 'add', 'NULL');
 
-		var timer_3 = setInterval(function() {
+		var timer_3 = setInterval(function () {
 
 			if ($("#form6input3").attr("data-active") == "true") {
 
-				statusBox('loading','NULL','NULL','remove','NULL');
+				statusBox('loading', 'NULL', 'NULL', 'remove', 'NULL');
 
 				$("#form6input3").change();
 
-				clearInterval(timer_3);							
+				clearInterval(timer_3);
 
 			}
 
-		},100);			
+		}, 100);
 
 	});
 
-	$("#form6input3").bind("change",function(event) {
+	// Cambio de Analito
+	$("#form6input3").off("change").on("change", function (event) {
+		var idAnalito = this.value;
+		var idAnalizador = $("#form6input4").val() || "0";
 
-		functionHandler("selectFiller","form6input4","showAnalyzer"," | ","false");
 
-		functionHandler("selectFiller","form6input6","showReactive"," | ","false");
+		$("#form6input5, #form6input7, #form6input8").html("").val("");
 
-		
+		functionHandler("selectFiller", "form6input4", "showAnalyzer", " | ", "false");
+		functionHandler("selectFiller", "form6input6", "showReactive", " | ", "false");
 
-		statusBox('loading','NULL','NULL','add','NULL');
+		var filtroData = idAnalizador + "|" + idAnalito;
 
-		var timer_4 = setInterval(function() {
 
-			if ($("#form6input4").attr("data-active") == "true" && $("#form6input3").attr("data-active") == "true") {
+		functionHandler("selectFiller", "form6input5", "showMethod_analito", " | ", "false", filtroData, "id_analito");
 
-				statusBox('loading','NULL','NULL','remove','NULL');
+		statusBox('loading', 'NULL', 'NULL', 'add', 'NULL');
 
-				$("#form6input4").change();
+		var timer_4 = setInterval(function () {
+			if ($("#form6input4").attr("data-active") == "true" &&
+				$("#form6input5").attr("data-active") == "true") {
 
-				clearInterval(timer_4);						
-
+				statusBox('loading', 'NULL', 'NULL', 'remove', 'NULL');
+				clearInterval(timer_4);
+				if ($("#form6input5").val() !== null) {
+					$("#form6input5").trigger("change");
+				}
 			}
-
-		},100);
-
+		}, 100);
 	});
 
-	$("#form6input4").bind("change",function(event) {
+	// Cambio de Metodología
+	$("#form6input5").off("change").on("change", function (event) {
+		var analizador = $("#form6input4").val();
+		var analito = $("#form6input3").val();
+		var metodologia = $(this).val();
 
-		
+		if (!metodologia) return;
 
-		functionHandler("selectFiller","form6input5","showMethod&filter="+this.value+"&filterid=id_analizador"," | ","false");
+		$("#form6input7").html("").val("");
 
-		functionHandler("selectFiller","form6input7","showUnit&filter="+this.value+"&filterid=id_analizador"," | ","false");
+		var filtroCompuesto = analito + "|" + metodologia + "|" + analizador;
+		functionHandler("selectFiller", "form6input7", "showUnit_analito", " | ", "false", filtroCompuesto, "id_analito");
+	});
+	// Analizador
+	$("#form6input4").bind("change", function (event) {
+		var idAnalizador = this.value;
+		var idAnalito = $("#form6input3").val();
 
-		functionHandler("selectFiller","form6input8","showVitrosGen"," | ","false");
+		if (idAnalito) {
+			var filtroData = idAnalizador + "|" + idAnalito;
+			functionHandler("selectFiller", "form6input5", "showMethod_analito", " | ", "false", filtroData, "id_analito");
+		}
 
-		
-
+		functionHandler("selectFiller", "form6input8", "showVitrosGen", " | ", "false");
 		var tempvalue = this.value;
 
-		
+
 
 		if (tempvalue == "") {
 
@@ -182,11 +199,11 @@ function initialize() {
 
 		} else {
 
-			var tempText = $("#"+this.id+" option[value="+tempvalue+"]"). text().toLowerCase();
+			var tempText = $("#" + this.id + " option[value=" + tempvalue + "]").text().toLowerCase();
 
-			var tempTemplate = new RegExp("vitros","g");
+			var tempTemplate = new RegExp("vitros", "g");
 
-			
+
 
 			if (tempTemplate.test(tempText)) {
 
@@ -196,23 +213,23 @@ function initialize() {
 
 			} else {
 
-				$("#form6input8").attr("disabled","disabled");
+				$("#form6input8").attr("disabled", "disabled");
 
 				$("#form6input8").val($("#form6input8 option:first").val());
 
 				$('#form6input8').button("disable");
 
-			}				
+			}
 
-		}	
+		}
 
-				
 
-	});	
 
-	$("#form1input3").bind("change",function(event) {
+	});
 
-		callsHandler("showAssignedRoundSample",this.value+"|"+$("#form1input2").val()+"|"+$("#form1input1").val(),"id_array","NULL","NULL");
+	$("#form1input3").bind("change", function (event) {
+
+		callsHandler("showAssignedRoundSample", this.value + "|" + $("#form1input2").val() + "|" + $("#form1input1").val(), "id_array", "NULL", "NULL");
 
 	});
 
@@ -222,35 +239,35 @@ function initialize() {
 
 	$("#w1textarea1").alphanum({
 
-		disallow : toEscape,
+		disallow: toEscape,
 
-		allow : permit
-
-	});
-
-	$("#w1textarea1").bind("keyup",function(event) {
-
-		$(this).attr("maxlength","150");
-
-		functionHandler("badgeCounter",this);
+		allow: permit
 
 	});
 
-	$("#w3overlay1").bind("mouseup",function(event){
+	$("#w1textarea1").bind("keyup", function (event) {
 
-		functionHandler('windowHandler','close','window3');
+		$(this).attr("maxlength", "150");
 
-		$("#w3iframe1").attr("src",$("#w3iframe1").attr("src"));
-
-	});
-
-	$("#w4p").find(".panel-heading").find("button").bind("mouseup",function(event){
-
-		$("#w3iframe1").attr("src",$("#w3iframe1").attr("src"));
+		functionHandler("badgeCounter", this);
 
 	});
 
-	
+	$("#w3overlay1").bind("mouseup", function (event) {
+
+		functionHandler('windowHandler', 'close', 'window3');
+
+		$("#w3iframe1").attr("src", $("#w3iframe1").attr("src"));
+
+	});
+
+	$("#w4p").find(".panel-heading").find("button").bind("mouseup", function (event) {
+
+		$("#w3iframe1").attr("src", $("#w3iframe1").attr("src"));
+
+	});
+
+
 
 	if ($("#form1input1").children().length == 0) {
 
@@ -274,7 +291,7 @@ function initialize() {
 
 	$("#w250p").draggable();
 
-	
+
 
 	/*
 
@@ -310,31 +327,31 @@ function initialize() {
 
 	*/
 
-	
 
-	var timer_5 = setInterval(function(){
 
-		callsHandler("checkSession",timer_5,"NULL","NULL","NULL");
+	var timer_5 = setInterval(function () {
 
-	},5000);
+		callsHandler("checkSession", timer_5, "NULL", "NULL", "NULL");
 
-	
+	}, 5000);
+
+
 
 	function shuffle(array) {
 
-	var currentIndex = array.length, temporaryValue, randomIndex;
+		var currentIndex = array.length, temporaryValue, randomIndex;
 
-	
+
 
 		while (0 !== currentIndex) {
 
-		
+
 
 			randomIndex = Math.floor(Math.random() * currentIndex);
 
 			currentIndex -= 1;
 
-		
+
 
 			temporaryValue = array[currentIndex];
 
@@ -344,7 +361,7 @@ function initialize() {
 
 		}
 
-		
+
 
 		return array;
 
@@ -354,17 +371,17 @@ function initialize() {
 
 
 
-function responseHandler(val,val2,val3,val4,val5) {
+function responseHandler(val, val2, val3, val4, val5) {
 
-	
+
 
 	var response = val.getElementsByTagName("response")[0];
 
-	
 
-	var code = parseInt(response.getAttribute("code"),10);
 
-	
+	var code = parseInt(response.getAttribute("code"), 10);
+
+
 
 	if (code == 0) {
 
@@ -378,13 +395,13 @@ function responseHandler(val,val2,val3,val4,val5) {
 
 			case "assignedLabAnalitValueEditor":
 
-				callsHandler("showAssignedLabAnalitSimple",$("#form1input1").val()+"|"+$("#form1input2").val(),"id_array","NULL","NULL");
+				callsHandler("showAssignedLabAnalitSimple", $("#form1input1").val() + "|" + $("#form1input2").val(), "id_array", "NULL", "NULL");
 
 				// callsHandler("showAssignedLabAnalit",$("#form6input1").val()+"|"+$("#form6input2").val(),"id_array","NULL","NULL");
 
-			
 
-			break;
+
+				break;
 
 
 
@@ -396,9 +413,9 @@ function responseHandler(val,val2,val3,val4,val5) {
 
 				var tbody = $("#table250").find("tbody").get(0);
 
-					tbody.innerHTML = "";
+				tbody.innerHTML = "";
 
-					
+
 
 				var returnValues_1 = response.getElementsByTagName("returnvalues1")[0].textContent.split("|");
 
@@ -408,39 +425,39 @@ function responseHandler(val,val2,val3,val4,val5) {
 
 				var returnValues_4 = response.getElementsByTagName("returnvalues4")[0].textContent.split("|");
 
-				
+
 
 				if (returnValues_1 != "") {
 
-				
+
 
 					for (var x = 0; x < returnValues_1.length; x++) {
 
-						
+
 
 						var tr = document.createElement("tr");
 
-						
+
 
 						var td1 = document.createElement("td");
 
-						
 
-							td1.setAttribute('class','unselectable');
 
-							td1.setAttribute('colspan','2');
+						td1.setAttribute('class', 'unselectable');
 
-						
+						td1.setAttribute('colspan', '2');
+
+
 
 						uniqId = functionHandler("uniqId");
 
-						
 
-						td1.innerHTML = "<label for='"+uniqId+"' style='width:100%; height: 100%;'><input type='checkbox' checked='checked' id='"+uniqId+"' value='"+returnValues_1[x]+"'></input> "+returnValues_2[x]+"</label>";
 
-						
+						td1.innerHTML = "<label for='" + uniqId + "' style='width:100%; height: 100%;'><input type='checkbox' checked='checked' id='" + uniqId + "' value='" + returnValues_1[x] + "'></input> " + returnValues_2[x] + "</label>";
 
-						
+
+
+
 
 						tr.appendChild(td1);
 
@@ -450,41 +467,41 @@ function responseHandler(val,val2,val3,val4,val5) {
 
 					}
 
-				
+
 
 				}
 
-				
+
 
 				if (returnValues_3 != "") {
 
-				
+
 
 					for (var x = 0; x < returnValues_3.length; x++) {
 
-						
+
 
 						var tr = document.createElement("tr");
 
-						
+
 
 						var td1 = document.createElement("td");
 
-						
 
-							td1.setAttribute('class','unselectable');
 
-							td1.setAttribute('colspan','2');
+						td1.setAttribute('class', 'unselectable');
 
-						
+						td1.setAttribute('colspan', '2');
+
+
 
 						uniqId = functionHandler("uniqId");
 
-						
 
-						td1.innerHTML = "<label for='"+uniqId+"' style='width:100%; height: 100%;'><input type='checkbox' id='"+uniqId+"' value='"+returnValues_3[x]+"'></input> "+returnValues_4[x]+"</label>";
 
-						
+						td1.innerHTML = "<label for='" + uniqId + "' style='width:100%; height: 100%;'><input type='checkbox' id='" + uniqId + "' value='" + returnValues_3[x] + "'></input> " + returnValues_4[x] + "</label>";
+
+
 
 						tr.appendChild(td1);
 
@@ -494,11 +511,11 @@ function responseHandler(val,val2,val3,val4,val5) {
 
 					}
 
-				
 
-				}				
 
-				
+				}
+
+
 
 				if (val4 == "no_window_action") {
 
@@ -506,33 +523,33 @@ function responseHandler(val,val2,val3,val4,val5) {
 
 				} else {
 
-					functionHandler('windowHandler',"open",'window250');
+					functionHandler('windowHandler', "open", 'window250');
 
 				}
 
-				
 
-				$("#w250p").attr("data-id-holder",val3);
+
+				$("#w250p").attr("data-id-holder", val3);
 
 				$("#table250").find("thead").find("input[data-search-input=true]").keyup();
 
-				
-
-			break;	
 
 
+				break;
 
-			case'saveAnalitCualitativeTypeOfResult':
 
-				var answer = parseInt(response.textContent,10);
 
-				
+			case 'saveAnalitCualitativeTypeOfResult':
+
+				var answer = parseInt(response.textContent, 10);
+
+
 
 				if (answer == 0) {
 
 					var boxType = "warning";
 
-					var txt = "Ha ocurrido un error, por favor comuniquese con el administrador del sistema";					
+					var txt = "Ha ocurrido un error, por favor comuniquese con el administrador del sistema";
 
 				} else {
 
@@ -540,29 +557,29 @@ function responseHandler(val,val2,val3,val4,val5) {
 
 					var txt = "Los datos se han guardado correctamente";
 
-					callsHandler("showAnalitConfiguredCualitativeTypeOfResult",val3,"id_configuracion","no_window_action","NULL")
+					callsHandler("showAnalitConfiguredCualitativeTypeOfResult", val3, "id_configuracion", "no_window_action", "NULL")
 
 				}
 
-				
 
-				statusBox(boxType,'NULL',txt,'add','NULL');
 
-							
+				statusBox(boxType, 'NULL', txt, 'add', 'NULL');
 
-			break;
+
+
+				break;
 
 
 
 			case "showAssignedRoundSample":
 
-			
+
 
 				var tbody = $("#table1").find("tbody").get(0);
 
-					tbody.innerHTML = "";
+				tbody.innerHTML = "";
 
-					
+
 
 				var returnValues_1 = response.getElementsByTagName("returnvalues1")[0].textContent.split("|");
 
@@ -574,169 +591,169 @@ function responseHandler(val,val2,val3,val4,val5) {
 
 				var returnValues_5 = response.getElementsByTagName("returnvalues5")[0].textContent.split("|");
 
-				
 
-				var oneDay = (24*60*60*1000);
+
+				var oneDay = (24 * 60 * 60 * 1000);
 
 				var today = new Date();
 
-				
+
 
 				if (returnValues_1 != "") {
 
-					
 
-					
 
-for (var x = 0; x < returnValues_1.length; x++) {
 
 
+					for (var x = 0; x < returnValues_1.length; x++) {
 
-   var sampleDateParts = returnValues_4[x].split("-");
-    var sampleEndDate = new Date(
-        parseInt(sampleDateParts[0], 10), 
-        parseInt(sampleDateParts[1], 10) - 1, 
-        parseInt(sampleDateParts[2], 10)
-    );
 
 
-    var dayDifference = Math.round((sampleEndDate - today) / oneDay);
+						var sampleDateParts = returnValues_4[x].split("-");
+						var sampleEndDate = new Date(
+							parseInt(sampleDateParts[0], 10),
+							parseInt(sampleDateParts[1], 10) - 1,
+							parseInt(sampleDateParts[2], 10)
+						);
 
-	console.log("Fecha:", sampleEndDate, "Hoy:", today, "Diferencia:", dayDifference);
 
+						var dayDifference = Math.round((sampleEndDate - today) / oneDay);
 
+						console.log("Fecha:", sampleEndDate, "Hoy:", today, "Diferencia:", dayDifference);
 
-    // Mostrar solo las fechas dentro del rango de los 8 días calendario
 
-    if (dayDifference >= -8 && dayDifference <= 0) {
 
+						// Mostrar solo las fechas dentro del rango de los 8 días calendario
 
+						if (dayDifference >= -8 && dayDifference <= 0) {
 
-        var tr = document.createElement("tr");
 
 
+							var tr = document.createElement("tr");
 
-        var td1 = document.createElement("td");
 
-        var td2 = document.createElement("td");
 
-        var td3 = document.createElement("td");
+							var td1 = document.createElement("td");
 
-        var td4 = document.createElement("td");
+							var td2 = document.createElement("td");
 
+							var td3 = document.createElement("td");
 
+							var td4 = document.createElement("td");
 
-        td1.setAttribute('class', 'unselectable center-text pointer');
 
-        td2.setAttribute('class', 'unselectable center-text pointer');
 
-        td3.setAttribute('class', 'unselectable center-text pointer');
+							td1.setAttribute('class', 'unselectable center-text pointer');
 
-        td4.setAttribute('class', 'unselectable center-text pointer');
+							td2.setAttribute('class', 'unselectable center-text pointer');
 
+							td3.setAttribute('class', 'unselectable center-text pointer');
 
+							td4.setAttribute('class', 'unselectable center-text pointer');
 
-        td1.dataset.id = "1";
 
-        td2.dataset.id = "2";
 
-        td3.dataset.id = "3";
+							td1.dataset.id = "1";
 
-        td4.dataset.id = "4";
+							td2.dataset.id = "2";
 
+							td3.dataset.id = "3";
 
+							td4.dataset.id = "4";
 
-        td1.innerHTML = returnValues_2[x];
 
-        td2.innerHTML = returnValues_3[x];
 
-        td3.innerHTML = returnValues_4[x];
+							td1.innerHTML = returnValues_2[x];
 
+							td2.innerHTML = returnValues_3[x];
 
+							td3.innerHTML = returnValues_4[x];
 
 
 
-		if (dayDifference < 0 && parseInt(returnValues_5[x],10) == 0) {
 
-			$(tr).addClass("sampleColor1");								
 
-			$(tr).attr("title","Muestra vencida, muestra sin resultados");
+							if (dayDifference < 0 && parseInt(returnValues_5[x], 10) == 0) {
 
-			td4.innerHTML = "<span class='glyphicon glyphicon-remove'></span>";	
+								$(tr).addClass("sampleColor1");
 
-		} else if (dayDifference < 0 && parseInt(returnValues_5[x],10) == 1) {
+								$(tr).attr("title", "Muestra vencida, muestra sin resultados");
 
-			$(tr).addClass("sampleColor0");								
+								td4.innerHTML = "<span class='glyphicon glyphicon-remove'></span>";
 
-			$(tr).attr("title","Muestra vencida, muestra con resultados");
+							} else if (dayDifference < 0 && parseInt(returnValues_5[x], 10) == 1) {
 
-			td4.innerHTML = "<span class='glyphicon glyphicon-ok' style='color: green;'></span>";	
+								$(tr).addClass("sampleColor0");
 
-		} else if (dayDifference == 0) {
+								$(tr).attr("title", "Muestra vencida, muestra con resultados");
 
-			$(tr).addClass("sampleColor2");
+								td4.innerHTML = "<span class='glyphicon glyphicon-ok' style='color: green;'></span>";
 
-			$(tr).attr("title","Muestra a reportar en la fecha");
+							} else if (dayDifference == 0) {
 
-			if (parseInt(returnValues_5[x],10) == 1) {
+								$(tr).addClass("sampleColor2");
 
-				td4.innerHTML = "<span class='glyphicon glyphicon-ok' style='color: green;'></span>";
+								$(tr).attr("title", "Muestra a reportar en la fecha");
 
-			}
+								if (parseInt(returnValues_5[x], 10) == 1) {
 
-		} 			
+									td4.innerHTML = "<span class='glyphicon glyphicon-ok' style='color: green;'></span>";
 
-						
+								}
 
+							}
 
 
 
 
-        tr.appendChild(td1);
 
-        tr.appendChild(td2);
 
-        tr.appendChild(td3);
 
-        tr.appendChild(td4);
+							tr.appendChild(td1);
 
+							tr.appendChild(td2);
 
+							tr.appendChild(td3);
 
-        tr.dataset.id = returnValues_1[x];
+							tr.appendChild(td4);
 
 
 
-        tr.addEventListener("mouseup", function () {
+							tr.dataset.id = returnValues_1[x];
 
-            callsHandler("showAssignedLabAnalit", $("#form1input1").val() + "|" + $("#form1input2").val() + "|" + this.getAttribute("data-id"), "id_array");
 
-            functionHandler("highLightItem", this);
 
-        });
+							tr.addEventListener("mouseup", function () {
 
+								callsHandler("showAssignedLabAnalit", $("#form1input1").val() + "|" + $("#form1input2").val() + "|" + this.getAttribute("data-id"), "id_array");
 
+								functionHandler("highLightItem", this);
 
-        tbody.appendChild(tr);
+							});
 
-    }
 
-}				
 
-}									
+							tbody.appendChild(tr);
 
-				
+						}
 
-			break;
+					}
+
+				}
+
+
+
+				break;
 
 			case "showAssignedLabAnalit":
 
-			
+
 
 				var tbody = $("#table2").find("tbody").get(0);
 
-					tbody.innerHTML = "";
+				tbody.innerHTML = "";
 
-					
+
 
 				var returnValues_1 = response.getElementsByTagName("returnvalues1")[0].textContent.split("|");
 
@@ -764,15 +781,15 @@ for (var x = 0; x < returnValues_1.length; x++) {
 
 				var returnValues_14 = response.getElementsByTagName("returnvalues14")[0].textContent.split("|");
 
-				
+
 
 				var isThereAnyResult = false;
 
-				
+
 
 				if (returnValues_1 != "") {
 
-					
+
 
 					for (var x = 0; x < returnValues_1.length; x++) {
 
@@ -786,15 +803,15 @@ for (var x = 0; x < returnValues_1.length; x++) {
 
 					}
 
-					
+
 
 					for (var x = 0; x < returnValues_1.length; x++) {
 
-						
 
-						var tr = document.createElement("tr");						
 
-						
+						var tr = document.createElement("tr");
+
+
 
 						var td1 = document.createElement("td");
 
@@ -810,39 +827,39 @@ for (var x = 0; x < returnValues_1.length; x++) {
 
 						var span_2 = document.createElement("span");
 
-						
+
 
 						var textArea_1 = document.createElement("textarea");
 
-							textArea_1.setAttribute("hidden","hidden");
+						textArea_1.setAttribute("hidden", "hidden");
 
-							textArea_1.setAttribute("name","form2textarea_"+(x+1));
+						textArea_1.setAttribute("name", "form2textarea_" + (x + 1));
 
-						
 
-							div.setAttribute("style","margin: 0 auto; width: 90%;")
 
-						
+						div.setAttribute("style", "margin: 0 auto; width: 90%;")
 
-							span_1.setAttribute("class","pull-left");
 
-						
+
+						span_1.setAttribute("class", "pull-left");
+
+
 
 						var button = document.createElement("button");
 
-						
+
 
 						button.innerHTML = "<span class='glyphicon glyphicon-comment' style='font-size: 11pt;'></span>";
 
-						button.setAttribute("class","btn btn-default btn-sm btn-block");
+						button.setAttribute("class", "btn btn-default btn-sm btn-block");
 
-						button.setAttribute("type","button");
+						button.setAttribute("type", "button");
 
-						button.setAttribute("title","Agregar un comentario");
+						button.setAttribute("title", "Agregar un comentario");
 
-						button.addEventListener("mouseup",function() { 
+						button.addEventListener("mouseup", function () {
 
-							functionHandler("windowHandler","open","window1");
+							functionHandler("windowHandler", "open", "window1");
 
 							$("#w1textarea1").val($(this).parent().parent().find("textarea").val());
 
@@ -850,13 +867,13 @@ for (var x = 0; x < returnValues_1.length; x++) {
 
 							$("#w1textarea1").get(0).dataset.idHolder = this.parentNode.parentNode.getAttribute("data-id");
 
-							functionHandler("badgeCounter",$("#w1textarea1").get(0));
+							functionHandler("badgeCounter", $("#w1textarea1").get(0));
 
 							$("#w1textarea1").focus();
 
 						});
 
-						
+
 
 						td1.dataset.id = "1";
 
@@ -866,17 +883,17 @@ for (var x = 0; x < returnValues_1.length; x++) {
 
 						td4.dataset.id = "4";
 
-						
 
-						td2.setAttribute("class","center-text");
 
-						td4.setAttribute("class","center-text");
+						td2.setAttribute("class", "center-text");
 
-						
+						td4.setAttribute("class", "center-text");
+
+
 
 						td1.innerHTML = returnValues_2[x];
 
-						
+
 
 						if (returnValues_10[x] == "") {
 
@@ -888,17 +905,17 @@ for (var x = 0; x < returnValues_1.length; x++) {
 
 						}
 
-						
+
 
 						var spanContent = 0;
 
-						
 
-						if (parseInt(returnValues_12[x],10) == 1) {
+
+						if (parseInt(returnValues_12[x], 10) == 1) {
 
 							spanContent = 2;
 
-						} else if (parseInt(returnValues_13,10) == 0) {
+						} else if (parseInt(returnValues_13, 10) == 0) {
 
 							spanContent = 2;
 
@@ -912,45 +929,45 @@ for (var x = 0; x < returnValues_1.length; x++) {
 
 						}
 
-						
+
 
 						switch (spanContent) {
 
 							case 1:
 
-								
 
-								if (parseInt($("#form1input4").val(),10) == 1) {
+
+								if (parseInt($("#form1input4").val(), 10) == 1) {
 
 									span_1.innerHTML = returnValues_7[x];
 
-								} else if (parseInt($("#form1input4").val(),10) == 2) {
+								} else if (parseInt($("#form1input4").val(), 10) == 2) {
 
 									span_1.innerHTML = returnValues_14[x];
 
 								}
 
-							
 
-							break;
+
+								break;
 
 							case 2:
 
-								
 
-								var tempId = functionHandler("uniqId","NULL","NULL","NULL","NULL");
 
-								
+								var tempId = functionHandler("uniqId", "NULL", "NULL", "NULL", "NULL");
 
-								if (parseInt($("#form1input4").val(),10) == 1) {
+
+
+								if (parseInt($("#form1input4").val(), 10) == 1) {
 
 									var input = document.createElement("input");
 
-										input.setAttribute("style","width: 50px;");
+									input.setAttribute("style", "width: 50px;");
 
-										input.setAttribute("name","form2input_"+(x+1));
+									input.setAttribute("name", "form2input_" + (x + 1));
 
-										input.id = tempId;
+									input.id = tempId;
 
 
 
@@ -964,31 +981,13 @@ for (var x = 0; x < returnValues_1.length; x++) {
 
 									}
 
-			
+
 
 									$(input).numericInput({ allowNegative: true, allowFloat: true });
 
-									
 
-									input.addEventListener("keyup",function() { 
 
-										if (this.value == "") {
-
-											$(this).parent().parent().parent().parent().get(0).dataset.edited = "false";
-
-										} else {
-
-											var tempValue = this.value+'';
-
-											this.value = tempValue.replace(",",".");
-
-											$(this).parent().parent().parent().parent().get(0).dataset.edited = "true";
-
-										} 
-
-									});
-
-									input.addEventListener("change",function() { 
+									input.addEventListener("keyup", function () {
 
 										if (this.value == "") {
 
@@ -996,35 +995,53 @@ for (var x = 0; x < returnValues_1.length; x++) {
 
 										} else {
 
-											var tempValue = this.value+'';
+											var tempValue = this.value + '';
 
-											this.value = tempValue.replace(",",".");
+											this.value = tempValue.replace(",", ".");
 
 											$(this).parent().parent().parent().parent().get(0).dataset.edited = "true";
 
-										} 
+										}
 
 									});
 
-									
+									input.addEventListener("change", function () {
+
+										if (this.value == "") {
+
+											$(this).parent().parent().parent().parent().get(0).dataset.edited = "false";
+
+										} else {
+
+											var tempValue = this.value + '';
+
+											this.value = tempValue.replace(",", ".");
+
+											$(this).parent().parent().parent().parent().get(0).dataset.edited = "true";
+
+										}
+
+									});
+
+
 
 									span_1.appendChild(input);
 
-									
 
-								} else if (parseInt($("#form1input4").val(),10) == 2) {
+
+								} else if (parseInt($("#form1input4").val(), 10) == 2) {
 
 									var input = document.createElement("select");
 
-										input.setAttribute("style","width: 50px;");
+									input.setAttribute("style", "width: 50px;");
 
-										input.setAttribute("name","form2input_"+(x+1));
+									input.setAttribute("name", "form2input_" + (x + 1));
 
-										input.id = tempId;
+									input.id = tempId;
 
-										
 
-									input.addEventListener("change",function() { 
+
+									input.addEventListener("change", function () {
 
 										if (this.value == "null") {
 
@@ -1034,33 +1051,33 @@ for (var x = 0; x < returnValues_1.length; x++) {
 
 											$(this).parent().parent().parent().parent().get(0).dataset.edited = "true";
 
-										} 
+										}
 
-									});										
+									});
 
-										
+
 
 									span_1.appendChild(input);
 
 								}
 
-							break;
+								break;
 
 						}
 
-						
+
 
 						span_2.innerHTML = returnValues_6[x];
 
-						
+
 
 						td3.appendChild(button);
 
-						
+
 
 						textArea_1.value = returnValues_8[x];
 
-						
+
 
 						div.appendChild(span_1);
 
@@ -1068,11 +1085,11 @@ for (var x = 0; x < returnValues_1.length; x++) {
 
 						div.appendChild(textArea_1);
 
-						
+
 
 						td2.appendChild(div);
 
-						
+
 
 						tr.appendChild(td1);
 
@@ -1082,47 +1099,47 @@ for (var x = 0; x < returnValues_1.length; x++) {
 
 						tr.appendChild(td3);
 
-						
 
-						if (parseInt(returnValues_11[x],10) == 0 || returnValues_11[x] == "") {
+
+						if (parseInt(returnValues_11[x], 10) == 0 || returnValues_11[x] == "") {
 
 							var vitrosInfo = ""
 
 						} else {
 
-							var vitrosInfo = "Generación de VITROS n° "+returnValues_11[x]+" | ";
+							var vitrosInfo = "Generación de VITROS n° " + returnValues_11[x] + " | ";
 
 						}
 
-						
 
-						tr.setAttribute("title",returnValues_2[x]+" | "+returnValues_3[x]+" | "+vitrosInfo+returnValues_4[x]+" | "+returnValues_5[x]+" | "+returnValues_6[x]);
 
-						tr.setAttribute("data-toggle","tooltip");
+						tr.setAttribute("title", returnValues_2[x] + " | " + returnValues_3[x] + " | " + vitrosInfo + returnValues_4[x] + " | " + returnValues_5[x] + " | " + returnValues_6[x]);
 
-						tr.setAttribute("data-placement","bottom");
+						tr.setAttribute("data-toggle", "tooltip");
+
+						tr.setAttribute("data-placement", "bottom");
 
 						tr.dataset.id = returnValues_1[x];
 
-						
 
-						tbody.appendChild(tr); 
 
-						
+						tbody.appendChild(tr);
 
-						if (parseInt($("#form1input4").val(),10) == 2) {
 
-							if (parseInt(returnValues_12[x],10) == 1) {
 
-								functionHandler("selectFiller",tempId,"showAnalitCualitativeTypeOfResultForConfiguration&filter="+returnValues_1[x]+"&filterid=id_configuracion"," | ",returnValues_14[x]);
+						if (parseInt($("#form1input4").val(), 10) == 2) {
 
-							} else if (parseInt(returnValues_13,10) == 0) {
+							if (parseInt(returnValues_12[x], 10) == 1) {
 
-								functionHandler("selectFiller",tempId,"showAnalitCualitativeTypeOfResultForConfiguration&filter="+returnValues_1[x]+"&filterid=id_configuracion"," | ",returnValues_14[x]);
+								functionHandler("selectFiller", tempId, "showAnalitCualitativeTypeOfResultForConfiguration&filter=" + returnValues_1[x] + "&filterid=id_configuracion", " | ", returnValues_14[x]);
+
+							} else if (parseInt(returnValues_13, 10) == 0) {
+
+								functionHandler("selectFiller", tempId, "showAnalitCualitativeTypeOfResultForConfiguration&filter=" + returnValues_1[x] + "&filterid=id_configuracion", " | ", returnValues_14[x]);
 
 							} else if (!isThereAnyResult) {
 
-								functionHandler("selectFiller",tempId,"showAnalitCualitativeTypeOfResultForConfiguration&filter="+returnValues_1[x]+"&filterid=id_configuracion"," | ","false");
+								functionHandler("selectFiller", tempId, "showAnalitCualitativeTypeOfResultForConfiguration&filter=" + returnValues_1[x] + "&filterid=id_configuracion", " | ", "false");
 
 							}
 
@@ -1130,29 +1147,29 @@ for (var x = 0; x < returnValues_1.length; x++) {
 
 					}
 
-					
+
 
 					$("[data-toggle=tooltip]").tooltip();
 
-					
+
 
 				}
 
-				
 
-			break;
+
+				break;
 
 			case "saveAnalitResults":
 
-				var answer = parseInt(response.textContent,10);
+				var answer = parseInt(response.textContent, 10);
 
-				
+
 
 				if (answer == 0) {
 
 					var boxType = "warning";
 
-					var txt = "Algo ha salido mal, por favor contactese con el administrador del sistema";					
+					var txt = "Algo ha salido mal, por favor contactese con el administrador del sistema";
 
 				} else {
 
@@ -1162,27 +1179,27 @@ for (var x = 0; x < returnValues_1.length; x++) {
 
 					//callsHandler("showAssignedLabAnalit",$("#form1input1").val()+"|"+$("#form1input2").val()+"|"+$("#table1").find("[data-active]").attr("data-id"),"id_array");
 
-					callsHandler("showAssignedRoundSample",$("#form1input3").val()+"|"+$("#form1input2").val()+"|"+$("#form1input1").val(),"id_array","NULL","NULL");
+					callsHandler("showAssignedRoundSample", $("#form1input3").val() + "|" + $("#form1input2").val() + "|" + $("#form1input1").val(), "id_array", "NULL", "NULL");
 
 				}
 
-				
 
-				statusBox(boxType,'NULL',txt,'add','NULL');
 
-				
+				statusBox(boxType, 'NULL', txt, 'add', 'NULL');
 
-			break;
+
+
+				break;
 
 			case "showLabData":
 
-			
+
 
 				var tbody = $("#table1").find("tbody").get(0);
 
-					tbody.innerHTML = "";
+				tbody.innerHTML = "";
 
-					
+
 
 				var returnValues_1 = response.getElementsByTagName("returnvalues1")[0].textContent.split("|");
 
@@ -1200,15 +1217,15 @@ for (var x = 0; x < returnValues_1.length; x++) {
 
 				var returnValues_8 = response.getElementsByTagName("returnvalues8")[0].textContent.split("|");
 
-				
+
 
 				if (returnValues_1 != "") {
 
-				
+
 
 					for (var x = 0; x < returnValues_1.length; x++) {
 
-						
+
 
 						$("#labDataSpan1").html(returnValues_1[x]);
 
@@ -1226,25 +1243,25 @@ for (var x = 0; x < returnValues_1.length; x++) {
 
 						$("#labDataSpan8").html(returnValues_8[x]);
 
-						
+
 
 					}
 
 				}
 
-				
 
-			break;
+
+				break;
 
 			case "showAssignedLabAnalitSimple":
 
-			
+
 
 				var tbody = $("#table15").find("tbody").get(0);
 
-					tbody.innerHTML = "";
+				tbody.innerHTML = "";
 
-					
+
 
 				var returnValues_1 = response.getElementsByTagName("returnvalues1")[0].textContent.split("|");
 
@@ -1266,27 +1283,27 @@ for (var x = 0; x < returnValues_1.length; x++) {
 
 				var returnValues_10 = response.getElementsByTagName("returnvalues10")[0].textContent.split("|");
 
-				
+
 
 				if (returnValues_1 != "") {
 
-				
+
 
 					for (var x = 0; x < returnValues_1.length; x++) {
 
-						
+
 
 						var tr = document.createElement("tr");
 
-						
 
-						var button2 = document.createElement("button");	
+
+						var button2 = document.createElement("button");
 
 						button2.innerHTML = "<span><b>Ver posibles resultados</b></span>";
 
-						button2.setAttribute("class","btn btn-default btn-block btn-pequeno");
+						button2.setAttribute("class", "btn btn-default btn-block btn-pequeno");
 
-						button2.addEventListener("mouseup",function() { callsHandler("showAnalitConfiguredCualitativeTypeOfResult",this.parentNode.parentNode.getAttribute("data-id"),"id_configuracion","NULL","NULL") });
+						button2.addEventListener("mouseup", function () { callsHandler("showAnalitConfiguredCualitativeTypeOfResult", this.parentNode.parentNode.getAttribute("data-id"), "id_configuracion", "NULL", "NULL") });
 
 
 
@@ -1312,27 +1329,27 @@ for (var x = 0; x < returnValues_1.length; x++) {
 
 
 
-						td1.setAttribute('class','unselectable center-text');
+						td1.setAttribute('class', 'unselectable center-text');
 
-						td2.setAttribute('class','unselectable center-text');
+						td2.setAttribute('class', 'unselectable center-text');
 
-						td3.setAttribute('class','unselectable center-text');
+						td3.setAttribute('class', 'unselectable center-text');
 
-						td4.setAttribute('class','unselectable center-text');
+						td4.setAttribute('class', 'unselectable center-text');
 
-						td5.setAttribute('class','unselectable center-text');
+						td5.setAttribute('class', 'unselectable center-text');
 
-						td6.setAttribute('class','unselectable center-text');
+						td6.setAttribute('class', 'unselectable center-text');
 
-						td7.setAttribute('class','unselectable center-text');
+						td7.setAttribute('class', 'unselectable center-text');
 
-						td8.setAttribute('class','unselectable center-text');
+						td8.setAttribute('class', 'unselectable center-text');
 
-						td9.setAttribute('class','unselectable center-text');
+						td9.setAttribute('class', 'unselectable center-text');
 
-						td10.setAttribute('class','unselectable center-text');
+						td10.setAttribute('class', 'unselectable center-text');
 
-						
+
 
 						td1.dataset.id = "1";
 
@@ -1370,13 +1387,13 @@ for (var x = 0; x < returnValues_1.length; x++) {
 
 						td8.innerHTML = returnValues_9[x]; // Material
 
-						
 
-						
+
+
 
 						// Estado
 
-						if (parseInt(returnValues_10[x],10) == 1) {
+						if (parseInt(returnValues_10[x], 10) == 1) {
 
 							td9.innerHTML = "SI";
 
@@ -1394,7 +1411,7 @@ for (var x = 0; x < returnValues_1.length; x++) {
 
 						td10.appendChild(button2);
 
-						td9.addEventListener("dblclick",function () { table15Editor(this) });
+						td9.addEventListener("dblclick", function () { table15Editor(this) });
 
 
 
@@ -1432,29 +1449,29 @@ for (var x = 0; x < returnValues_1.length; x++) {
 
 				}
 
-				
+
 
 				$("#table15").find("thead").find("input[data-search-input=true]").keyup();
 
-				
 
-			break;
+
+				break;
 
 			case "labAnalitAssignation":
 
 
 
-				if(code != 422){ // Si no se realizo una alerta de validacion
+				if (code != 422) { // Si no se realizo una alerta de validacion
 
-					var answer = parseInt(response.textContent,10);
+					var answer = parseInt(response.textContent, 10);
 
-					
+
 
 					if (answer == 0) {
 
 						var boxType = "warning";
 
-						var txt = "La configuración seleccionada ya existe en la base de datos";					
+						var txt = "La configuración seleccionada ya existe en la base de datos";
 
 					} else {
 
@@ -1462,29 +1479,29 @@ for (var x = 0; x < returnValues_1.length; x++) {
 
 						var txt = "La configuración se ha ingresado correctamente";
 
-						callsHandler("showAssignedLabAnalitSimple",$("#form1input1").val()+"|"+$("#form1input2").val(),"id_array","NULL","NULL");
+						callsHandler("showAssignedLabAnalitSimple", $("#form1input1").val() + "|" + $("#form1input2").val(), "id_array", "NULL", "NULL");
 
 						functionHandler('formReset');
 
 					}
 
-					
 
-					statusBox(boxType,'NULL',txt,'add','NULL');	
+
+					statusBox(boxType, 'NULL', txt, 'add', 'NULL');
 
 				}
 
 
 
-			break;
+				break;
 
 			case "assignedLabAnalitDeletion":
 
-			
 
-				var answer = parseInt(response.textContent,10);
 
-				
+				var answer = parseInt(response.textContent, 10);
+
+
 
 				if (answer == 0) {
 
@@ -1500,29 +1517,29 @@ for (var x = 0; x < returnValues_1.length; x++) {
 
 					if ($("#table1").find("[data-active]").get().length > 0) {
 
-						callsHandler("showAssignedLabAnalit",$("#form1input1").val()+"|"+$("#form1input2").val()+"|"+$("#table1").find("[data-active]").attr("data-id"),"id_array");
+						callsHandler("showAssignedLabAnalit", $("#form1input1").val() + "|" + $("#form1input2").val() + "|" + $("#table1").find("[data-active]").attr("data-id"), "id_array");
 
-					}				
+					}
 
-					callsHandler("showAssignedLabAnalitSimple",$("#form1input1").val(),"id_laboratorio","NULL","NULL");
+					callsHandler("showAssignedLabAnalitSimple", $("#form1input1").val(), "id_laboratorio", "NULL", "NULL");
 
 				}
 
-				
 
-				statusBox(boxType,'NULL',txt,'add','NULL');			
 
-			
+				statusBox(boxType, 'NULL', txt, 'add', 'NULL');
 
-			break;
+
+
+				break;
 
 			case "checkSession":
 
-			
 
-				var answer = parseInt(response.textContent,10);
 
-				
+				var answer = parseInt(response.textContent, 10);
+
+
 
 				if (answer == 0) {
 
@@ -1532,283 +1549,283 @@ for (var x = 0; x < returnValues_1.length; x++) {
 
 					var boxType = "warning";
 
-					
+
 
 					var div = document.createElement("div");
 
-						div.setAttribute("style",
+					div.setAttribute("style",
 
-							"opacity:    0.5;"
+						"opacity:    0.5;"
 
-							+"background: #000;" 
+						+ "background: #000;"
 
-							+"width:      100%;"
+						+ "width:      100%;"
 
-							+"height:     100%;"
+						+ "height:     100%;"
 
-							+"z-index:    10;"
+						+ "z-index:    10;"
 
-							+"top:        0;" 
+						+ "top:        0;"
 
-							+"left:       0;" 
+						+ "left:       0;"
 
-							+"position:   fixed"
+						+ "position:   fixed"
 
-						);
+					);
 
-					
+
 
 					document.getElementsByTagName("body")[0].appendChild(div);
 
-					statusBox(boxType,'NULL',txt,'add','99999999');	
+					statusBox(boxType, 'NULL', txt, 'add', '99999999');
 
 				}
 
-				
 
-			break;
+
+				break;
 
 			case "showAssignedProgramType":
 
-					
+
 
 				var returnValues_1 = response.getElementsByTagName("returnvalues1")[0].textContent;
 
-				
+
 
 				if (returnValues_1 != "") {
 
 
 
-					$("#"+val3).val(returnValues_1);
+					$("#" + val3).val(returnValues_1);
 
-					$("#"+val3).change();
+					$("#" + val3).change();
 
-					
+
 
 				}
 
-				
 
-			break;			
+
+				break;
 
 		}
 
-	}	
+	}
 
 }
 
 
 
-function callsHandler(val,val2,val3,val4,val5) {
+function callsHandler(val, val2, val3, val4, val5) {
 
-	
+
 
 	var id = val;
 
-	
+
 
 	switch (id) {
 
 		case "showAnalitConfiguredCualitativeTypeOfResult":
 
-			
 
-	
 
-			if (typeof(val2) == 'undefined') {
 
-				var values = "header="+id;
+
+			if (typeof (val2) == 'undefined') {
+
+				var values = "header=" + id;
 
 			} else {
 
-				var values = "header="+id+"&filter="+val2+"&filterid="+val3;
+				var values = "header=" + id + "&filter=" + val2 + "&filterid=" + val3;
 
 			}
 
-			
 
-			statusBox('loading','NULL','NULL','add','NULL');
 
-			
+			statusBox('loading', 'NULL', 'NULL', 'add', 'NULL');
+
+
 
 			$.ajax({
 
 				contentType: "application/x-www-form-urlencoded",
 
-				url:"php/index_u_calls_handler.php",
+				url: "php/index_u_calls_handler.php",
 
-				type:"POST",
+				type: "POST",
 
 				data: values,
 
-				dataType:"xml",
+				dataType: "xml",
 
-				success: function(xml) { 
+				success: function (xml) {
 
-					statusBox('loading','NULL','NULL','remove','NULL');
+					statusBox('loading', 'NULL', 'NULL', 'remove', 'NULL');
 
-					responseHandler(xml,id,val2,"NULL","NULL");
+					responseHandler(xml, id, val2, "NULL", "NULL");
 
 				}
 
-			}).always(function(dsadsafe){
+			}).always(function (dsadsafe) {
 
 				console.log(dsadsafe);
 
 			});
 
-			
 
-		break;	
+
+			break;
 
 		case "showMaterial":
 
-			
 
-			if (typeof(val2) == 'undefined') {
 
-				var values = "header="+id;
+			if (typeof (val2) == 'undefined') {
+
+				var values = "header=" + id;
 
 			} else {
 
-				var values = "header="+id+"&filter="+val2+"&filterid="+val3;
+				var values = "header=" + id + "&filter=" + val2 + "&filterid=" + val3;
 
 			}
 
-			
 
-			statusBox('loading','NULL','NULL','add','NULL');
 
-			
+			statusBox('loading', 'NULL', 'NULL', 'add', 'NULL');
+
+
 
 			$.ajax({
 
 				contentType: "application/x-www-form-urlencoded",
 
-				url:"php/index_u_calls_handler.php",
+				url: "php/index_u_calls_handler.php",
 
-				type:"POST",
+				type: "POST",
 
 				data: values,
 
-				dataType:"xml",
+				dataType: "xml",
 
-				success: function(xml) { 
+				success: function (xml) {
 
-					statusBox('loading','NULL','NULL','remove','NULL');					
+					statusBox('loading', 'NULL', 'NULL', 'remove', 'NULL');
 
-					responseHandler(xml,id,"NULL","NULL","NULL");
+					responseHandler(xml, id, "NULL", "NULL", "NULL");
 
-					
 
-					functionHandler('selectFiller','form6input9','showMaterial'," | ","false");
+
+					functionHandler('selectFiller', 'form6input9', 'showMaterial', " | ", "false");
 
 				}
 
-			})			
+			})
 
-			
 
-		break;
+
+			break;
 
 		case "showAssignedRoundSample":
 
-			
 
-			if (typeof(val2) == 'undefined') {
 
-				var values = "header="+id;
+			if (typeof (val2) == 'undefined') {
+
+				var values = "header=" + id;
 
 			} else {
 
-				var values = "header="+id+"&filter="+val2+"&filterid="+val3;
+				var values = "header=" + id + "&filter=" + val2 + "&filterid=" + val3;
 
 			}
 
-			
 
-			statusBox('loading','NULL','NULL','add','NULL');
 
-			
+			statusBox('loading', 'NULL', 'NULL', 'add', 'NULL');
+
+
 
 			$.ajax({
 
 				contentType: "application/x-www-form-urlencoded",
 
-				url:"php/index_u_calls_handler.php",
+				url: "php/index_u_calls_handler.php",
 
-				type:"POST",
+				type: "POST",
 
 				data: values,
 
-				dataType:"xml",
+				dataType: "xml",
 
-				success: function(xml) { 
+				success: function (xml) {
 
-					statusBox('loading','NULL','NULL','remove','NULL');
+					statusBox('loading', 'NULL', 'NULL', 'remove', 'NULL');
 
-					responseHandler(xml,id,"NULL","NULL","NULL");
+					responseHandler(xml, id, "NULL", "NULL", "NULL");
 
 					$("#table2").find("tbody").html("");
 
 				}
 
-			})			
+			})
 
-			
 
-		break;
+
+			break;
 
 		case "showAssignedLabAnalit":
 
-			
 
-		statusBox('loading','NULL','NULL','add','NULL');
 
-			var timer_6 = setInterval(function() {
+			statusBox('loading', 'NULL', 'NULL', 'add', 'NULL');
+
+			var timer_6 = setInterval(function () {
 
 				if ($("#form1input4").val() != "") {
 
-					
 
-					statusBox('loading','NULL','NULL','remove','NULL');
 
-					
+					statusBox('loading', 'NULL', 'NULL', 'remove', 'NULL');
 
-					if (typeof(val2) == 'undefined') {
 
-						var values = "header="+id;
+
+					if (typeof (val2) == 'undefined') {
+
+						var values = "header=" + id;
 
 					} else {
 
-						var values = "header="+id+"&filter="+val2+"&filterid="+val3;
+						var values = "header=" + id + "&filter=" + val2 + "&filterid=" + val3;
 
 					}
 
-					
 
-					statusBox('loading','NULL','NULL','add','NULL');
 
-					
+					statusBox('loading', 'NULL', 'NULL', 'add', 'NULL');
+
+
 
 					$.ajax({
 
 						contentType: "application/x-www-form-urlencoded",
 
-						url:"php/index_u_calls_handler.php",
+						url: "php/index_u_calls_handler.php",
 
-						type:"POST",
+						type: "POST",
 
 						data: values,
 
-						dataType:"xml",
+						dataType: "xml",
 
-						success: function(xml) { 
+						success: function (xml) {
 
-							statusBox('loading','NULL','NULL','remove','NULL');
+							statusBox('loading', 'NULL', 'NULL', 'remove', 'NULL');
 
-							responseHandler(xml,id,"NULL","NULL","NULL");
+							responseHandler(xml, id, "NULL", "NULL", "NULL");
 
 						}
 
@@ -1816,211 +1833,211 @@ function callsHandler(val,val2,val3,val4,val5) {
 
 					clearInterval(timer_6);
 
-				}		
+				}
 
-			},100);
+			}, 100);
 
-			
 
-		break;		
+
+			break;
 
 		case "showLabData":
 
-			
 
-			if (typeof(val2) == 'undefined') {
 
-				var values = "header="+id;
+			if (typeof (val2) == 'undefined') {
+
+				var values = "header=" + id;
 
 			} else {
 
-				var values = "header="+id+"&filter="+val2+"&filterid="+val3;
+				var values = "header=" + id + "&filter=" + val2 + "&filterid=" + val3;
 
 			}
 
-			
 
-			statusBox('loading','NULL','NULL','add','NULL');
 
-			
+			statusBox('loading', 'NULL', 'NULL', 'add', 'NULL');
+
+
 
 			$.ajax({
 
 				contentType: "application/x-www-form-urlencoded",
 
-				url:"php/index_u_calls_handler.php",
+				url: "php/index_u_calls_handler.php",
 
-				type:"POST",
+				type: "POST",
 
 				data: values,
 
-				dataType:"xml",
+				dataType: "xml",
 
-				success: function(xml) { 
+				success: function (xml) {
 
-					statusBox('loading','NULL','NULL','remove','NULL');
+					statusBox('loading', 'NULL', 'NULL', 'remove', 'NULL');
 
-					responseHandler(xml,id,"NULL","NULL","NULL");
+					responseHandler(xml, id, "NULL", "NULL", "NULL");
 
 				}
 
-			})			
+			})
 
-			
 
-		break;
+
+			break;
 
 		case "showAssignedLabAnalitSimple":
 
-			
 
-			if (typeof(val2) == 'undefined') {
 
-				var values = "header="+id;
+			if (typeof (val2) == 'undefined') {
+
+				var values = "header=" + id;
 
 			} else {
 
-				var values = "header="+id+"&filter="+val2+"&filterid="+val3;
+				var values = "header=" + id + "&filter=" + val2 + "&filterid=" + val3;
 
 			}
 
-				
 
-			statusBox('loading','NULL','NULL','add','NULL');
 
-			
+			statusBox('loading', 'NULL', 'NULL', 'add', 'NULL');
+
+
 
 			$.ajax({
 
 				contentType: "application/x-www-form-urlencoded",
 
-				url:"php/index_u_calls_handler.php",
+				url: "php/index_u_calls_handler.php",
 
-				type:"POST",
+				type: "POST",
 
 				data: values,
 
-				dataType:"xml",
+				dataType: "xml",
 
-				success: function(xml) { 
+				success: function (xml) {
 
-					statusBox('loading','NULL','NULL','remove','NULL');
+					statusBox('loading', 'NULL', 'NULL', 'remove', 'NULL');
 
-					responseHandler(xml,id,"NULL","NULL","NULL"); 
+					responseHandler(xml, id, "NULL", "NULL", "NULL");
 
 				}
 
-			}).always(function(asdsd){
+			}).always(function (asdsd) {
 
 				console.log(values);
 
 				console.log(asdsd);
 
-			})	
+			})
 
-			
 
-		break;
+
+			break;
 
 		case "checkSession":
 
-			
+
 
 			$.ajax({
 
 				contentType: "application/x-www-form-urlencoded",
 
-				url:"php/verifica_estado_sesion.php",
+				url: "php/verifica_estado_sesion.php",
 
-				type:"POST",
+				type: "POST",
 
-				dataType:"xml",
+				dataType: "xml",
 
-				success: function(xml) { 
+				success: function (xml) {
 
-					responseHandler(xml,id,val2,"NULL","NULL");
+					responseHandler(xml, id, val2, "NULL", "NULL");
 
 				}
 
-			});	
+			});
 
-			
 
-		break;	
+
+			break;
 
 		case "showAssignedProgramType":
 
-			
 
-			if (typeof(val2) == 'undefined') {
 
-				var values = "header="+id;
+			if (typeof (val2) == 'undefined') {
+
+				var values = "header=" + id;
 
 			} else {
 
-				var values = "header="+id+"&filter="+val2+"&filterid="+val3;
+				var values = "header=" + id + "&filter=" + val2 + "&filterid=" + val3;
 
 			}
 
-			
 
-			statusBox('loading','NULL','NULL','add','NULL');
 
-			
+			statusBox('loading', 'NULL', 'NULL', 'add', 'NULL');
+
+
 
 			$.ajax({
 
 				contentType: "application/x-www-form-urlencoded",
 
-				url:"php/index_u_calls_handler.php",
+				url: "php/index_u_calls_handler.php",
 
-				type:"POST",
+				type: "POST",
 
 				data: values,
 
-				dataType:"xml",
+				dataType: "xml",
 
-				success: function(xml) { 
+				success: function (xml) {
 
-					statusBox('loading','NULL','NULL','remove','NULL');
+					statusBox('loading', 'NULL', 'NULL', 'remove', 'NULL');
 
-					responseHandler(xml,id,val4,"NULL","NULL");
+					responseHandler(xml, id, val4, "NULL", "NULL");
 
 				}
 
-			})			
+			})
 
-			
 
-		break;			
+
+			break;
 
 	}
 
 }
 
-	
 
-function dataChangeHandler(val,val2,val3,val4,val5) {
+
+function dataChangeHandler(val, val2, val3, val4, val5) {
 
 	var id = val;
 
-	
 
-	switch(id) {
+
+	switch (id) {
 
 
 
 		case "assignedLabAnalitValueEditor":
 
-		
 
-			var node = val3;		
+
+			var node = val3;
 
 
 
 			if (parseInt(node.getAttribute("data-edited")) == 0) {
 
-			
+
 
 				if (node.type == "text" || node.type == "password" || node.type == "date" || node.type == "number" || node.type == "textarea") {
 
@@ -2032,159 +2049,159 @@ function dataChangeHandler(val,val2,val3,val4,val5) {
 
 				}
 
-				
+
 
 				var nodeId = node.getAttribute("data-id");
 
-				
 
-				var values = "header="+id+"&id="+nodeId+"&value="+txt+"&which="+val2;
 
-				
+				var values = "header=" + id + "&id=" + nodeId + "&value=" + txt + "&which=" + val2;
 
-				node.setAttribute("class","form-control loading");
 
-				node.setAttribute("disabled","disabled");
 
-			
+				node.setAttribute("class", "form-control loading");
 
-				statusBox('loading','NULL','NULL','add','NULL');
+				node.setAttribute("disabled", "disabled");
 
-			
+
+
+				statusBox('loading', 'NULL', 'NULL', 'add', 'NULL');
+
+
 
 				$.ajax({
 
 					contentType: "application/x-www-form-urlencoded",
 
-					url:"php/index_u_data_change_handler.php",
+					url: "php/index_u_data_change_handler.php",
 
-					type:"POST",
+					type: "POST",
 
 					data: values,
 
-					dataType:"xml",
+					dataType: "xml",
 
-					success: function(xml) { 
+					success: function (xml) {
 
-						statusBox('loading','NULL','NULL','remove','NULL');
+						statusBox('loading', 'NULL', 'NULL', 'remove', 'NULL');
 
-						responseHandler(xml,id,"NULL","NULL","NULL");
+						responseHandler(xml, id, "NULL", "NULL", "NULL");
 
-					
 
- 
+
+
 
 					}
 
-				}).always(function(asdsfds){
+				}).always(function (asdsfds) {
 
 					console.log(asdsfds);
 
 				})
 
-				
 
-				node.dataset.edited = 1;			
 
-				
+				node.dataset.edited = 1;
+
+
 
 			}
 
-		
 
-		break;
+
+			break;
 
 
 
 		case "saveAnalitCualitativeTypeOfResult":
 
-		
 
-				var ids1 = new Array();
 
-				var ids2 = new Array();
+			var ids1 = new Array();
 
-				var idSum1 = 0;
+			var ids2 = new Array();
 
-				var idSum2 = 0;
+			var idSum1 = 0;
 
-				
+			var idSum2 = 0;
 
-				var trArray = $("#table250").find("tbody").find("tr").get();
 
-				
 
-				for (var x = 0; x < trArray.length; x++) {
+			var trArray = $("#table250").find("tbody").find("tr").get();
 
-					var input = trArray[x].getElementsByTagName("input")[0];
 
-					
 
-					if (input.checked == true) {
+			for (var x = 0; x < trArray.length; x++) {
 
-						ids1[idSum1] = input.value;
+				var input = trArray[x].getElementsByTagName("input")[0];
 
-						idSum1++;
 
-					} else {
 
-						ids2[idSum2] = input.value;
+				if (input.checked == true) {
 
-						idSum2++;						
+					ids1[idSum1] = input.value;
 
-					}
+					idSum1++;
+
+				} else {
+
+					ids2[idSum2] = input.value;
+
+					idSum2++;
 
 				}
 
-				
+			}
 
-				var values = "header="+id+"&configid="+val2+"&toinsert="+ids1.join("|")+"&todelete="+ids2.join("|");
 
-				
 
-				statusBox('loading','NULL','NULL','add','NULL');
+			var values = "header=" + id + "&configid=" + val2 + "&toinsert=" + ids1.join("|") + "&todelete=" + ids2.join("|");
 
-				
 
-				$.ajax({
 
-					contentType: "application/x-www-form-urlencoded",
+			statusBox('loading', 'NULL', 'NULL', 'add', 'NULL');
 
-					url:"php/index_u_data_change_handler.php",
 
-					type:"POST",
 
-					data: values,
+			$.ajax({
 
-					dataType:"xml",
+				contentType: "application/x-www-form-urlencoded",
 
-					success: function(xml) { 
+				url: "php/index_u_data_change_handler.php",
 
-						statusBox('loading','NULL','NULL','remove','NULL');
+				type: "POST",
 
-						responseHandler(xml,id,val2,"NULL","NULL");
+				data: values,
 
-					}
+				dataType: "xml",
 
-				}).always(function(asdsd){
+				success: function (xml) {
 
-					console.log(asdsd);
+					statusBox('loading', 'NULL', 'NULL', 'remove', 'NULL');
 
-				});
+					responseHandler(xml, id, val2, "NULL", "NULL");
 
-		
+				}
 
-		break;
+			}).always(function (asdsd) {
+
+				console.log(asdsd);
+
+			});
+
+
+
+			break;
 
 
 
 		case "saveAnalitResults":
 
-			
+
 
 			var sampleId = $("#table1").find("[data-active]").attr("data-id");
 
-			
+
 
 			var idArray = new Array();
 
@@ -2192,7 +2209,7 @@ function dataChangeHandler(val,val2,val3,val4,val5) {
 
 			var commentArray = new Array();
 
-			
+
 
 			if (document.getElementById("tempDateInput")) {
 
@@ -2204,7 +2221,7 @@ function dataChangeHandler(val,val2,val3,val4,val5) {
 
 			}
 
-			
+
 
 			// Antes
 
@@ -2216,9 +2233,9 @@ function dataChangeHandler(val,val2,val3,val4,val5) {
 
 			var trArrayPrev = $(val3).find("tbody").find("tr");
 
-			for(itterC=0; itterC<trArrayPrev.length; itterC++){ // Iteración para los comentarios encontrados
+			for (itterC = 0; itterC < trArrayPrev.length; itterC++) { // Iteración para los comentarios encontrados
 
-				
+
 
 				let trActual = trArrayPrev.eq(itterC);
 
@@ -2230,7 +2247,7 @@ function dataChangeHandler(val,val2,val3,val4,val5) {
 
 
 
-				if(
+				if (
 
 					dataEdited == true ||
 
@@ -2244,7 +2261,7 @@ function dataChangeHandler(val,val2,val3,val4,val5) {
 
 					)
 
-				){
+				) {
 
 					trArray = trArray.add(trActual);
 
@@ -2264,11 +2281,11 @@ function dataChangeHandler(val,val2,val3,val4,val5) {
 
 				idArray[x] = trArray[x].getAttribute("data-id");
 
-				if (parseInt($("#form1input4").val(),10) == 1) {
+				if (parseInt($("#form1input4").val(), 10) == 1) {
 
 					resultArray[x] = trArray[x].getElementsByTagName("input")[0].value;
 
-				} else if (parseInt($("#form1input4").val(),10) == 2) {
+				} else if (parseInt($("#form1input4").val(), 10) == 2) {
 
 					resultArray[x] = trArray[x].getElementsByTagName("select")[0].value;
 
@@ -2278,7 +2295,7 @@ function dataChangeHandler(val,val2,val3,val4,val5) {
 
 			}
 
-			
+
 
 			idArray = idArray.join("|");
 
@@ -2286,60 +2303,60 @@ function dataChangeHandler(val,val2,val3,val4,val5) {
 
 			commentArray = commentArray.join("|");
 
-			
+
 			// console.log(idArray);
 
 			if (idArray.length == 0) {
 
-				statusBox("info","NULL","No se ha detectado ningún item","ADD","3000");
+				statusBox("info", "NULL", "No se ha detectado ningún item", "ADD", "3000");
 
 			} else {
 
-				var values = "header="+id+"&typeofprogram="+$("#form1input4").val()+"&sampleid="+sampleId+"&ids="+idArray+"&resuts="+resultArray+"&comments="+commentArray+"&tempDate="+tempDate;
+				var values = "header=" + id + "&typeofprogram=" + $("#form1input4").val() + "&sampleid=" + sampleId + "&ids=" + idArray + "&resuts=" + resultArray + "&comments=" + commentArray + "&tempDate=" + tempDate;
 
-				
 
-				statusBox('loading','NULL','NULL','add','NULL');
 
-				
+				statusBox('loading', 'NULL', 'NULL', 'add', 'NULL');
+
+
 
 				$.ajax({
 
 					contentType: "application/x-www-form-urlencoded",
 
-					url:"php/index_u_data_change_handler.php",
+					url: "php/index_u_data_change_handler.php",
 
-					type:"POST",
+					type: "POST",
 
 					data: values,
 
-					dataType:"xml",
+					dataType: "xml",
 
-					success: function(xml) { 
+					success: function (xml) {
 
-						statusBox('loading','NULL','NULL','remove','NULL');
+						statusBox('loading', 'NULL', 'NULL', 'remove', 'NULL');
 
-						responseHandler(xml,id,"NULL","NULL","NULL");
+						responseHandler(xml, id, "NULL", "NULL", "NULL");
 
-	
+
 
 					}
 
-				});					
+				});
 
 			}
 
-		
 
-		break;
+
+			break;
 
 		case "labAnalitAssignation":
 
-		
 
-			if (functionHandler('inputChecker',val3)) {
 
-				
+			if (functionHandler('inputChecker', val3)) {
+
+
 
 				if ($("#form6input8").attr("disabled") == "disabled") {
 
@@ -2347,45 +2364,45 @@ function dataChangeHandler(val,val2,val3,val4,val5) {
 
 					$('#form6input8').button("enable");
 
-					var values = "header="+id+"&labid="+$("#form1input1").val()+"&programid="+$("#form1input2").val()+"&"+$(val3).serialize();					
+					var values = "header=" + id + "&labid=" + $("#form1input1").val() + "&programid=" + $("#form1input2").val() + "&" + $(val3).serialize();
 
-					$("#form6input8").attr("disabled","disabled");
+					$("#form6input8").attr("disabled", "disabled");
 
 					$('#form6input8').button("disable");
 
 				} else {
 
-					var values = "header="+id+"&labid="+$("#form1input1").val()+"&programid="+$("#form1input2").val()+"&"+$(val3).serialize();
+					var values = "header=" + id + "&labid=" + $("#form1input1").val() + "&programid=" + $("#form1input2").val() + "&" + $(val3).serialize();
 
-				}				
+				}
 
-				
 
-				
 
-				
 
-				statusBox('loading','NULL','NULL','add','NULL');
 
-				
+
+
+				statusBox('loading', 'NULL', 'NULL', 'add', 'NULL');
+
+
 
 				$.ajax({
 
 					contentType: "application/x-www-form-urlencoded",
 
-					url:"php/index_u_data_change_handler.php",
+					url: "php/index_u_data_change_handler.php",
 
-					type:"POST",
+					type: "POST",
 
 					data: values,
 
-					dataType:"xml",
+					dataType: "xml",
 
-					success: function(xml) { 
+					success: function (xml) {
 
-						statusBox('loading','NULL','NULL','remove','NULL');
+						statusBox('loading', 'NULL', 'NULL', 'remove', 'NULL');
 
-						responseHandler(xml,id,"NULL","NULL","NULL");
+						responseHandler(xml, id, "NULL", "NULL", "NULL");
 
 					}
 
@@ -2393,57 +2410,57 @@ function dataChangeHandler(val,val2,val3,val4,val5) {
 
 			}
 
-		
 
-		break;
+
+			break;
 
 		case "assignedLabAnalitDeletion":
 
-		
+
 
 			var question = confirm("¿Está seguro que desea eliminar la configuración?\n\nTodos los resultados que se reportaron con esta configuración también serán eliminados.\n\n¿Está seguro que desea continuar?");
 
 			if (question) {
 
-				var values = "header="+id+"&ids="+val2;
+				var values = "header=" + id + "&ids=" + val2;
 
-				
 
-				statusBox('loading','NULL','NULL','add','NULL');
 
-				
+				statusBox('loading', 'NULL', 'NULL', 'add', 'NULL');
+
+
 
 				$.ajax({
 
 					contentType: "application/x-www-form-urlencoded",
 
-					url:"php/index_u_data_change_handler.php",
+					url: "php/index_u_data_change_handler.php",
 
-					type:"POST",
+					type: "POST",
 
 					data: values,
 
-					dataType:"xml",
+					dataType: "xml",
 
-					success: function(xml) { 
+					success: function (xml) {
 
-						statusBox('loading','NULL','NULL','remove','NULL');
+						statusBox('loading', 'NULL', 'NULL', 'remove', 'NULL');
 
-						responseHandler(xml,id,"NULL","NULL","NULL");
+						responseHandler(xml, id, "NULL", "NULL", "NULL");
 
-					
 
- 
+
+
 
 					}
 
 				});
 
-			}	
+			}
 
-		
 
-		break;			
+
+			break;
 
 	}
 
@@ -2451,13 +2468,13 @@ function dataChangeHandler(val,val2,val3,val4,val5) {
 
 
 
-function functionHandler(val,val2,val3,val4,val5) {
+function functionHandler(val, val2, val3, val4, val5) {
 
 	var id = val;
 
-	
 
-	switch(id) {
+
+	switch (id) {
 
 		case "tableSearch":
 
@@ -2465,15 +2482,15 @@ function functionHandler(val,val2,val3,val4,val5) {
 
 			var val = $.trim($(val2).val()).replace(/ +/g, ' ').toLowerCase();
 
-			$rows.show().filter(function() {
+			$rows.show().filter(function () {
 
 				var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
 
 				return !~text.indexOf(val);
 
-			}).hide();		
+			}).hide();
 
-		break;
+			break;
 
 		case "matchPassword":
 
@@ -2487,39 +2504,39 @@ function functionHandler(val,val2,val3,val4,val5) {
 
 				var match = false;
 
-				$(val4).attr("class"," form-group");
+				$(val4).attr("class", " form-group");
 
-				$(val5).attr("class"," form-group");	
+				$(val5).attr("class", " form-group");
 
-				
+
 
 			} else if (v1 == v2) {
 
 				var match = true;
 
-				$(val4).attr("class"," form-group has-success");
+				$(val4).attr("class", " form-group has-success");
 
-				$(val5).attr("class"," form-group has-success");			
+				$(val5).attr("class", " form-group has-success");
 
-				
+
 
 			} else {
 
 				var match = false;
 
-				$(val4).attr("class"," form-group has-error");
+				$(val4).attr("class", " form-group has-error");
 
-				$(val5).attr("class"," form-group has-error");
+				$(val5).attr("class", " form-group has-error");
 
-				
+
 
 			}
 
-			
 
-			return match;	
 
-		break;	
+			return match;
+
+			break;
 
 		case "inputChecker":
 
@@ -2527,11 +2544,11 @@ function functionHandler(val,val2,val3,val4,val5) {
 
 			var inputTextArray = val2.getElementsByTagName("input");
 
-		
+
 
 			for (var x = 0; x < inputTextArray.length; x++) {
 
-				
+
 
 				switch (inputTextArray[x].type) {
 
@@ -2543,7 +2560,7 @@ function functionHandler(val,val2,val3,val4,val5) {
 
 						}
 
-					break;
+						break;
 
 					case "password":
 
@@ -2553,7 +2570,7 @@ function functionHandler(val,val2,val3,val4,val5) {
 
 						}
 
-					break;
+						break;
 
 					case "date":
 
@@ -2563,7 +2580,7 @@ function functionHandler(val,val2,val3,val4,val5) {
 
 						}
 
-					break;
+						break;
 
 					case "number":
 
@@ -2573,7 +2590,7 @@ function functionHandler(val,val2,val3,val4,val5) {
 
 						}
 
-					break;
+						break;
 
 					case "time":
 
@@ -2583,19 +2600,19 @@ function functionHandler(val,val2,val3,val4,val5) {
 
 						}
 
-					break;			
+						break;
 
 				}
 
-				
 
-			}	
 
-			
+			}
+
+
 
 			if (sum > 0) {
 
-				statusBox("warning","NULL","Por favor complete todos los campos","add","NULL");
+				statusBox("warning", "NULL", "Por favor complete todos los campos", "add", "NULL");
 
 				var answer = false;
 
@@ -2605,35 +2622,35 @@ function functionHandler(val,val2,val3,val4,val5) {
 
 			}
 
-			
 
-			return answer;			
 
-		break;
+			return answer;
+
+			break;
 
 		case 'panelChooser':
 
-			
+
 
 			$(val2).parent().find("li").removeClass("active-tab");
 
-			
+
 
 			var id = val2.getAttribute("data-id");
 
-			
 
-			$("[data-id="+val3+"]").attr("hidden","hidden");
 
-			$("#"+id).removeAttr("hidden");
+			$("[data-id=" + val3 + "]").attr("hidden", "hidden");
 
-			
+			$("#" + id).removeAttr("hidden");
+
+
 
 			$(val2).addClass("active-tab");
 
-			
 
-		break;
+
+			break;
 
 		case 'badgeCounter':
 
@@ -2643,13 +2660,13 @@ function functionHandler(val,val2,val3,val4,val5) {
 
 			var c = next(b);
 
-				c.value = a;
+			c.value = a;
 
-				d = next(c);
+			d = next(c);
 
-				d.innerHTML = a+" / 150";
+			d.innerHTML = a + " / 150";
 
-			
+
 
 			function next(elem) {
 
@@ -2659,77 +2676,77 @@ function functionHandler(val,val2,val3,val4,val5) {
 
 				} while (elem && elem.nodeType !== 1);
 
-				
 
-				return elem;        
+
+				return elem;
 
 			}
 
-		break;
+			break;
 
 		case 'checkAll':
 
-			tbody = val2.parentNode.parentNode.parentNode.nextSibling.nextSibling;	
+			tbody = val2.parentNode.parentNode.parentNode.nextSibling.nextSibling;
 
-				
+
 
 			if (val2.checked == false) {
 
-				
+
 
 				var trArray = tbody.getElementsByTagName("tr");
 
-				
+
 
 				for (var x = 0; x < trArray.length; x++) {
 
 					var input = trArray[x].getElementsByTagName("input")[0];
 
-					
+
 
 					input.checked = true;
 
-					
+
 
 				}
 
-				
+
 
 			} else {
 
-			
+
 
 				var trArray = tbody.getElementsByTagName("tr");
 
-			
+
 
 				for (var x = 0; x < trArray.length; x++) {
 
 					var input = trArray[x].getElementsByTagName("input")[0];
 
-					
+
 
 					input.checked = false;
 
-					
 
-				}		
 
-			}		
+				}
 
-		break;
+			}
+
+			break;
 
 		case 'windowChecker':
 
-		
 
-			id = "#"+val2;
 
-			
+			id = "#" + val2;
+
+
 
 			var status = $(id).attr("hidden");
 
-			
+
 
 			if (status == "hidden") {
 
@@ -2739,251 +2756,170 @@ function functionHandler(val,val2,val3,val4,val5) {
 
 			} else {
 
-				$(id).attr("hidden","hidden");
+				$(id).attr("hidden", "hidden");
 
 				$(id).get(0).dataset.active = 0;
 
-			}		
+			}
 
-		
 
-		break;
+
+			break;
 
 		case 'formReset':
 
 			$('[data-form-reset=true]').val("");
 
-		break;
+			break;
 
 		case 'selectFiller':
+			var select = $("#" + val2).get(0);
+			select.innerHTML = "";
+			select.value = "";
+			$(select).attr("data-active", "false"); // Usamos jQuery para asegurar consistencia
 
-		
+			// val3 es el "header"
+			var values = "header=" + val3;
 
-			var select = $("#"+val2).get(0);
+			// Capturamos el 6to parámetro (filter) y 7mo (filterid) si existen
+			// En JS, 'arguments' es un array de todos los parámetros enviados a la función
+			if (typeof arguments[5] !== 'undefined' && arguments[5] !== "NULL") {
+				values += "&filter=" + encodeURIComponent(arguments[5]);
+			}
+			if (typeof arguments[6] !== 'undefined' && arguments[6] !== "NULL") {
+				values += "&filterid=" + encodeURIComponent(arguments[6]);
+			}
 
-				select.innerHTML = "";
-
-				select.value = "";
-
-				select.removeAttribute("data-active");
-
-				select.dataset.active = "false";
-
-			
-
-			var values = "header="+val3;
-
-			statusBox('loading','NULL','NULL','add','NULL');
-
-			
+			statusBox('loading', 'NULL', 'NULL', 'add', 'NULL');
 
 			$.ajax({
-
 				contentType: "application/x-www-form-urlencoded",
-
-				url:"php/index_u_calls_handler.php",
-
-				type:"POST",
-
-				data: values,
-
-				dataType:"xml",
-
-				success: function(xml) {
-
-					statusBox('loading','NULL','NULL','remove','NULL');
-
-					
+				url: "php/index_u_calls_handler.php",
+				type: "POST",
+				data: values, // Ahora 'values' contiene: header=xxx&filter=yyy&filterid=zzz
+				dataType: "xml",
+				success: function (xml) {
+					statusBox('loading', 'NULL', 'NULL', 'remove', 'NULL');
 
 					var response = xml.getElementsByTagName("response")[0];
-
-					var code = parseInt(response.getAttribute("code"),10);
-
-					
+					var code = parseInt(response.getAttribute("code"), 10);
 
 					if (code == 0) {
-
 						errorHandler(response.textContent);
-
 					} else {
-
-						
-
 						var idArray = new Array();
-
 						var contentArray = new Array();
 
-						
+						// Usamos getElementsByTagName para evitar problemas con nodos de texto vacíos en XML
+						var nodes = response.getElementsByTagName("nodos_o_nombre_etiqueta");
+						// Nota: Si tus nodos hijos no tienen nombre fijo, usa: response.childNodes
 
 						for (var x = 0; x < response.childNodes.length; x++) {
+							if (response.childNodes[x].nodeType !== 1) continue; // Saltar nodos que no sean elementos
 
-							
-
-							var tempArray = response.childNodes[x].textContent.split("|");
-
-							var omit = parseInt(response.childNodes[x].getAttribute("selectomit"),10);
-
-							var content = response.childNodes[x].getAttribute("content");
-
-							
+							var node = response.childNodes[x];
+							var tempArray = node.textContent.split("|");
+							var omit = parseInt(node.getAttribute("selectomit"), 10);
+							var content = node.getAttribute("content");
 
 							for (var y = 0; y < tempArray.length; y++) {
-
 								if (isNaN(omit) && content == "id") {
-
 									idArray[y] = tempArray[y];
-
-								} else {
-
-									if (isNaN(omit)) {
-
-										if (typeof(contentArray[y]) == 'undefined') {
-
-											contentArray[y] = tempArray[y];
-
-										} else {
-
-											contentArray[y] = contentArray[y]+val4+tempArray[y];
-
-										}										
-
+								} else if (isNaN(omit)) {
+									if (typeof (contentArray[y]) == 'undefined') {
+										contentArray[y] = tempArray[y];
+									} else {
+										contentArray[y] = contentArray[y] + val4 + tempArray[y];
 									}
-
-									
-
 								}
-
-								
-
 							}
-
-							
-
 						}
 
-			
+						// Lógica de pre-selección (Regex)
+						var txt = "null";
+						if (typeof (val5) != "undefined" && val5 != "NULL" && val5 != "false" && val5 != "") {
+							txt = new RegExp(val5.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&"), "g");
+						}
 
-						if (typeof(val5) != "undefined" && val4 != "NULL" && val4 != "null" && val4 != "false" && val4 != "") {
-
-							var txt = new RegExp(val5.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&"),"g");	
-
-						} else {
-
-							var txt = "null";
-
-						}					
-
-						
-
-						if (idArray != "") {
-
-							for (x = 0; x < idArray.length; x++) {
-
+						if (idArray.length > 0) {
+							for (var i = 0; i < idArray.length; i++) {
 								var option = document.createElement("option");
+								option.value = idArray[i];
+								option.innerHTML = contentArray[i];
 
-									option.setAttribute("value",idArray[x]);
-
-									option.innerHTML = contentArray[x];
-
-									
-
-								if (txt != "null") {
-
-									if (txt.test(option.innerHTML)) {
-
-										option.setAttribute("selected","selected");
-
-									}	
-
+								if (txt !== "null" && txt.test(option.innerHTML)) {
+									option.selected = true;
 								}
-
-
-
 								select.appendChild(option);
-
 							}
-
-							
-
 						}
-
-						
-
-						select.dataset.active = "true";
-
-						
-
+						$(select).attr("data-active", "true");
 					}
-
 				}
-
-			});		
-
-
-
-		break;
+			});
+			break;
 
 		case 'checkAll':
 
-			
 
-			tbody = val2.parentNode.parentNode.parentNode.nextSibling.nextSibling;	
 
-				
+			tbody = val2.parentNode.parentNode.parentNode.nextSibling.nextSibling;
+
+
 
 			if (val2.checked == false) {
 
-				
+
 
 				var trArray = tbody.getElementsByTagName("tr");
 
-				
+
 
 				for (var x = 0; x < trArray.length; x++) {
 
 					var input = trArray[x].getElementsByTagName("input")[0];
 
-					
+
 
 					input.checked = true;
 
-					
+
 
 				}
 
-				
+
 
 			} else {
 
-			
 
-			var trArray = tbody.getElementsByTagName("tr");
 
-			
+				var trArray = tbody.getElementsByTagName("tr");
+
+
 
 				for (var x = 0; x < trArray.length; x++) {
 
 					var input = trArray[x].getElementsByTagName("input")[0];
 
-					
+
 
 					input.checked = false;
 
-					
 
-				}		
+
+				}
 
 			}
 
-		break;
+			break;
 
 		case 'cvCalculator':
 
-			var item1 = parseInt(val2,10);
+			var item1 = parseInt(val2, 10);
 
-			var item2 = parseInt(val3,10);
+			var item2 = parseInt(val3, 10);
 
-			
+
 
 			if (isNaN(item1)) {
 
@@ -2997,11 +2933,11 @@ function functionHandler(val,val2,val3,val4,val5) {
 
 			}
 
-			
 
-			var result = Math.floor((item2 / item1)*100);
 
-			
+			var result = Math.floor((item2 / item1) * 100);
+
+
 
 			if (isNaN(result) || !isFinite(result)) {
 
@@ -3009,83 +2945,83 @@ function functionHandler(val,val2,val3,val4,val5) {
 
 			}
 
-			
+
 
 			return result;
 
-			
 
-		break;
+
+			break;
 
 		case 'highLightItem':
 
-					
+
 
 			$(val2).parent().children().removeClass("active-tab");
 
 			$(val2).parent().children().removeAttr("data-active");
 
-			
+
 
 			$(val2).addClass("active-tab");
 
 			$(val2).get(0).dataset.active = "true";
 
-			
 
-		break;
+
+			break;
 
 		case 'windowHandler':
 
-		
 
-			var item = val3;			
 
-		
+			var item = val3;
 
-			switch(val2.toLowerCase()) {
+
+
+			switch (val2.toLowerCase()) {
 
 				case 'open':
 
-					$("#"+item).removeAttr("hidden");				
+					$("#" + item).removeAttr("hidden");
 
-				break;
+					break;
 
 				case 'close':
 
-					$("#"+item).attr("hidden","hidden");
+					$("#" + item).attr("hidden", "hidden");
 
-				break;
+					break;
 
 			}
 
 
 
-		break;
+			break;
 
 		case 'addAnalitResultComment':
 
-			
 
-			var txt = $("#"+val2).val();
 
-			var id = $("#"+val2).attr("data-id-holder");
+			var txt = $("#" + val2).val();
 
-			
+			var id = $("#" + val2).attr("data-id-holder");
 
-			$("#"+val3).find("tbody").find("[data-id="+id+"]").find("textarea").val(txt);
 
-			$("#"+val3).find("tbody").find("[data-id="+id+"]").find("textarea").prop("comentario-modificado","true");
 
-			
+			$("#" + val3).find("tbody").find("[data-id=" + id + "]").find("textarea").val(txt);
 
-			$("#"+val2).val("");
+			$("#" + val3).find("tbody").find("[data-id=" + id + "]").find("textarea").prop("comentario-modificado", "true");
 
-			functionHandler("windowHandler","close",val4);
 
-			
 
-		break;
+			$("#" + val2).val("");
+
+			functionHandler("windowHandler", "close", val4);
+
+
+
+			break;
 
 		case "uniqId":
 
@@ -3115,7 +3051,7 @@ function functionHandler(val,val2,val3,val4,val5) {
 
 			}
 
-			
+
 
 			var retId;
 
@@ -3125,13 +3061,13 @@ function functionHandler(val,val2,val3,val4,val5) {
 
 				if (reqWidth < seed.length) { // so long we split
 
-				return seed.slice(seed.length - reqWidth);
+					return seed.slice(seed.length - reqWidth);
 
 				}
 
 				if (reqWidth > seed.length) { // so short we pad
 
-				return Array(1 + (reqWidth - seed.length)).join('0') + seed;
+					return Array(1 + (reqWidth - seed.length)).join('0') + seed;
 
 				}
 
@@ -3139,7 +3075,7 @@ function functionHandler(val,val2,val3,val4,val5) {
 
 			};
 
-			
+
 
 			// BEGIN REDUNDANT
 
@@ -3159,7 +3095,7 @@ function functionHandler(val,val2,val3,val4,val5) {
 
 			this.php_js.uniqidSeed++;
 
-			
+
 
 			retId = val2; // start with prefix, add current milliseconds hex string
 
@@ -3175,19 +3111,19 @@ function functionHandler(val,val2,val3,val4,val5) {
 
 			}
 
-			
+
 
 			return retId;
 
-		break;		
+			break;
 
 		default:
 
-			alert('JS functionHandler error: id "'+id+'" not found');
+			alert('JS functionHandler error: id "' + id + '" not found');
 
-		break;		
+			break;
 
-	}	
+	}
 
 }
 
@@ -3197,111 +3133,111 @@ function functionHandler(val,val2,val3,val4,val5) {
 
 function table15Editor(val) { // Edicion de configuracion de mensurando de laboratorio
 
-	
+
 
 	var td = val;
 
 	var backupvalue = val.innerHTML;
 
-	
 
-	tdId = parseInt(td.getAttribute("data-id"),10);
 
-			
+	tdId = parseInt(td.getAttribute("data-id"), 10);
 
-	switch (tdId) {	
+
+
+	switch (tdId) {
 
 		case 9:
 
-		
+
 
 			var input = document.createElement("select");
 
-			var txt = new RegExp(val.innerHTML,"g");			
+			var txt = new RegExp(val.innerHTML, "g");
 
-			
 
-			input.setAttribute("class","form-control unselectedInput");
+
+			input.setAttribute("class", "form-control unselectedInput");
 
 			var ids = new Array();
 
 			var names = new Array();
 
-			
 
-				ids[0] = 1;
 
-				ids[1] = 0;
+			ids[0] = 1;
 
-				names[0] = "SI";
+			ids[1] = 0;
 
-				names[1] = "NO";
+			names[0] = "SI";
 
-			
-
-				if (ids != "") {
-
-				
-
-					for (var x = 0; x < ids.length; x++) {
+			names[1] = "NO";
 
 
 
-						var option = document.createElement("option");
+			if (ids != "") {
 
-							option.value = ids[x];
 
-							option.innerHTML = names[x];
 
-							
+				for (var x = 0; x < ids.length; x++) {
 
-						if (txt.test(option.innerHTML)) {
 
-							option.setAttribute("selected","selected");
 
-						}										
+					var option = document.createElement("option");
 
-					
+					option.value = ids[x];
 
-						input.appendChild(option);
+					option.innerHTML = names[x];
+
+
+
+					if (txt.test(option.innerHTML)) {
+
+						option.setAttribute("selected", "selected");
 
 					}
 
-				}					
+
+
+					input.appendChild(option);
+
+				}
+
+			}
 
 
 
-			
+
 
 			var id = td.parentNode.getAttribute("data-id");
 
 			input.dataset.id = id;
 
-			input.dataset.edited = 0;			
+			input.dataset.edited = 0;
 
-			
 
-			$(input).bind("change",function() {
 
-				setTimeout(function(){
+			$(input).bind("change", function () {
 
-					dataChangeHandler("assignedLabAnalitValueEditor",tdId,input,"NULL","NULL");
+				setTimeout(function () {
 
-				},2);
+					dataChangeHandler("assignedLabAnalitValueEditor", tdId, input, "NULL", "NULL");
+
+				}, 2);
 
 			});
 
-			$(input).keyup(function(event) {
+			$(input).keyup(function (event) {
 
-				
+
 
 				if (event.keyCode == 13) {
 
-					setTimeout(function(){
+					setTimeout(function () {
 
-						dataChangeHandler("assignedLabAnalitValueEditor",tdId,input,"NULL","NULL");
+						dataChangeHandler("assignedLabAnalitValueEditor", tdId, input, "NULL", "NULL");
 
-					},2);
+					}, 2);
 
 				} else if (event.keyCode == 27) {
 
@@ -3313,11 +3249,11 @@ function table15Editor(val) { // Edicion de configuracion de mensurando de labor
 
 				}
 
-				
+
 
 			});
 
-			
+
 
 			td.innerHTML = "";
 
@@ -3325,9 +3261,9 @@ function table15Editor(val) { // Edicion de configuracion de mensurando de labor
 
 			input.focus();
 
-		
 
-		break;		
+
+			break;
 
 	}
 

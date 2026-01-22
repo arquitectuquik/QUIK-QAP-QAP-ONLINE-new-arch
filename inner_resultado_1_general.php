@@ -6476,7 +6476,7 @@ switch ($header) {
 
 
 								$FECHA_INICIO_NUEVA_FORMULA_ZSCORE = strtotime("2025-06-01");
-								$FECHA_INICIO_ITEM_ISO_13528 = strtotime("2025-01-01");
+								$FECHA_INICIO_ITEM_ISO_13528 = strtotime("2026-01-01");
 								// la siguiente comparacion puede fallar luego del 2038 por el overflow de la unix epoch
 								if (isset($fechasMuestras[$sampleIdActual]) && strtotime($fechasMuestras[$sampleIdActual]) < $FECHA_INICIO_NUEVA_FORMULA_ZSCORE) {
 									// zscore = ((resultado reportado por el lab) - (media de consenso)) / desviación estándar de consenso
