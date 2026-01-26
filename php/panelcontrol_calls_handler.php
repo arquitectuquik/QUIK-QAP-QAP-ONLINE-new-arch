@@ -1,7 +1,7 @@
 <?php
 // Cargar compatibilidad MySQL para PHP 7+
 if (!function_exists('mysql_connect')) {
-    require_once '../mysql_compatibility.php';
+	require_once '../mysql_compatibility.php';
 }
 
 
@@ -1487,7 +1487,54 @@ switch ($header) {
 
 		break;
 
+	case 'getAnalitosByPrograma':
+		$programaid = clean($_POST['programaid']);
+		$qry = "SELECT a.id_analito, a.nombre_analito 
+            FROM analito a
+            INNER JOIN analito_programa ap ON a.id_analito = ap.id_analito
+            WHERE ap.id_programa = '$programaid'
+            ORDER BY a.nombre_analito ASC";
+		$res = mysql_query($qry);
+		echo '<response code="1">';
+		while ($row = mysql_fetch_assoc($res)) {
+			echo "<item id='{$row['id_analito']}'>" . htmlspecialchars($row['nombre_analito']) . "</item>";
+		}
+		echo '</response>';
+		break;
 
+	case 'getAllMethods':
+		$res = mysql_query("SELECT id_metodologia, nombre_metodologia FROM $tbl_metodologia ORDER BY nombre_metodologia ASC");
+		echo '<response code="1">';
+		while ($row = mysql_fetch_assoc($res)) {
+			echo "<item id='{$row['id_metodologia']}'>" . htmlspecialchars($row['nombre_metodologia']) . "</item>";
+		}
+		echo '</response>';
+		break;
+
+	case 'getAllUnits':
+		$res = mysql_query("SELECT id_unidad, nombre_unidad FROM unidad ORDER BY nombre_unidad ASC");
+		echo '<response code="1">';
+		while ($row = mysql_fetch_assoc($res)) {
+			echo "<item id='{$row['id_unidad']}'>" . htmlspecialchars($row['nombre_unidad']) . "</item>";
+		}
+		echo '</response>';
+		break;
+
+	case 'saveAMUConfig':
+		$id_a = clean($_POST['id_analito']);
+		$id_m = clean($_POST['id_metodologia']);
+		$id_u = clean($_POST['id_unidad']);
+
+		$qry = "INSERT INTO analito_metodologia_unidad (id_analito, id_metodologia, id_unidad) 
+            VALUES ('$id_a', '$id_m', '$id_u')
+            ON DUPLICATE KEY UPDATE id_analito=id_analito"; // Evita duplicados si ya existe
+
+		if (mysql_query($qry)) {
+			echo '<response code="1">Configuración guardada correctamente</response>';
+		} else {
+			echo '<response code="0">Error: ' . mysql_error() . '</response>';
+		}
+		break;
 
 	case 'showMethod':
 

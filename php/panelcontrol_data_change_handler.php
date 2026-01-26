@@ -863,6 +863,167 @@ switch ($header) {
 
 		break;
 
+	case 'windowConfigMethod':
+		ob_clean();
+
+		// Consulta para obtener los programas
+		$qry = "SELECT id_programa, nombre_programa FROM $tbl_programa ORDER BY nombre_programa ASC";
+		$res = mysql_query($qry);
+
+		header('Content-Type: text/xml');
+		echo '<?xml version="1.0" encoding="UTF-8"?>';
+		echo '<response code="1">';
+		while ($row = mysql_fetch_assoc($res)) {
+			echo "<item id='{$row['id_programa']}'>" . htmlspecialchars($row['nombre_programa']) . "</item>";
+		}
+		echo '</response>';
+		exit;
+
+	case 'getAnalitosByPrograma':
+		ob_clean();
+		header('Content-Type: text/xml');
+		echo '<?xml version="1.0" encoding="UTF-8"?>';
+		echo '<response code="1">';
+		$programaid = clean($_POST['programaid']);
+		$qry = "SELECT programa_analito.id_analito, analito.nombre_analito FROM programa_analito 
+				JOIN analito ON programa_analito.id_analito = analito.id_analito 
+				JOIN programa ON programa_analito.id_programa = programa.id_programa 
+				WHERE programa_analito.id_programa = '$programaid' 
+				ORDER BY nombre_analito ASC";
+		$res = mysql_query($qry);
+		if ($res) {
+			while ($row = mysql_fetch_assoc($res)) {
+				echo "<item id='{$row['id_analito']}'>" . htmlspecialchars($row['nombre_analito']) . "</item>";
+			}
+		} else {
+			echo "<item id='0'>Error: " . mysql_error() . "</item>";
+		}
+		echo '</response>';
+		exit;
+		break;
+
+	case 'getAllMethods':
+		ob_clean();
+		header('Content-Type: text/xml');
+		echo '<?xml version="1.0" encoding="UTF-8"?>';
+		echo '<response code="1">';
+		$qry = "SELECT id_metodologia, nombre_metodologia FROM $tbl_metodologia ORDER BY nombre_metodologia ASC";
+		$res = mysql_query($qry);
+		if ($res) {
+			while ($row = mysql_fetch_assoc($res)) {
+				echo "<item id='{$row['id_metodologia']}'>" . htmlspecialchars($row['nombre_metodologia']) . "</item>";
+			}
+		} else {
+			echo "<item id='0'>Error: " . mysql_error() . "</item>";
+		}
+		echo '</response>';
+		exit;
+		break;
+
+	case 'getAllUnits':
+		ob_clean();
+		header('Content-Type: text/xml');
+		echo '<?xml version="1.0" encoding="UTF-8"?>';
+		echo '<response code="1">';
+		$qry = "SELECT id_unidad, nombre_unidad FROM unidad ORDER BY nombre_unidad ASC";
+		$res = mysql_query($qry);
+		if ($res) {
+			while ($row = mysql_fetch_assoc($res)) {
+				echo "<item id='{$row['id_unidad']}'>" . htmlspecialchars($row['nombre_unidad']) . "</item>";
+			}
+		} else {
+			echo "<item id='0'>Error: " . mysql_error() . "</item>";
+		}
+		echo '</response>';
+		exit;
+		break;
+
+
+	case 'saveAMUConfig':
+		ob_clean();
+		header('Content-Type: text/xml');
+		echo '<?xml version="1.0" encoding="UTF-8"?>';
+
+		$id_a = clean($_POST['id_analito']);
+		$id_m = clean($_POST['id_metodologia']);
+		$id_u = clean($_POST['id_unidad']);
+
+		$check_qry = "SELECT COUNT(*) FROM analito_metodologia_unidad AMU
+					WHERE AMU.id_analito = '$id_a' AND AMU.id_metodologia = '$id_m' AND AMU.id_unidad = '$id_u'";
+		$check_res = mysql_query($check_qry);
+		if ($check_res && mysql_result($check_res, 0) > 0) {
+			echo '<response code="422">Esta configuración ya existe para el programa seleccionado.</response>';
+		} else {
+			$qry = "INSERT INTO analito_metodologia_unidad (id_analito, id_metodologia, id_unidad) 
+					VALUES ('$id_a', '$id_m', '$id_u')";
+			if (mysql_query($qry)) {
+				$last_id = mysql_insert_id();
+				echo '<response code="1">Configuración guardada correctamente.</response>';
+			} else {
+				echo '<response code="0">Error en la base de datos: ' . mysql_error() . '</response>';
+			}
+		}
+		exit;
+		break;
+
+	// Obtener las configuraciones AMU existentes para un programa
+	case 'getExistingAMUConfigs':
+		ob_clean();
+		header('Content-Type: text/xml');
+		echo '<?xml version="1.0" encoding="UTF-8"?>';
+		echo '<response code="1">';
+		$programaid = clean($_POST['programaid']);
+
+		$qry = "SELECT 
+				amu.id_amu AS id,
+                a.nombre_analito, 
+                m.nombre_metodologia, 
+                u.nombre_unidad 
+            FROM analito_metodologia_unidad amu
+            JOIN $tbl_analito a ON amu.id_analito = a.id_analito
+            JOIN $tbl_metodologia m ON amu.id_metodologia = m.id_metodologia
+            JOIN $tbl_unidad u ON amu.id_unidad = u.id_unidad
+			JOIN programa_analito pa ON amu.id_analito = pa.id_analito
+            WHERE pa.id_programa = '$programaid'
+            ORDER BY a.nombre_analito ASC";
+
+		$res = mysql_query($qry);
+		if ($res) {
+			while ($row = mysql_fetch_assoc($res)) {
+				echo "<item id='{$row['id']}'>";
+				echo "<analito>" . htmlspecialchars($row['nombre_analito']) . "</analito>";
+				echo "<metodologia>" . htmlspecialchars($row['nombre_metodologia']) . "</metodologia>";
+				echo "<unidad>" . htmlspecialchars($row['nombre_unidad']) . "</unidad>";
+				echo "</item>";
+			}
+		} else {
+			echo '<response code="0">Error al cargar configuraciones: ' . mysql_error() . '</response>';
+		}
+		echo '</response>';
+		exit;
+		break;
+
+	// Eliminar una configuración AMU
+	case 'deleteAMUConfig':
+		ob_clean();
+		header('Content-Type: text/xml');
+		echo '<?xml version="1.0" encoding="UTF-8"?>';
+
+		$configid = clean($_POST['configid']);
+
+		$qry = "DELETE FROM analito_metodologia_unidad WHERE id_amu = '$configid'";
+		if (mysql_query($qry)) {
+			if (mysql_affected_rows() > 0) {
+				echo '<response code="1">Configuración eliminada correctamente.</response>';
+			} else {
+				echo '<response code="0">No se encontró la configuración para eliminar.</response>';
+			}
+		} else {
+			echo '<response code="0">Error en la base de datos al eliminar: ' . mysql_error() . '</response>';
+		}
+		exit;
+		break;
+
 	case 'casoClinicoPATValueEditor':
 
 		actionRestriction_0();

@@ -3556,13 +3556,19 @@ switch ($header) {
 								<li>Desviación estándar robusta (s*): Estimación de la desviación estándar basada en el IQR.</li><br>
 								<img src='css/images/Formula s.png' alt='Formula desviación estandar robusta' height='38'></img>
 							</ul>
-							<strong>Z-Score Robusto: </strong><br>
-							<img src='css/images/Formula zscore robusto.png' alt='Fórmula zscore robusto' height='35'></img><br>
-							<img src='css/images/Descripcion z robusta.png' alt='Fórmula zscore robusto' height='62'></img><br>
 							<strong>Incertidumbre del valor asignado: </strong><br>
 							<img src='css/images/Formula incertidumbre robusta.png' alt='Fórmula incertidumbre valor asignado' height='40'></img><br>
 							<img src='css/images/Descripcion incertidumbre robusta.png' alt='Fórmula incertidumbre valor asignado' height='77'></img><br>
-
+							<strong>Z-Score: </strong><br>
+							De acuerdo con la norma ISO 13528, debe evaluarse si la incertidumbre del valor asignado u(x<sub>pt</sub>)) es despreciable o no en relación con la desviación estándar para evaluación s*.
+							<ul>
+								<li>Si u(x<sub>pt</sub>) <= 0.3 . s*: se utiliza la fórmula  del z-score robusto.</li><br>
+								<img src='css/images/Formula zscore robusto.png' alt='Fórmula zscore robusto' height='35'></img><br>
+								<img src='css/images/Descripcion z robusta.png' alt='Fórmula zscore robusto' height='62'></img><br>
+								<li>Si u(x<sub>pt</sub>) > 0.3 . s*: se utiliza la fórmula del z-score ajustado que incluye la incertidumbre del valor asignado.</li><br>
+								<img src='css/images/Formula z prime.png' alt='Fórmula zscore prime' height='42'></img><br>
+								
+							</ul>
 						</td>";
 
 		echo "<td style='" . $pageContent["tablestyle_border_right"] . "width: 2%;'>&nbsp;</td>";
@@ -5582,6 +5588,8 @@ switch ($header) {
 									$mostrarTodosParticipantes = true;
 									$mostrarMismaMetodologia = true;
 									$leyendaDatosInsuficientes = "";
+									$alarmaZscoreTodos = null;
+									$alarmaZscoreMisma = null;
 
 									// Lógica para la leyenda y la visualización
 									if (isset($calculoAnalitoMuestra["n"]) && $calculoAnalitoMuestra["n"] < 4 && isset($calculoAnalitoMuestraMisma["n"]) && $calculoAnalitoMuestraMisma["n"] < 4) {
@@ -5621,6 +5629,12 @@ switch ($header) {
 											echo "<td style='text-align:center;width: 11%'>" . round($datosAUsar["incertidumbre"], 2) . "</td>";
 											echo "<td style='text-align:center;width: 10%'>" . round($datosAUsar["diferencia_robusta"], 2) . "</td>";
 											echo "<td style='text-align:center;width: 7%'>" . round($datosAUsar["zscore"], 2) . "</td>";
+
+											// Alarma para el item 9.2 de la ISO 13528
+											if ($datosAUsar["incertidumbre"] > (0.3 * $datosAUsar["s"])) {
+												$alarmaZscoreTodos = "Esto es una alarma según el ítem 9.2 de la ISO 13528.";
+											}
+
 											if ($indicadorAUsar == 1) {
 												$rendimiento = "Satisfactorio";
 											} else if ($indicadorAUsar == 0) {
@@ -5671,6 +5685,11 @@ switch ($header) {
 											echo "<td style='border-bottom:1px solid #B2BABB;text-align:center;width: 10%'>" . round($datosAUsar["diferencia_robusta"], 2) . "</td>";
 											echo "<td style='border-bottom:1px solid #B2BABB;text-align:center;width: 7%'>" . round($datosAUsar["zscore"], 2) . "</td>";
 
+											// Alarma para el item 9.2 de la ISO 13528
+											if ($datosAUsar["incertidumbre"] > (0.3 * $datosAUsar["s"])) {
+												$alarmaZscoreMisma = "Esto es una alarma según el ítem 9.2 de la ISO 13528.";
+											}
+
 											if ($indicadorAUsar == 1) {
 												$rendimiento = "Satisfactorio";
 											} else if ($indicadorAUsar == 0) {
@@ -5707,6 +5726,13 @@ switch ($header) {
 									if (!empty($leyendaDatosInsuficientes)) {
 										echo "<tr><td colspan='10' style='font-size: 7pt;'>" . $leyendaDatosInsuficientes . "</td></tr>";
 									}
+									if (isset($alarmaZscoreTodos) && $alarmaZscoreTodos != null && isset($alarmaZscoreMisma) && $alarmaZscoreMisma != null) {
+										echo "<td colspan='10' style='font-size: 7pt;'>" . "La incertidumbre del valor asignado no es despreciable y fue considerada en la evaluación del desempeño para todos los participantes QAP y con la misma metodología" . "</td>";
+									} else if (isset($alarmaZscoreTodos) && $alarmaZscoreTodos != null) {
+										echo "<td colspan='10' style='font-size: 7pt;'>" . "La incertidumbre del valor asignado no es despreciable y fue considerada en la evaluación del desempeño para todos los participantes QAP" . "</td>";
+									} else if (isset($alarmaZscoreMisma) && $alarmaZscoreMisma != null) {
+										echo "<td colspan='10' style='font-size: 7pt;'>" . "La incertidumbre del valor asignado no es despreciable y fue considerada en la evaluación del desempeño para los participantes QAP con la misma metodología" . "</td>";
+									}
 								}
 								break;
 
@@ -5718,6 +5744,8 @@ switch ($header) {
 								$mostrarTodosParticipantes = true;
 								$mostrarMismaMetodologia = true;
 								$leyendaDatosInsuficientes = "";
+								$alarmaZscoreTodos = null;
+								$alarmaZscoreMisma = null;
 
 								// Lógica para la leyenda y la visualización
 		
@@ -5820,6 +5848,10 @@ switch ($header) {
 										echo "<td style='text-align:center;width: 10%'>" . round($datosAUsar["diferencia_robusta"], 2) . "</td>";
 										echo "<td style='text-align:center;width: 7%'>" . round($datosAUsar["zscore"], 2) . "</td>";
 
+										// Alarma para el item 9.2 de la ISO 13528
+										if ($datosAUsar["incertidumbre"] > 0.3 * $datosAUsar["s"]) {
+											$alarmaZscoreTodos = "Esto es una alarma según el ítem 9.2 de la ISO 13528.";
+										}
 										if ($indicadorAUsar == 1) {
 											$rendimiento = "Satisfactorio";
 										} else if ($indicadorAUsar == 0) {
@@ -5870,6 +5902,11 @@ switch ($header) {
 										echo "<td style='border-bottom:1px solid #B2BABB;text-align:center;width: 10%'>" . round($datosAUsar["diferencia_robusta"], 2) . "</td>";
 										echo "<td style='border-bottom:1px solid #B2BABB;text-align:center;width: 7%'>" . round($datosAUsar["zscore"], 2) . "</td>";
 
+										// Alarma para el item 9.2 de la ISO 13528
+										if ($datosAUsar["incertidumbre"] > 0.3 * $datosAUsar["s"]) {
+											$alarmaZscoreMisma = "Esto es una alarma según el ítem 9.2 de la ISO 13528.";
+										}
+
 										if ($indicadorAUsar == 1) {
 											$rendimiento = "Satisfactorio";
 										} else if ($indicadorAUsar == 0) {
@@ -5906,6 +5943,13 @@ switch ($header) {
 								if (!empty($leyendaDatosInsuficientes)) {
 									echo "<tr><td colspan='10' style='font-size: 7pt;'>" . $leyendaDatosInsuficientes . "</td></tr>";
 								}
+								if (isset($alarmaZscoreTodos) && $alarmaZscoreTodos != null && isset($alarmaZscoreMisma) && $alarmaZscoreMisma != null) {
+									echo "<td colspan='10' style='font-size: 7pt;'>" . "La incertidumbre del valor asignado no es despreciable y fue considerada en la evaluación del desempeño para todos los participantes QAP y con la misma metodología" . "</td>";
+								} else if (isset($alarmaZscoreTodos) && $alarmaZscoreTodos != null) {
+									echo "<td colspan='10' style='font-size: 7pt;'>" . "La incertidumbre del valor asignado no es despreciable y fue considerada en la evaluación del desempeño para todos los participantes QAP" . "</td>";
+								} else if (isset($alarmaZscoreMisma) && $alarmaZscoreMisma != null) {
+									echo "<td colspan='10' style='font-size: 7pt;'>" . "La incertidumbre del valor asignado no es despreciable y fue considerada en la evaluación del desempeño para los participantes QAP con la misma metodología" . "</td>";
+								}
 								break;
 
 						}
@@ -5923,19 +5967,19 @@ switch ($header) {
 
 
 
-						tablePrinter('br', 'no_border');
-
-
 
 
 
 						echo "<table>
-								<tr>
-									<td style='font-size:7px;width:100%'>(1) RL-MMT-JCTLM: Resultado de laboratorio que trabaja con material y método trazable a los avalados por el JCTLM</td>
-								</tr>
-								<tr>
+						<tr>
+									<td style='font-size:7px;width:100%'> </td>
+							</tr>
+							<tr>
+									<td style='font-size:7px;width:100%;'>(1) RL-MMT-JCTLM: Resultado de laboratorio que trabaja con material y método trazable a los avalados por el JCTLM</td>
+							</tr>
+							<tr>
 									<td style='font-size:7px;width:100%'>(2) Valores obtenidos por estadísticos robustos</td>
-								</tr>
+							</tr>
 							</table>";
 
 
@@ -6432,14 +6476,21 @@ switch ($header) {
 
 
 								$FECHA_INICIO_NUEVA_FORMULA_ZSCORE = strtotime("2025-06-01");
+								$FECHA_INICIO_ITEM_ISO_13528 = strtotime("2026-01-01");
 								// la siguiente comparacion puede fallar luego del 2038 por el overflow de la unix epoch
 								if (isset($fechasMuestras[$sampleIdActual]) && strtotime($fechasMuestras[$sampleIdActual]) < $FECHA_INICIO_NUEVA_FORMULA_ZSCORE) {
 									// zscore = ((resultado reportado por el lab) - (media de consenso)) / desviación estándar de consenso
 									$calculoAnalitoMuestra["zscore"] = (floatval($calculoAnalitoMuestra["valor_lab"]) - $calculoAnalitoMuestra["media"]) / $calculoAnalitoMuestra["de"];
+								} else if (isset($fechasMuestras[$sampleIdActual]) && strtotime($fechasMuestras[$sampleIdActual]) < $FECHA_INICIO_ITEM_ISO_13528) {
+									// zscore = ((resultado reportado por el lab) - (media de consenso)) / desviación estándar de consenso
+									$calculoAnalitoMuestra["zscore"] = (floatval($calculoAnalitoMuestra["valor_lab"]) - $calculoAnalitoMuestra["mediana"]) / $calculoAnalitoMuestra["s"];
 								}
+
 								if ($calculoAnalitoMuestra["n"] >= 4 && $fechasMuestras[$sampleIdActual] <= $fechasMuestras[$sampleid]) {
 									$arrayCalculosModificadosConsenso[] = $calculoAnalitoMuestra;
 								}
+
+
 
 
 
@@ -6941,7 +6992,7 @@ switch ($header) {
 
 		// Recalcula los porcentajes con el método y el array de resultados modificado
 		$nuevosIndicadoresInternacional = $mediaController->calcularPorcentajesDesdeArraySimple($arrayCalculosModificadosInternacional);
-		$nuevosIndicadoresConsenso = $mediaController->calcularPorcentajesDesdeArraySimple($arrayCalculosModificadosConsenso);
+		$nuevosIndicadoresConsenso = $mediaController->calcularPorcentajesDesdeArraySimpleConsenso($arrayCalculosModificadosConsenso);
 
 		// Sobrescribe los porcentajes de la variable global para el consenso
 		$indicadoresGenerales["porcentaje"]["satisfactorio"] = $nuevosIndicadoresConsenso["porcentaje"]["satisfactorio"];
