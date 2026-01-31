@@ -3201,8 +3201,9 @@ actionRestriction_102();
 								</div>
 								<div class="form-group">
 									<center>
-										<input type="button" id="configMetodologiasUnidades" class="btn btn-default"
-											value="Metodologías y unidades habilitadas" />
+										<button type="button" id="configMetodologiasUnidades" class="btn btn-default">
+											Metodologías y unidades habilitadas
+										</button>
 									</center>
 								</div>
 							</form>

@@ -64,8 +64,10 @@ function initialize() {
 	$("#descargarExcelBtn").on("click", function () {
 		dataChangeHandler("labAnalitDownload", "NULL", $("#form6").get(0), "NULL", "NULL");
 	});
-	$("#configMetodologiasUnidades").on("click", function () {
-		dataChangeHandler("windowConfigMethod", "NULL", "NULL", "NULL", "NULL");
+	$(document).ready(function () {
+		$("#configMetodologiasUnidades").on("click", function () {
+			dataChangeHandler("windowConfigMethod", "NULL", "NULL", "NULL", "NULL");
+		});
 	});
 
 	// Al cambiar el PROGRAMA -> Cargar ANALITOS y la LISTA de AMU existentes
