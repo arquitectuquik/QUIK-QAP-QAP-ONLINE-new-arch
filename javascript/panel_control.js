@@ -66,6 +66,8 @@ function initialize() {
 	});
 	$(document).ready(function () {
 		$("#configMetodologiasUnidades").on("click", function () {
+			$("#windowConfigAMU").removeAttr("hidden").show();
+			console.log("Abriendo ventana de configuración de Metodologías y Unidades AMU");
 			dataChangeHandler("windowConfigMethod", "NULL", "NULL", "NULL", "NULL");
 		});
 	});
@@ -32466,6 +32468,13 @@ function functionHandler(val, val2, val3, val4, val5, val6) {
 		case 'checkAll':
 
 			tbody = val2.parentNode.parentNode.parentNode.nextSibling.nextSibling;
+
+			console.log('checkAll ejecutado', {
+				elemento: val2,
+				checked: val2.checked,
+				tbody: tbody,
+				tbodyId: tbody.id || 'sin id'
+			});
 
 
 
