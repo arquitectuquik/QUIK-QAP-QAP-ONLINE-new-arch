@@ -50,3 +50,9 @@
 [23-Jun-2025 10:13:27 UTC] PHP Fatal error:  Class 'FontLib\Glyph\Outline' not found in /home/quikappspane/public_html/qaponline.quik-apps.com.co/php/PHPExcel/Writer/PDF/lib/php-font-lib/classes/Glyph/OutlineComposite.php on line 17
 [25-Jun-2025 01:43:24 UTC] PHP Fatal error:  Class 'FontLib\Glyph\Outline' not found in /home/quikappspane/public_html/qaponline.quik-apps.com.co/php/PHPExcel/Writer/PDF/lib/php-font-lib/classes/Glyph/OutlineSimple.php on line 17
 [28-Jun-2025 04:56:48 UTC] PHP Fatal error:  Class 'FontLib\Glyph\Outline' not found in /home/quikappspane/public_html/qaponline.quik-apps.com.co/php/PHPExcel/Writer/PDF/lib/php-font-lib/classes/Glyph/OutlineSimple.php on line 17
+[24-Mar-2026 02:24:35 UTC] PHP Fatal error:  Class 'FontLib\Glyph\Outline' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/lib/php-font-lib/classes/Glyph/OutlineSimple.php on line 17
+[24-Mar-2026 02:25:23 UTC] PHP Fatal error:  Class 'FontLib\Glyph\Outline' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/lib/php-font-lib/classes/Glyph/OutlineComposite.php on line 17
+[24-Mar-2026 02:30:27 UTC] PHP Fatal error:  Class 'FontLib\BinaryStream' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/lib/php-font-lib/classes/Glyph/Outline.php on line 20
+[10-Apr-2026 22:17:54 UTC] PHP Fatal error:  Class 'FontLib\Glyph\Outline' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/lib/php-font-lib/classes/Glyph/OutlineComposite.php on line 17
+[11-Apr-2026 05:13:24 UTC] PHP Fatal error:  Class 'FontLib\BinaryStream' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/lib/php-font-lib/classes/Glyph/Outline.php on line 20
+[11-Apr-2026 05:57:57 UTC] PHP Fatal error:  Class 'FontLib\Glyph\Outline' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/lib/php-font-lib/classes/Glyph/OutlineSimple.php on line 17

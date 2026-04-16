@@ -26,3 +26,4 @@
 [14-Apr-2025 19:09:32 UTC] PHP Fatal error:  Interface 'PHPExcel_IComparable' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Worksheet/Drawing/Shadow.php on line 37
 [24-Apr-2025 00:49:21 UTC] PHP Fatal error:  Interface 'PHPExcel_IComparable' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Worksheet/Drawing/Shadow.php on line 37
 [02-May-2025 10:27:33 UTC] PHP Fatal error:  Interface 'PHPExcel_IComparable' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Worksheet/Drawing/Shadow.php on line 37
+[05-Apr-2026 19:27:50 UTC] PHP Fatal error:  Interface 'PHPExcel_IComparable' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Worksheet/Drawing/Shadow.php on line 37

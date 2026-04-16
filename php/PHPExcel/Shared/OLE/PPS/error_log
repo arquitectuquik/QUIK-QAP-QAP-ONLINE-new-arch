@@ -73,3 +73,7 @@
 [15-Jul-2025 03:40:54 UTC] PHP Fatal error:  Class 'PHPExcel_Shared_OLE_PPS' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Shared/OLE/PPS/File.php on line 31
 [18-Jul-2025 17:14:02 UTC] PHP Fatal error:  Class 'PHPExcel_Shared_OLE_PPS' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Shared/OLE/PPS/Root.php on line 31
 [18-Jul-2025 18:01:48 UTC] PHP Fatal error:  Class 'PHPExcel_Shared_OLE_PPS' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Shared/OLE/PPS/File.php on line 31
+[29-Mar-2026 19:39:13 UTC] PHP Fatal error:  Class 'PHPExcel_Shared_OLE_PPS' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Shared/OLE/PPS/File.php on line 31
+[10-Apr-2026 22:08:04 UTC] PHP Fatal error:  Class 'PHPExcel_Shared_OLE_PPS' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Shared/OLE/PPS/File.php on line 31
+[11-Apr-2026 07:09:29 UTC] PHP Fatal error:  Class 'PHPExcel_Shared_OLE_PPS' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Shared/OLE/PPS/Root.php on line 31
+[13-Apr-2026 05:25:25 UTC] PHP Fatal error:  Class 'PHPExcel_Shared_OLE_PPS' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Shared/OLE/PPS/Root.php on line 31

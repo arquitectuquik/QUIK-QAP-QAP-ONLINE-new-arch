@@ -29,3 +29,5 @@
 [18-Mar-2025 00:00:17 UTC] PHP Fatal error:  Class 'PHPExcel_Shared_File' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Shared/ZipArchive.php on line 29
 [14-Apr-2025 18:47:57 UTC] PHP Fatal error:  Class 'PHPExcel_Shared_File' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Shared/ZipArchive.php on line 29
 [16-Apr-2025 04:21:27 UTC] PHP Fatal error:  Class 'PHPExcel_Shared_File' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Shared/ZipArchive.php on line 29
+[31-Mar-2026 11:42:46 UTC] PHP Fatal error:  Class 'PHPExcel_Shared_File' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Shared/ZipArchive.php on line 29
+[08-Apr-2026 11:00:59 UTC] PHP Fatal error:  Class 'PHPExcel_Shared_File' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Shared/ZipArchive.php on line 29

@@ -74,3 +74,11 @@
 [24-Apr-2025 03:29:56 UTC] PHP Fatal error:  Class 'setasign\Fpdi\Tcpdf\Fpdi' not found in /home/panequik/public_html/qap_online/php/informe/fpdi/src/TcpdfFpdi.php on line 21
 [13-Jul-2025 05:40:29 UTC] PHP Fatal error:  Class 'setasign\Fpdi\FpdfTpl' not found in /home/panequik/public_html/qap_online/php/informe/fpdi/src/Fpdi.php on line 25
 [13-Jul-2025 09:59:04 UTC] PHP Fatal error:  Class 'setasign\Fpdi\Tcpdf\Fpdi' not found in /home/panequik/public_html/qap_online/php/informe/fpdi/src/TcpdfFpdi.php on line 21
+[24-Mar-2026 06:41:18 UTC] PHP Fatal error:  Class 'FPDF' not found in /home/panequik/public_html/qap_online/php/informe/fpdi/src/FpdfTpl.php on line 20
+[24-Mar-2026 20:18:22 UTC] PHP Fatal error:  Class 'setasign\Fpdi\Tcpdf\Fpdi' not found in /home/panequik/public_html/qap_online/php/informe/fpdi/src/TcpdfFpdi.php on line 21
+[24-Mar-2026 20:26:21 UTC] PHP Fatal error:  Class 'setasign\Fpdi\FpdfTpl' not found in /home/panequik/public_html/qap_online/php/informe/fpdi/src/Fpdi.php on line 25
+[24-Mar-2026 20:31:49 UTC] PHP Fatal error:  Class 'FPDF' not found in /home/panequik/public_html/qap_online/php/informe/fpdi/src/FpdfTpl.php on line 20
+[31-Mar-2026 12:37:55 UTC] PHP Fatal error:  Class 'FPDF' not found in /home/panequik/public_html/qap_online/php/informe/fpdi/src/FpdfTpl.php on line 20
+[11-Apr-2026 00:21:23 UTC] PHP Fatal error:  Class 'setasign\Fpdi\Tcpdf\Fpdi' not found in /home/panequik/public_html/qap_online/php/informe/fpdi/src/TcpdfFpdi.php on line 21
+[11-Apr-2026 07:54:11 UTC] PHP Fatal error:  Class 'setasign\Fpdi\FpdfTpl' not found in /home/panequik/public_html/qap_online/php/informe/fpdi/src/Fpdi.php on line 25
+[11-Apr-2026 11:45:13 UTC] PHP Fatal error:  Class 'setasign\Fpdi\Tcpdf\Fpdi' not found in /home/panequik/public_html/qap_online/php/informe/fpdi/src/TcpdfFpdi.php on line 21

@@ -1,0 +1,3 @@
+php/database_backup/*.*
+*/error_log
+error_log

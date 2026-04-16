@@ -27,15 +27,15 @@ if (!function_exists('mysql_connect')) {
 
 // Configuración BD
 // [credentials - PROD]
-// $db_host = "127.0.0.1";
-// $db_user = "panequik_qap";
-// $db_pass = "QuikSAS2019*";
-// $db_name = "panequik_qaponline_v4";
-// [credentials - TEST]
-$db_host = "localhost"; 
-$db_user = "panequik_qap_test";
+$db_host = "127.0.0.1";
+$db_user = "panequik_qap";
 $db_pass = "QuikSAS2019*";
-$db_name = "panequik_qaponline_test";
+$db_name = "panequik_qaponline_v4";
+// [credentials - TEST]
+// $db_host = "localhost"; 
+// $db_user = "panequik_qap_test";
+// $db_pass = "QuikSAS2019*";
+// $db_name = "panequik_qaponline_test";
 // [credentials - local]
 // $db_host = "localhost";
 // $db_user = "root";
