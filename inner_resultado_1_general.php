@@ -3356,21 +3356,26 @@ switch ($header) {
 
 		echo "<td style='font-size:11px;width: 48%;' rowspan='3'>
 
-							<strong style='color:#21618C;'>IDENTIFICACIÓN DEL LABORATORIO: " . $pageContent["labnumber"] . " </strong><br>
+    					<strong style='color:#21618C;'>IDENTIFICACIÓN DEL LABORATORIO: " . $pageContent["labnumber"] . " </strong><br>
 
-							Código de reporte: " . $pageContent["reportidoriginal"] . " <br>
+    					Código de reporte: " . $pageContent["reportidoriginal"] . 
+    					(
+        					$pageContent["reportstatus"] == "Revaloración"
+        				    ? " - " . $pageContent["reportstatus"]
+        				    : ""
+    					) . " <br>
 
-							Ronda: " . $pageContent["programroundnumber"] . "<br>
+    					Ronda: " . $pageContent["programroundnumber"] . "<br>
 
-							Muestra: " . $pageContent["programsamplenumber"] . "<br>
+    					Muestra: " . $pageContent["programsamplenumber"] . "<br>
 
-							Código de la muestra: " . $pageContent["programsample"] . " <br>
+    					Código de la muestra: " . $pageContent["programsample"] . " <br>
 
-							Tipo de muestra: " . $pageContent["programsampletype"] . " <br>
+    					Tipo de muestra: " . $pageContent["programsampletype"] . " <br>
 
-							Fecha generación: " . strftime("%d / %B / %Y", strtotime($d)) . " <br><br>
+    					Fecha generación: " . strftime("%d / %B / %Y", strtotime($d)) . " <br><br>
 
-					</td>";
+				</td>";
 
 		echo "</tr>";
 
@@ -3466,7 +3471,7 @@ switch ($header) {
 
 
 
-							Quik SAS es una organización certificada bajo los estándares internacionales de la ISO 9001:2015 <sup>1</sup>, ISO 14001:2015 <sup>2</sup>, ISO 45001:2018 <sup>3</sup> y en cumplimiento al numeral 4.10 de ISO 17043:2010 <sup>4</sup>, garantiza la confidencialidad del presente reporte. La divulgación del presente informe se realizará únicamente al contacto autorizado por cada laboratorio. En caso de que la autoridad competente requiera información contenida en los reportes, será comunicado al participante involucrado con autorización expresa del mismo.<br><br>
+							Quik SAS es una organización certificada bajo los estándares internacionales de la ISO 9001:2015 <sup>1</sup>, ISO 14001:2015 <sup>2</sup>, ISO 45001:2018 <sup>3</sup> y en cumplimiento al numeral 4.10 de ISO 17043:2023 <sup>4</sup>, garantiza la confidencialidad del presente reporte. La divulgación del presente informe se realizará únicamente al contacto autorizado por cada laboratorio. En caso de que la autoridad competente requiera información contenida en los reportes, será comunicado al participante involucrado con autorización expresa del mismo.<br><br>
 
 							
 
@@ -3497,7 +3502,7 @@ switch ($header) {
 							
 							Los programas QAP LC están compuestos por rondas de acuerdo con la frecuencia establecida para cada programa. Las matrices utilizadas con conmutables con las muestras de las pacientes procesadas en la cotidianidad del laboratorio. El valor asignado se obtiene a partir de una comparación interlaboratorios a nivel internacional, el consenso QAP y/o un laboratorio con material o metodología de referencia trazable al JCTLM.<br><br>
 	
-                            <strong>Cálculos para el análisis estadístico cuando la media de comparación es internacional o es método trazable a material y/o avalado por el JCTLM </strong><br><br>
+                            <strong>Cálculos para el análisis estadístico cuando la media de comparación es internacional</strong><br><br>
                             <strong>Formula Desviación Estándar:</strong><br>
                             <img src='css/images/Formula D.E.png' alt='Fórmula D.E' height='38'></img><br>
                             <strong>Formula Media:</strong><br>
@@ -3563,12 +3568,23 @@ switch ($header) {
 							De acuerdo con la norma ISO 13528, debe evaluarse si la incertidumbre del valor asignado u(x<sub>pt</sub>)) es despreciable o no en relación con la desviación estándar para evaluación s*.
 							<ul>
 								<li>Si u(x<sub>pt</sub>) <= 0.3 . s*: se utiliza la fórmula  del z-score robusto.</li><br>
-								<img src='css/images/Formula zscore robusto.png' alt='Fórmula zscore robusto' height='35'></img><br>
-								<img src='css/images/Descripcion z robusta.png' alt='Fórmula zscore robusto' height='62'></img><br>
+								<img src='css/images/Formula zscore robusto.png' alt='Fórmula zscore robusto' height='32'></img><br>
+								<img src='css/images/Descripcion z robusta.png' alt='Fórmula zscore robusto' height='42'></img><br>
 								<li>Si u(x<sub>pt</sub>) > 0.3 . s*: se utiliza la fórmula del z-score ajustado que incluye la incertidumbre del valor asignado.</li><br>
-								<img src='css/images/Formula z prime.png' alt='Fórmula zscore prime' height='42'></img><br>
+								<img src='css/images/Formula z prime.png' alt='Fórmula zscore prime' height='38'></img>
 								
 							</ul>
+
+							<strong>Evaluación con un valor de referencia proveniente de un laboratorio con material o metodología de trazable al JCTLM </strong><br>
+							El desempeño del participante también puede evaluarse mediante la diferencia porcentual (%D) entre el resultado reportado y el valor de referencia, calculada como
+							<ul>
+								
+								<img src='css/images/Dporciento.png' alt='Dporciento' height='48'></img><br>
+								
+								
+							</ul>
+
+
 						</td>";
 
 		echo "<td style='" . $pageContent["tablestyle_border_right"] . "width: 2%;'>&nbsp;</td>";
@@ -5592,21 +5608,30 @@ switch ($header) {
 									$alarmaZscoreMisma = null;
 
 									// Lógica para la leyenda y la visualización
-									if (isset($calculoAnalitoMuestra["n"]) && $calculoAnalitoMuestra["n"] < 4 && isset($calculoAnalitoMuestraMisma["n"]) && $calculoAnalitoMuestraMisma["n"] < 4) {
-										$mostrarTodosParticipantes = false;
-										$mostrarMismaMetodologia = false;
-										$leyendaDatosInsuficientes = "No hay suficientes datos para la comparación de todos los participantes QAP y con la misma metodología.";
-									}
+																	if (
+    isset($calculoAnalitoMuestra["n"]) && $calculoAnalitoMuestra["n"] < 4 &&
+    isset($calculoAnalitoMuestraMisma["n"]) && $calculoAnalitoMuestraMisma["n"] < 4
+) {
 
-									if (isset($calculoAnalitoMuestra["n"]) && $calculoAnalitoMuestra["n"] < 4) {
-										$mostrarTodosParticipantes = false;
-										$leyendaDatosInsuficientes = "No hay suficientes datos para la comparación de todos los participantes QAP. ";
-									}
+    $mostrarTodosParticipantes = false;
+    $mostrarMismaMetodologia = false;
+    $leyendaDatosInsuficientes = "No hay suficientes datos para la comparación de todos los participantes QAP y con la misma metodología.";
 
-									if (isset($calculoAnalitoMuestraMisma["n"]) && $calculoAnalitoMuestraMisma["n"] < 4) {
-										$mostrarMismaMetodologia = false;
-										$leyendaDatosInsuficientes = "No hay suficientes datos para la comparación de la misma metodología.";
-									}
+} elseif (
+    isset($calculoAnalitoMuestraMisma["n"]) && $calculoAnalitoMuestraMisma["n"] < 4
+) {
+
+    $mostrarMismaMetodologia = false;
+    $leyendaDatosInsuficientes = "No hay suficientes datos para la comparación de participantes QAP misma metodologia";
+
+} elseif (
+    isset($calculoAnalitoMuestra["n"]) && $calculoAnalitoMuestra["n"] < 4
+) {
+
+    $mostrarTodosParticipantes = false;
+    $leyendaDatosInsuficientes = "No hay suficientes datos para la comparación de todos los participantes QAP.";
+
+}
 
 
 
@@ -5749,23 +5774,30 @@ switch ($header) {
 
 								// Lógica para la leyenda y la visualización
 		
-								if (isset($calculoAnalitoMuestra["n"]) && $calculoAnalitoMuestra["n"] < 4 && isset($calculoAnalitoMuestraMisma["n"]) && $calculoAnalitoMuestraMisma["n"] < 4) {
-									$mostrarTodosParticipantes = false;
-									$mostrarMismaMetodologia = false;
-									$leyendaDatosInsuficientes = "No hay suficientes datos para la comparación de todos los participantes QAP y con la misma metodología.";
-								}
+								if (
+    isset($calculoAnalitoMuestra["n"]) && $calculoAnalitoMuestra["n"] < 4 &&
+    isset($calculoAnalitoMuestraMisma["n"]) && $calculoAnalitoMuestraMisma["n"] < 4
+) {
 
-								if (isset($calculoAnalitoMuestra["n"]) && $calculoAnalitoMuestra["n"] < 4) {
-									$mostrarTodosParticipantes = false;
-									$leyendaDatosInsuficientes = "No hay suficientes datos para la comparación de todos los participantes QAP. ";
-								}
+    $mostrarTodosParticipantes = false;
+    $mostrarMismaMetodologia = false;
+    $leyendaDatosInsuficientes = "No hay suficientes datos para la comparación de todos los participantes QAP y con la misma metodología.";
 
-								if (isset($calculoAnalitoMuestraMisma["n"]) && $calculoAnalitoMuestraMisma["n"] < 4) {
-									$mostrarMismaMetodologia = false;
-									$leyendaDatosInsuficientes = "No hay suficientes datos para la comparación de la misma metodología.";
-								}
+} elseif (
+    isset($calculoAnalitoMuestraMisma["n"]) && $calculoAnalitoMuestraMisma["n"] < 4
+) {
 
+    $mostrarMismaMetodologia = false;
+    $leyendaDatosInsuficientes = "No hay suficientes datos para la comparación de participantes QAP misma metodologia";
 
+} elseif (
+    isset($calculoAnalitoMuestra["n"]) && $calculoAnalitoMuestra["n"] < 4
+) {
+
+    $mostrarTodosParticipantes = false;
+    $leyendaDatosInsuficientes = "No hay suficientes datos para la comparación de todos los participantes QAP.";
+
+}
 
 								// ---------------------- IMPRESIÓN DE LA TABLA ----------------------
 								// Fila para "Media de inserto" o "Media de comparación internacional"

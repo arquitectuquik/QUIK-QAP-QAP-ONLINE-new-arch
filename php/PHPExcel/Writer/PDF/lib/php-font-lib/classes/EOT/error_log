@@ -29,3 +29,6 @@
 [01-May-2025 11:12:09 UTC] PHP Fatal error:  Class 'FontLib\Header' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/lib/php-font-lib/classes/EOT/Header.php on line 21
 [01-May-2025 17:03:21 UTC] PHP Fatal error:  Class 'FontLib\TrueType\File' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/lib/php-font-lib/classes/EOT/File.php on line 16
 [26-Jun-2025 08:09:46 UTC] PHP Fatal error:  Class 'FontLib\Header' not found in /home/quikappspane/public_html/qaponline.quik-apps.com.co/php/PHPExcel/Writer/PDF/lib/php-font-lib/classes/EOT/Header.php on line 21
+[24-Mar-2026 10:50:02 UTC] PHP Fatal error:  Class 'FontLib\Header' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/lib/php-font-lib/classes/EOT/Header.php on line 21
+[24-Mar-2026 10:51:35 UTC] PHP Fatal error:  Class 'FontLib\TrueType\File' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/lib/php-font-lib/classes/EOT/File.php on line 16
+[24-Mar-2026 14:30:28 UTC] PHP Fatal error:  Class 'FontLib\Header' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/lib/php-font-lib/classes/EOT/Header.php on line 21

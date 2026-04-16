@@ -44,3 +44,9 @@
 [01-May-2025 05:03:04 UTC] PHP Fatal error:  Class 'FontLib\TrueType\Header' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/lib/php-font-lib/classes/WOFF/Header.php on line 16
 [01-May-2025 08:32:23 UTC] PHP Fatal error:  Class 'FontLib\TrueType\File' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/lib/php-font-lib/classes/WOFF/File.php on line 20
 [01-May-2025 15:54:56 UTC] PHP Fatal error:  Class 'FontLib\Table\DirectoryEntry' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/lib/php-font-lib/classes/WOFF/TableDirectoryEntry.php on line 18
+[23-Mar-2026 05:00:53 UTC] PHP Fatal error:  Class 'FontLib\Table\DirectoryEntry' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/lib/php-font-lib/classes/WOFF/TableDirectoryEntry.php on line 18
+[23-Mar-2026 05:04:46 UTC] PHP Fatal error:  Class 'FontLib\TrueType\Header' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/lib/php-font-lib/classes/WOFF/Header.php on line 16
+[23-Mar-2026 14:50:00 UTC] PHP Fatal error:  Class 'FontLib\TrueType\File' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/lib/php-font-lib/classes/WOFF/File.php on line 20
+[10-Apr-2026 20:47:09 UTC] PHP Fatal error:  Class 'FontLib\TrueType\Header' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/lib/php-font-lib/classes/WOFF/Header.php on line 16
+[10-Apr-2026 22:08:37 UTC] PHP Fatal error:  Class 'FontLib\Table\DirectoryEntry' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/lib/php-font-lib/classes/WOFF/TableDirectoryEntry.php on line 18
+[11-Apr-2026 00:21:14 UTC] PHP Fatal error:  Class 'FontLib\TrueType\File' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/lib/php-font-lib/classes/WOFF/File.php on line 20

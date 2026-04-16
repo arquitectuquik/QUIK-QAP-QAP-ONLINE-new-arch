@@ -41,19 +41,19 @@ if (!function_exists('mysql_connect')) {
 	
 	// Configuración BD
 					// [credentials - PROD]
-					// $dataBaseInfo = array(
-					// 	"db_hostname"=>"127.0.0.1"
-					// 	,"db_username"=>"panequik_qap"
-					// 	,"db_password"=>"QuikSAS2019*"
-					// 	,"db_name"=>"panequik_qaponline_v4"
-					// );
-					// [credentials - TEST]
 					$dataBaseInfo = array(
-						"db_hostname"=>"localhost"
-						,"db_username"=>"panequik_qap_test"
+						"db_hostname"=>"127.0.0.1"
+						,"db_username"=>"panequik_qap"
 						,"db_password"=>"QuikSAS2019*"
-						,"db_name"=>"panequik_qaponline_test"
+						,"db_name"=>"panequik_qaponline_v4"
 					);
+					// [credentials - TEST]
+					// $dataBaseInfo = array(
+					// 	"db_hostname"=>"localhost"
+					// 	,"db_username"=>"panequik_qap_test"
+					// 	,"db_password"=>"QuikSAS2019*"
+					// 	,"db_name"=>"panequik_qaponline_test"
+					// );
 					// [credentials - local]
 					// $dataBaseInfo = array(
 					// 	"db_hostname"=>"localhost"

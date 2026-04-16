@@ -70,3 +70,7 @@
 [01-May-2025 15:11:46 UTC] PHP Fatal error:  Class 'FontLib\Header' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/lib/php-font-lib/classes/TrueType/Header.php on line 16
 [18-Jun-2025 19:03:36 UTC] PHP Fatal error:  Class 'FontLib\BinaryStream' not found in /home/quikappspane/public_html/qaponline.quik-apps.com.co/php/PHPExcel/Writer/PDF/lib/php-font-lib/classes/TrueType/File.php on line 25
 [27-Jun-2025 01:27:29 UTC] PHP Fatal error:  Class 'FontLib\Header' not found in /home/quikappspane/public_html/qaponline.quik-apps.com.co/php/PHPExcel/Writer/PDF/lib/php-font-lib/classes/TrueType/Header.php on line 16
+[23-Mar-2026 00:22:12 UTC] PHP Fatal error:  Class 'FontLib\Table\DirectoryEntry' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/lib/php-font-lib/classes/TrueType/TableDirectoryEntry.php on line 18
+[23-Mar-2026 00:24:29 UTC] PHP Fatal error:  Class 'FontLib\Header' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/lib/php-font-lib/classes/TrueType/Header.php on line 16
+[23-Mar-2026 00:29:32 UTC] PHP Fatal error:  Class 'FontLib\BinaryStream' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/lib/php-font-lib/classes/TrueType/File.php on line 25
+[23-Mar-2026 00:39:16 UTC] PHP Fatal error:  Class 'FontLib\BinaryStream' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Writer/PDF/lib/php-font-lib/classes/TrueType/Collection.php on line 21

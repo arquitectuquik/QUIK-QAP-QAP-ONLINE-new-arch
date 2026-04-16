@@ -3634,8 +3634,12 @@ switch ($header) {
 
 							<strong style='color:#21618C;'>IDENTIFICACIÓN DEL LABORATORIO: " . $pageContent["labnumber"] . " </strong><br>
 
-							Código de reporte: " . $pageContent["reportidoriginal"] . " <br>
-
+							Código de reporte: " . $pageContent["reportidoriginal"] . 
+    					(
+        					$pageContent["reportstatus"] == "Revaloración"
+        				    ? " - " . $pageContent["reportstatus"]
+        				    : ""
+    					) . " <br>
 							Ronda: " . $pageContent["programroundnumber"] . "<br>
 
 							Muestra: " . $pageContent["programsamplenumber"] . "<br>
@@ -3742,7 +3746,7 @@ switch ($header) {
 
 
 
-							Quik SAS es una organización certificada bajo los estándares internacionales de la ISO 9001:2015 <sup>1</sup>, ISO 14001:2015 <sup>2</sup>, ISO 45001:2018 <sup>3</sup> y en cumplimiento al numeral 4.10 de ISO 17043:2010 <sup>4</sup>, garantiza la confidencialidad del presente reporte. La divulgación del presente informe se realizará únicamente al contacto autorizado por cada laboratorio. En caso de que la autoridad competente requiera información contenida en los reportes, será comunicado al participante involucrado con autorización expresa del mismo.<br><br>
+							Quik SAS es una organización certificada bajo los estándares internacionales de la ISO 9001:2015 <sup>1</sup>, ISO 14001:2015 <sup>2</sup>, ISO 45001:2018 <sup>3</sup> y en cumplimiento al numeral 4.10 de ISO 17043:2023 <sup>4</sup>, garantiza la confidencialidad del presente reporte. La divulgación del presente informe se realizará únicamente al contacto autorizado por cada laboratorio. En caso de que la autoridad competente requiera información contenida en los reportes, será comunicado al participante involucrado con autorización expresa del mismo.<br><br>
 
 							
 
@@ -3770,9 +3774,7 @@ switch ($header) {
                             Los valores asignados de la sección 3 se obtienen de laboratorios clínicos con metodologías o materiales de referencia trazables al” Joint Committee for Traceability in Laboratory Medicine” (JCTLM).<br>						
 
 							<br><strong>Diseño de los programas QAP: </strong><br><br>
-							
-							Los programas QAP LC están compuestos por rondas de acuerdo con la frecuencia establecida para cada programa. Las matrices utilizadas con conmutables con las muestras de las pacientes procesadas en la cotidianidad del laboratorio. El valor asignado se obtiene a partir de una comparación interlaboratorios a nivel internacional, el consenso QAP y/o un laboratorio con material o metodología de referencia trazable al JCTLM.<br><br>
-							
+							Los programas QAP LC están compuestos por rondas de acuerdo con la frecuencia establecida para cada programa. Las matrices utilizadas son conmutables con las muestras de pacientes procesadas en la rutina del laboratorio. El valor asignado se establece a partir del consenso interlaboratorios a nivel internacional, el consenso de participantes QAP.<br><br>					
                             <strong>Para el análisis estadístico de los datos se realizan los siguientes cálculos: </strong><br><br>
                             <strong>Formula Desviación Estandar:</strong><br>
                             <img src='css/images/Formula D.E.png' alt='Formula D.E' height='30' width='300'></img><br>
@@ -3837,7 +3839,7 @@ switch ($header) {
 
 
 
-							Quik SAS es una organización certificada bajo los estándares internacionales de la ISO 9001:2015 <sup>1</sup>, ISO 14001:2015 <sup>2</sup>, ISO 45001:2018 <sup>3</sup> y en cumplimiento al numeral 4.10 de ISO 17043:2010 <sup>4</sup>, garantiza la confidencialidad del presente reporte. La divulgación del presente informe se realizará únicamente al contacto autorizado por cada laboratorio. En caso de que la autoridad competente requiera información contenida en los reportes, será comunicado al participante involucrado con autorización expresa del mismo.<br><br>
+							Quik SAS es una organización certificada bajo los estándares internacionales de la ISO 9001:2015 <sup>1</sup>, ISO 14001:2015 <sup>2</sup>, ISO 45001:2018 <sup>3</sup> y en cumplimiento al numeral 4.10 de ISO 17043:2023 <sup>4</sup>, garantiza la confidencialidad del presente reporte. La divulgación del presente informe se realizará únicamente al contacto autorizado por cada laboratorio. En caso de que la autoridad competente requiera información contenida en los reportes, será comunicado al participante involucrado con autorización expresa del mismo.<br><br>
 
 							
 
@@ -3866,7 +3868,7 @@ switch ($header) {
 
 							<br><strong>Diseño de los programas QAP: </strong><br><br>
 							
-							Los programas QAP LC están compuestos por rondas de acuerdo con la frecuencia establecida para cada programa. Las matrices utilizadas con conmutables con las muestras de las pacientes procesadas en la cotidianidad del laboratorio. El valor asignado se obtiene a partir de una comparación interlaboratorios a nivel internacional, el consenso QAP y/o un laboratorio con material o metodología de referencia trazable al JCTLM.<br><br>
+							Los programas QAP LC están compuestos por rondas de acuerdo con la frecuencia establecida para cada programa. Las matrices utilizadas son conmutables con las muestras de pacientes procesadas en la rutina del laboratorio. El valor asignado se establece a partir del consenso interlaboratorios a nivel internacional, el consenso de participantes QAP y el valor correspondiente a la muestra (VAV). La valoración del desempeño se emite con base en la concordancia del resultado del participante frente al VAV.<br><br>
 						</td>";
 
 				echo "<td style='" . $pageContent["tablestyle_border_right"] . "width: 2%;'>&nbsp;</td>";
@@ -4739,11 +4741,13 @@ switch ($header) {
 						echo "</table>";
 
 						tablePrinter('br', 'no_border');
+						tablePrinter('tablenotifications', 'null');
 
+					tablePrinter('br', 'no_border');
 
-
-						echo "</div>";
-
+					// tablePrinter('footer',0);						
+		
+					echo "</div>";
 
 
 						echo "<!-- sheet separator -->";
