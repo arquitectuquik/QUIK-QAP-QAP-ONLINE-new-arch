@@ -635,3 +635,135 @@
 .dataTables_filter input {
     border: 1px solid #ccc !important;
 }
+
+/* --- VENTANA MODAL DE ANALITO-METODOLOGIA-UNIDAD (AMU) --- */
+#windowConfigAMU {
+    position: fixed;
+    top: 50px; 
+    left: 10%; 
+    z-index: 1050;
+    background: white;
+    border-radius: 4px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.4); 
+    width: 80%; 
+    max-width: 1400px;
+    max-height: 85vh; 
+    overflow: hidden;
+    border: none;
+}
+
+#windowConfigAMU .panel-heading {
+    background-color: #105aaf; 
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 4px 4px 0 0;
+}
+
+#windowConfigAMU .panel-heading .title-text {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0;
+}
+
+#windowConfigAMU .panel-heading .close {
+    font-size: 1.4em;
+    color: #ffffff;
+    opacity: 0.8;
+    text-shadow: none;
+    outline: none;
+}
+
+#windowConfigAMU .panel-body {
+    padding: 20px;
+    background-color: #fff;
+}
+
+.amu-container {
+    display: flex;
+    gap: 20px; 
+    align-items: flex-start;
+}
+
+.amu-column {
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    background-color: #fcfcfc;
+}
+
+.amu-form-column {
+    flex: 0 0 350px;
+}
+.amu-list-column {
+    flex: 1; 
+}
+
+.amu-column .column-title {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #333;
+    border-bottom: 1px dashed #ddd;
+    padding-bottom: 8px;
+    font-weight: bold;
+    font-size: 14px; 
+    letter-spacing: 0.5px;
+}
+
+.table-responsive {
+    overflow-y: auto; 
+    height: 70vh; 
+    border: 1px solid #ddd;
+    background: #fff;
+}
+
+.table-responsive thead th {
+    position: sticky;
+    top: 0;
+    background-color: #f1f1f1;
+    z-index: 10;
+    border-bottom: 2px solid #ddd;
+    font-size: 13px;
+}
+
+.table-responsive tbody td {
+    font-size: 13px;
+}
+
+.btn-green {
+    width: 100%;
+    margin-top: 10px;
+    background-color: #23993e; 
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.btn-green:hover {
+    background-color: #2e9745;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+@media (max-width: 1100px) {
+    .amu-container {
+        flex-direction: column; 
+    }
+    .amu-form-column, .amu-list-column {
+        width: 100%;
+        flex: none;
+    }
+    #windowConfigAMU {
+        width: 95%; 
+        left: 2.5%;
+        top: 20px;
+    }
+}

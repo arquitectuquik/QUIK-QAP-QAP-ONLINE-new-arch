@@ -70,3 +70,7 @@
 [26-Apr-2025 18:48:21 UTC] PHP Fatal error:  Class 'PHPExcel_Exception' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Reader/Exception.php on line 36
 [06-May-2025 16:57:34 UTC] PHP Fatal error:  Class 'PHPExcel_Exception' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Reader/Exception.php on line 36
 [06-May-2025 20:06:00 UTC] PHP Fatal error:  Interface 'PHPExcel_Reader_IReader' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Reader/Abstract.php on line 37
+[21-Mar-2026 14:04:11 UTC] PHP Fatal error:  Interface 'PHPExcel_Reader_IReader' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Reader/Abstract.php on line 37
+[25-Mar-2026 17:31:06 UTC] PHP Fatal error:  Class 'PHPExcel_Exception' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Reader/Exception.php on line 36
+[25-Mar-2026 23:48:59 UTC] PHP Fatal error:  Interface 'PHPExcel_Reader_IReader' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Reader/Abstract.php on line 37
+[07-Apr-2026 13:31:34 UTC] PHP Fatal error:  Class 'PHPExcel_Exception' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Reader/Exception.php on line 36

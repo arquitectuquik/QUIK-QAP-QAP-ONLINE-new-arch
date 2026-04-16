@@ -338,3 +338,53 @@ Stack trace:
 #4 /home/panequik/public_html/qap_online/php/informe/fpdf/tutorial/tuto2.php(36): FPDF->AddPage()
 #5 {main}
   thrown in /home/panequik/public_html/qap_online/php/informe/fpdf/fpdf.php on line 271
+[23-Mar-2026 15:08:10 UTC] PHP Warning:  fopen(logo_pb.png): failed to open stream: No such file or directory in /home/panequik/public_html/qap_online/php/informe/fpdf/fpdf.php on line 1260
+[23-Mar-2026 15:08:10 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'FPDF error: Can't open image file: logo_pb.png' in /home/panequik/public_html/qap_online/php/informe/fpdf/fpdf.php:271
+Stack trace:
+#0 /home/panequik/public_html/qap_online/php/informe/fpdf/fpdf.php(1262): FPDF->Error('Can't open imag...')
+#1 /home/panequik/public_html/qap_online/php/informe/fpdf/fpdf.php(886): FPDF->_parsepng('logo_pb.png')
+#2 /home/panequik/public_html/qap_online/php/informe/fpdf/tutorial/tuto2.php(10): FPDF->Image('logo_pb.png', 10, 8, 33)
+#3 /home/panequik/public_html/qap_online/php/informe/fpdf/fpdf.php(334): PDF->Header()
+#4 /home/panequik/public_html/qap_online/php/informe/fpdf/tutorial/tuto2.php(36): FPDF->AddPage()
+#5 {main}
+  thrown in /home/panequik/public_html/qap_online/php/informe/fpdf/fpdf.php on line 271
+[25-Mar-2026 20:05:12 UTC] PHP Warning:  fopen(logo_pb.png): failed to open stream: No such file or directory in /home/panequik/public_html/qap_online/php/informe/fpdf/fpdf.php on line 1260
+[25-Mar-2026 20:05:12 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'FPDF error: Can't open image file: logo_pb.png' in /home/panequik/public_html/qap_online/php/informe/fpdf/fpdf.php:271
+Stack trace:
+#0 /home/panequik/public_html/qap_online/php/informe/fpdf/fpdf.php(1262): FPDF->Error('Can't open imag...')
+#1 /home/panequik/public_html/qap_online/php/informe/fpdf/fpdf.php(886): FPDF->_parsepng('logo_pb.png')
+#2 /home/panequik/public_html/qap_online/php/informe/fpdf/tutorial/tuto2.php(10): FPDF->Image('logo_pb.png', 10, 8, 33)
+#3 /home/panequik/public_html/qap_online/php/informe/fpdf/fpdf.php(334): PDF->Header()
+#4 /home/panequik/public_html/qap_online/php/informe/fpdf/tutorial/tuto2.php(36): FPDF->AddPage()
+#5 {main}
+  thrown in /home/panequik/public_html/qap_online/php/informe/fpdf/fpdf.php on line 271
+[07-Apr-2026 16:46:32 UTC] PHP Warning:  fopen(logo_pb.png): failed to open stream: No such file or directory in /home/panequik/public_html/qap_online/php/informe/fpdf/fpdf.php on line 1260
+[07-Apr-2026 16:46:32 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'FPDF error: Can't open image file: logo_pb.png' in /home/panequik/public_html/qap_online/php/informe/fpdf/fpdf.php:271
+Stack trace:
+#0 /home/panequik/public_html/qap_online/php/informe/fpdf/fpdf.php(1262): FPDF->Error('Can't open imag...')
+#1 /home/panequik/public_html/qap_online/php/informe/fpdf/fpdf.php(886): FPDF->_parsepng('logo_pb.png')
+#2 /home/panequik/public_html/qap_online/php/informe/fpdf/tutorial/tuto2.php(10): FPDF->Image('logo_pb.png', 10, 8, 33)
+#3 /home/panequik/public_html/qap_online/php/informe/fpdf/fpdf.php(334): PDF->Header()
+#4 /home/panequik/public_html/qap_online/php/informe/fpdf/tutorial/tuto2.php(36): FPDF->AddPage()
+#5 {main}
+  thrown in /home/panequik/public_html/qap_online/php/informe/fpdf/fpdf.php on line 271
+[07-Apr-2026 17:01:52 UTC] PHP Warning:  fopen(logo_pb.png): failed to open stream: No such file or directory in /home/panequik/public_html/qap_online/php/informe/fpdf/fpdf.php on line 1260
+[07-Apr-2026 17:01:52 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'FPDF error: Can't open image file: logo_pb.png' in /home/panequik/public_html/qap_online/php/informe/fpdf/fpdf.php:271
+Stack trace:
+#0 /home/panequik/public_html/qap_online/php/informe/fpdf/fpdf.php(1262): FPDF->Error('Can't open imag...')
+#1 /home/panequik/public_html/qap_online/php/informe/fpdf/fpdf.php(886): FPDF->_parsepng('logo_pb.png')
+#2 /home/panequik/public_html/qap_online/php/informe/fpdf/tutorial/tuto2.php(10): FPDF->Image('logo_pb.png', 10, 8, 33)
+#3 /home/panequik/public_html/qap_online/php/informe/fpdf/fpdf.php(334): PDF->Header()
+#4 /home/panequik/public_html/qap_online/php/informe/fpdf/tutorial/tuto2.php(36): FPDF->AddPage()
+#5 {main}
+  thrown in /home/panequik/public_html/qap_online/php/informe/fpdf/fpdf.php on line 271
+[15-Apr-2026 14:08:49 UTC] PHP Warning:  fopen(logo_pb.png): failed to open stream: No such file or directory in /home/panequik/public_html/qap_online/php/informe/fpdf/fpdf.php on line 1260
+[15-Apr-2026 14:08:49 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'FPDF error: Can't open image file: logo_pb.png' in /home/panequik/public_html/qap_online/php/informe/fpdf/fpdf.php:271
+Stack trace:
+#0 /home/panequik/public_html/qap_online/php/informe/fpdf/fpdf.php(1262): FPDF->Error('Can't open imag...')
+#1 /home/panequik/public_html/qap_online/php/informe/fpdf/fpdf.php(886): FPDF->_parsepng('logo_pb.png')
+#2 /home/panequik/public_html/qap_online/php/informe/fpdf/tutorial/tuto2.php(10): FPDF->Image('logo_pb.png', 10, 8, 33)
+#3 /home/panequik/public_html/qap_online/php/informe/fpdf/fpdf.php(334): PDF->Header()
+#4 /home/panequik/public_html/qap_online/php/informe/fpdf/tutorial/tuto2.php(36): FPDF->AddPage()
+#5 {main}
+  thrown in /home/panequik/public_html/qap_online/php/informe/fpdf/fpdf.php on line 271

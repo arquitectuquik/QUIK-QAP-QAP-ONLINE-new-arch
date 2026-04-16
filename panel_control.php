@@ -1887,8 +1887,8 @@ actionRestriction_102();
 
 											<th class="center-text">Puntuacion</th>
 
-
-											<!-- <th class="center-text">Eliminar</th> -->
+											<!-- Nueva sección de eliminar -->
+											<th class="center-text">Eliminar</th>
 
 										</tr>
 
@@ -3199,9 +3199,88 @@ actionRestriction_102();
 										</button>
 									</center>
 								</div>
+								<div class="form-group">
+									<center>
+										<button type="button" id="configMetodologiasUnidades" class="btn btn-default">
+											Metodologías y unidades habilitadas
+										</button>
+									</center>
+								</div>
 							</form>
 
 
+
+							<div class="col-xs-10 floating center" id="windowConfigAMU" hidden="hidden"
+								data-item="window">
+								<div class="panel panel-default shadow">
+									<div class="panel-heading title-bar-custom">
+										<span class="title-text">Configurar Analito, Metodología y Unidad</span>
+										<button
+											onmouseup="functionHandler('windowHandler_v2','close','windowConfigAMU');"
+											type="button" class="close" aria-label="Cerrar">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="panel-body amu-container">
+										<div class="amu-column amu-form-column">
+											<h4 class="column-title">Nueva Configuración</h4>
+											<div class="form-group">
+												<label>Programa:</label>
+												<select class="form-control" id="amu_programa">
+													<option value="">Cargando programas...</option>
+												</select>
+											</div>
+											<div class="form-group">
+												<label>Analito:</label>
+												<select class="form-control" id="amu_analito" disabled>
+													<option value="">Seleccione programa primero</option>
+												</select>
+											</div>
+											<div class="form-group">
+												<label>Metodología:</label>
+												<select class="form-control" id="amu_metodologia" disabled>
+													<option value="">Seleccione analito primero</option>
+												</select>
+											</div>
+											<div class="form-group">
+												<label>Unidad:</label>
+												<select class="form-control" id="amu_unidad" disabled>
+													<option value="">Seleccione metodología primero</option>
+												</select>
+											</div>
+											<hr>
+											<button class="action-button-custom full-width btn-green"
+												id="btnGuardarAMU">
+												<i class="fa fa-plus-circle"></i> Vincular y Agregar
+											</button>
+										</div>
+
+										<div class="amu-column amu-list-column">
+											<h4 class="column-title">Configuraciones para <span
+													id="currentProgramName">...</span></h4>
+											<div class="table-responsive">
+												<table class="table table-striped table-hover table-condensed">
+													<thead>
+														<tr>
+															<th class="text-center">Analito</th>
+															<th class="text-center">Metodología</th>
+															<th class="text-center">Unidad</th>
+															<th class="text-center">Acción</th>
+														</tr>
+													</thead>
+													<tbody id="amu_config_list">
+													</tbody>
+												</table>
+											</div>
+										</div>
+										<div id="no_configs_message" class="text-center text-muted"
+											style="display:none; padding-top: 20px;">
+											No hay configuraciones para este programa aún.
+										</div>
+									</div>
+
+								</div>
+							</div>
 						</div>
 
 

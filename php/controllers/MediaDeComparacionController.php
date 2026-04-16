@@ -285,10 +285,10 @@ class MediaDeComparacionController
                         foreach ($muestras as $iMuestra => $calculoFin) {
                             $resultado = -1;
                             if ($calculoFin["n"] >= 1) {
-                                if ($calculoFin["zscore"] >= -2 && $calculoFin["zscore"] < 2) {
+                                if ($calculoFin["zscore"] > -2 && $calculoFin["zscore"] < 2) {
                                     $resultado = 1;
                                     $indicadores["resultados"]["satisfactorio"]++;
-                                } else if (($calculoFin["zscore"] >= 2 && $calculoFin["zscore"] < 3) || ($calculoFin["zscore"] >= -3 && $calculoFin["zscore"] < -2)) {
+                                } else if (($calculoFin["zscore"] >= 2 && $calculoFin["zscore"] < 3) || ($calculoFin["zscore"] >= -3 && $calculoFin["zscore"] <= -2)) {
                                     $resultado = 0;
                                     $indicadores["resultados"]["alarma"]++;
                                 } else {
@@ -333,6 +333,55 @@ class MediaDeComparacionController
      * @return array Una estructura de datos completa con resultados, porcentajes y evaluación.
      */
     public function calcularPorcentajesDesdeArraySimple($resultadosDeCalculo)
+    {
+        $indicadores = [
+            "resultados" => [
+                "satisfactorio" => 0,
+                "alarma" => 0,
+                "no_satisfactorio" => 0,
+            ],
+            "porcentaje" => [],
+            "total" => 0,
+            "ids" => [], // No se puede popular con este array de entrada, se devuelve vacío
+            "evaluacion" => [] // Se llenará con los zscores del array de entrada
+        ];
+
+        $i = 0; // Se usará un contador como ID para la evaluación, ya que no hay IDs en el array
+        foreach ($resultadosDeCalculo as $calculo) {
+            if (isset($calculo["n"]) && $calculo["n"] >= 1 && isset($calculo["zscore"])) {
+                $resultado = -1;
+
+                if ($calculo["zscore"] > -2 && $calculo["zscore"] < 2) {
+                    $resultado = 1;
+                    $indicadores["resultados"]["satisfactorio"]++;
+                } else if (($calculo["zscore"] >= 2 && $calculo["zscore"] < 3) || ($calculo["zscore"] > -3 && $calculo["zscore"] <= -2)) {
+                    $resultado = 0;
+                    $indicadores["resultados"]["alarma"]++;
+                } else {
+                    $resultado = -1;
+                    $indicadores["resultados"]["no_satisfactorio"]++;
+                }
+
+                $indicadores["total"]++;
+                $indicadores["evaluacion"][$i] = $calculo["zscore"];
+                $i++;
+            }
+        }
+
+        // Calcular los porcentajes finales
+        foreach ($indicadores["resultados"] as $key => $valorInicador) {
+            if ($indicadores["total"] > 0) {
+                $indicadores["porcentaje"][$key] = round(($valorInicador * 100) / $indicadores["total"], 2);
+            } else {
+                $indicadores["porcentaje"][$key] = 0;
+            }
+        }
+
+        return $indicadores;
+    }
+
+    // Función que hace los mismo que la anterior pero sólo para el consenso
+    public function calcularPorcentajesDesdeArraySimpleConsenso($resultadosDeCalculo)
     {
         $indicadores = [
             "resultados" => [
@@ -445,10 +494,15 @@ class MediaDeComparacionController
         } else {
             // Fórmula desviación estándar robusta usando IQR
             $s = $iqr * 0.7413; // El factor 0.7413 escala el IQR para que sea comparable a la DE en distribuciones normales
-            // Fórmula robusta de Z-Score usando mediana e IQR
-            $zscore_cal = ($resultadoLaboratorio - $mediana) / ($s);
             // Fórmula de incertidumbre basada en IQR
             $incertidumbre_robusta = 1.25 * ($s / sqrt($n)); // 1.25 es un factor de ajuste para la incertidumbre
+            if ($incertidumbre_robusta > (0.3 * $s)) { // Según la ISO 13528
+                $zscore_cal = ($resultadoLaboratorio - $mediana) / (sqrt(pow($s, 2) + pow($incertidumbre_robusta, 2)));
+            } else {
+                // Fórmula robusta de Z-Score usando mediana e IQR
+                $zscore_cal = ($resultadoLaboratorio - $mediana) / ($s);
+            }
+
         }
 
         $diferencia = 0;

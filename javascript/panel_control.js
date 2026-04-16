@@ -60,11 +60,197 @@ function initialize() {
 
 	});
 
-	// Código nuevo para el botón de descarga de Excel
+	// Código para el botón de descarga de Excel
 	$("#descargarExcelBtn").on("click", function () {
-		// Llama a la función que ya maneja toda la lógica de tu aplicación
 		dataChangeHandler("labAnalitDownload", "NULL", $("#form6").get(0), "NULL", "NULL");
 	});
+	$(document).ready(function () {
+		$("#configMetodologiasUnidades").on("click", function () {
+			$("#windowConfigAMU").removeAttr("hidden").show();
+			console.log("Abriendo ventana de configuración de Metodologías y Unidades AMU");
+			dataChangeHandler("windowConfigMethod", "NULL", "NULL", "NULL", "NULL");
+		});
+	});
+
+	// Al cambiar el PROGRAMA -> Cargar ANALITOS y la LISTA de AMU existentes
+	$(document).on("change", "#amu_programa", function () {
+		var progId = $(this).val();
+		var progName = $(this).find('option:selected').text(); // Obtener el nombre del programa
+
+		// 1. Limpieza total preventiva de niveles inferiores y de la lista
+		$("#amu_analito").html('<option value="">Cargando...</option>').prop("disabled", true);
+		$("#amu_metodologia, #amu_unidad").html('<option value="">---</option>').prop("disabled", true);
+		$("#amu_config_list").html('<tr><td colspan="4" class="text-center">Cargando configuraciones...</td></tr>');
+		$("#no_configs_message").hide();
+		$("#currentProgramName").text(progId ? progName : "Programa no seleccionado");
+
+		if (progId !== "") {
+			statusBox('loading', 'NULL', 'Cargando analitos...', 'add', 'NULL');
+			$.post("php/panelcontrol_data_change_handler.php", { header: 'getAnalitosByPrograma', programaid: progId }, function (xml) {
+				statusBox('loading', 'NULL', 'NULL', 'remove', 'NULL');
+				var options = '<option value="">Seleccione Analito...</option>';
+				$(xml).find("item").each(function () {
+					options += '<option value="' + $(this).attr("id") + '">' + $(this).text() + '</option>';
+				});
+				$("#amu_analito").html(options).prop("disabled", false);
+			}, "xml");
+
+			//  Cargar configuraciones AMU existentes para este programa ***
+			loadAMUConfigs(progId);
+
+		} else {
+			$("#amu_analito").html('<option value="">Seleccione programa primero</option>');
+			$("#amu_config_list").html('<tr><td colspan="4" class="text-center">Seleccione un programa para ver las configuraciones.</td></tr>');
+		}
+	});
+
+	// Al cambiar el ANALITO -> Cargar METODOLOGÍAS
+	$(document).on("change", "#amu_analito", function () {
+		if ($(this).val() !== "") {
+			statusBox('loading', 'NULL', 'Cargando metodologías...', 'add', 'NULL');
+			$.post("php/panelcontrol_data_change_handler.php", { header: 'getAllMethods' }, function (xml) {
+				statusBox('loading', 'NULL', 'NULL', 'remove', 'NULL');
+				var options = '<option value="">Seleccione Metodología...</option>';
+				$(xml).find("item").each(function () {
+					options += '<option value="' + $(this).attr("id") + '">' + $(this).text() + '</option>';
+				});
+				$("#amu_metodologia").html(options).prop("disabled", false);
+				$("#amu_unidad").html('<option value="">Seleccione metodología primero</option>').prop("disabled", true); // Reset unidad
+			}, "xml");
+		} else {
+			$("#amu_metodologia").html('<option value="">Seleccione analito primero</option>').prop("disabled", true);
+			$("#amu_unidad").html('<option value="">Seleccione metodología primero</option>').prop("disabled", true);
+		}
+	});
+
+	$(document).on("change", "#amu_metodologia", function () {
+		if ($(this).val() !== "") {
+			statusBox('loading', 'NULL', 'Cargando unidades...', 'add', 'NULL');
+			$.post("php/panelcontrol_data_change_handler.php", { header: 'getAllUnits' }, function (xml) {
+				statusBox('loading', 'NULL', 'NULL', 'remove', 'NULL');
+				var options = '<option value="">Seleccione Unidad...</option>';
+				$(xml).find("item").each(function () {
+					options += '<option value="' + $(this).attr("id") + '">' + $(this).text() + '</option>';
+				});
+				$("#amu_unidad").html(options).prop("disabled", false);
+			}, "xml");
+		} else {
+			$("#amu_unidad").html('<option value="">Seleccione metodología primero</option>').prop("disabled", true);
+		}
+	});
+
+
+	// Botón de VINCULAR Y AGREGAR FINAL
+	$(document).on("click", "#btnGuardarAMU", function () {
+		var selectedProgramId = $("#amu_programa").val();
+		var data = {
+			header: 'saveAMUConfig',
+			id_programa: selectedProgramId,
+			id_analito: $("#amu_analito").val(),
+			id_metodologia: $("#amu_metodologia").val(),
+			id_unidad: $("#amu_unidad").val()
+		};
+
+		if (!data.id_analito || !data.id_metodologia || !data.id_unidad || !data.id_programa) {
+			alert("Complete todos los pasos de la selección (Programa, Analito, Metodología y Unidad).");
+			return;
+		}
+
+		statusBox('loading', 'NULL', 'Guardando configuración...', 'add', 'NULL');
+		$.post("php/panelcontrol_data_change_handler.php", data, function (xml) {
+			statusBox('loading', 'NULL', 'NULL', 'remove', 'NULL');
+
+			// Procesar la respuesta para añadir la nueva fila a la tabla
+			var responseTag = $(xml).find("response");
+			if (responseTag.attr("code") == "1") {
+				statusBox("success", 'NULL', responseTag.text(), 'add', 'NULL');
+
+				$("#amu_analito").val(''); // Resetear solo el analito
+				loadAMUConfigs(selectedProgramId);
+
+			} else {
+				errorHandler(responseTag.text());
+			}
+
+		}, "xml");
+	});
+
+	// Función para cargar y mostrar las configuraciones AMU ***
+	function loadAMUConfigs(programId) {
+		$("#amu_config_list").html('<tr><td colspan="4" class="text-center">Cargando configuraciones existentes...</td></tr>');
+		$("#no_configs_message").hide();
+
+		$.post("php/panelcontrol_data_change_handler.php", {
+			header: 'getExistingAMUConfigs',
+			programaid: programId
+		}, function (xml) {
+			var configs = $(xml).find("item");
+			var tbody = $("#amu_config_list");
+			tbody.empty(); // Limpiar antes de añadir
+
+			if (configs.length > 0) {
+				configs.each(function () {
+					var id = $(this).attr("id");
+					var analito = $(this).find("analito").text();
+					var metodologia = $(this).find("metodologia").text();
+					var unidad = $(this).find("unidad").text();
+
+
+					var fila = '<tr data-id="' + id + '">';
+					fila += '<td>' + analito + '</td>';
+					fila += '<td>' + metodologia + '</td>';
+					fila += '<td>' + unidad + '</td>';
+					fila += '<td class="text-center">';
+					fila += '<button type="button" class="btn-xs btn-remove-config" data-id="' + id + '">';
+					fila += '<i class="fa fa-trash-o"></i> x';
+					fila += '</button>';
+					fila += '</td>';
+					fila += '</tr>';
+
+					tbody.append(fila);
+				});
+				$("#no_configs_message").hide();
+			} else {
+				tbody.html('<tr><td colspan="4" class="text-center">No hay configuraciones para este programa aún.</td></tr>');
+				$("#no_configs_message").show();
+			}
+		}, "xml").fail(function () {
+			tbody.html('<tr><td colspan="4" class="text-center text-danger">Error al cargar configuraciones.</td></tr>');
+		});
+	}
+
+	// Evento para ELIMINAR una configuración AMU 
+	$(document).on("click", ".btn-remove-config", function () {
+		if (!confirm("¿Está seguro que desea eliminar esta configuración?")) {
+			return;
+		}
+
+		var configId = $(this).data("id");
+		var $row = $(this).closest("tr");
+
+		statusBox('loading', 'NULL', 'Eliminando configuración...', 'add', 'NULL');
+		$.post("php/panelcontrol_data_change_handler.php", {
+			header: 'deleteAMUConfig',
+			configid: configId
+		}, function (xml) {
+			statusBox('loading', 'NULL', 'NULL', 'remove', 'NULL');
+			var responseTag = $(xml).find("response");
+			if (responseTag.attr("code") == "1") {
+				statusBox("success", 'NULL', responseTag.text(), 'add', 'NULL');
+				$row.remove(); // Eliminar la fila de la tabla
+				// Si no quedan filas, mostrar el mensaje de "no hay configs"
+				if ($("#amu_config_list tr").length === 0) {
+					$("#amu_config_list").html('<tr><td colspan="4" class="text-center">No hay configuraciones para este programa aún.</td></tr>');
+					$("#no_configs_message").show();
+				}
+			} else {
+				errorHandler(responseTag.text());
+			}
+		}, "xml").fail(function () {
+			errorHandler("Error de comunicación con el servidor al eliminar.");
+		});
+	});
+
 
 
 	$("#form7").bind("submit", function (event) {
@@ -1293,6 +1479,31 @@ function responseHandler(val, val2, val3, val4, val5) {
 
 				break;
 
+			case "windowConfigMethod":
+				var selectProg = $("#amu_programa");
+				selectProg.empty();
+				selectProg.append('<option value="">Seleccione Programa...</option>');
+
+				var items = val.getElementsByTagName("item");
+
+				for (var i = 0; i < items.length; i++) {
+					var idProg = items[i].getAttribute("id");
+					var nombreProg = items[i].textContent;
+					selectProg.append('<option value="' + idProg + '">' + nombreProg + '</option>');
+				}
+				functionHandler('windowHandler_v2', 'open', 'windowConfigAMU');
+
+				// Inicializar draggable solo si no se ha hecho antes
+				if (!$("#windowConfigAMU").data("ui-draggable")) {
+					$("#windowConfigAMU").draggable({
+						handle: ".panel-heading",
+						cursor: "move",
+						containment: "window"
+					});
+				} else {
+					$("#windowConfigAMU").css({ top: '100px', left: '15%' });
+				}
+				break;
 
 
 			case "referenciaRegistry":
@@ -10649,7 +10860,7 @@ function responseHandler(val, val2, val3, val4, val5) {
 
 						var td3 = document.createElement("td");
 
-						// var td3 = document.createElement("td");
+						var td4 = document.createElement("td");
 
 
 
@@ -10659,7 +10870,7 @@ function responseHandler(val, val2, val3, val4, val5) {
 
 						td3.setAttribute('class', 'unselectable center-text');
 
-						// td3.setAttribute('class','unselectable center-text');
+						td4.setAttribute('class', 'center-text');
 
 
 
@@ -10677,7 +10888,7 @@ function responseHandler(val, val2, val3, val4, val5) {
 
 						td3.innerHTML = returnValues_4[x];
 
-						// td3.appendChild(button);
+						td4.appendChild(button);
 
 
 
@@ -10693,7 +10904,7 @@ function responseHandler(val, val2, val3, val4, val5) {
 
 						tr.appendChild(td3);
 
-						// tr.appendChild(td3);
+						tr.appendChild(td4);
 
 
 
@@ -16021,6 +16232,22 @@ function dataChangeHandler(val, val2, val3, val4, val5) {
 
 			break;
 
+		case "windowConfigMethod":
+			statusBox('loading', 'NULL', 'Cargando configuración...', 'add', 'NULL');
+
+			$.ajax({
+				contentType: "application/x-www-form-urlencoded",
+				url: "php/panelcontrol_data_change_handler.php",
+				type: "POST",
+				data: "header=" + id,
+				dataType: "xml",
+				success: function (xml) {
+					statusBox('loading', 'NULL', 'NULL', 'remove', 'NULL');
+					responseHandler(xml, id, "NULL", "NULL", "NULL");
+				}
+			});
+			break;
+
 		case "sampleRegistry":
 
 
@@ -17978,6 +18205,7 @@ function dataChangeHandler(val, val2, val3, val4, val5) {
 
 
 			break;
+
 		case "labAnalitDownload":
 			// Lógica para el botón de descarga del enrolamiento de los laboratorios
 			var formData = new FormData();
@@ -32241,6 +32469,13 @@ function functionHandler(val, val2, val3, val4, val5, val6) {
 
 			tbody = val2.parentNode.parentNode.parentNode.nextSibling.nextSibling;
 
+			console.log('checkAll ejecutado', {
+				elemento: val2,
+				checked: val2.checked,
+				tbody: tbody,
+				tbodyId: tbody.id || 'sin id'
+			});
+
 
 
 			if (val2.checked == false) {
@@ -33114,6 +33349,21 @@ function functionHandler(val, val2, val3, val4, val5, val6) {
 			$("#" + val2).toggle();
 
 
+
+			break;
+
+		case 'windowHandler_v2':
+
+			var item = val3;
+
+			switch (val2.toLowerCase()) {
+				case 'open':
+					$("#" + item).removeAttr("hidden");
+					break;
+				case 'close':
+					$("#" + item).attr("hidden", "hidden");
+					break;
+			}
 
 			break;
 

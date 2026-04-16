@@ -23,3 +23,8 @@
 [16-Apr-2025 01:52:19 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Chart/Renderer/jpgraph.php on line 30
 [26-Apr-2025 02:47:35 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Chart/Renderer/jpgraph.php on line 30
 [18-Jul-2025 22:49:02 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Chart/Renderer/jpgraph.php on line 30
+[24-Mar-2026 06:41:28 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Chart/Renderer/jpgraph.php on line 30
+[25-Mar-2026 03:04:51 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Chart/Renderer/jpgraph.php on line 30
+[25-Mar-2026 21:56:36 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Chart/Renderer/jpgraph.php on line 30
+[26-Mar-2026 06:57:30 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Chart/Renderer/jpgraph.php on line 30
+[03-Apr-2026 11:50:31 UTC] PHP Fatal error:  Class 'PHPExcel_Settings' not found in /home/panequik/public_html/qap_online/php/PHPExcel/Chart/Renderer/jpgraph.php on line 30

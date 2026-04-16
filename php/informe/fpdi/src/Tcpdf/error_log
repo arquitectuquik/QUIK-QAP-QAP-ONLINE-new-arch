@@ -21,3 +21,4 @@
 [29-Mar-2025 03:30:52 UTC] PHP Fatal error:  Class 'TCPDF' not found in /home/panequik/public_html/qap_online/php/informe/fpdi/src/Tcpdf/Fpdi.php on line 26
 [25-Apr-2025 22:28:37 UTC] PHP Fatal error:  Class 'TCPDF' not found in /home/panequik/public_html/qap_online/php/informe/fpdi/src/Tcpdf/Fpdi.php on line 26
 [18-Jul-2025 16:37:55 UTC] PHP Fatal error:  Class 'TCPDF' not found in /home/panequik/public_html/qap_online/php/informe/fpdi/src/Tcpdf/Fpdi.php on line 26
+[26-Mar-2026 08:44:17 UTC] PHP Fatal error:  Class 'TCPDF' not found in /home/panequik/public_html/qap_online/php/informe/fpdi/src/Tcpdf/Fpdi.php on line 26

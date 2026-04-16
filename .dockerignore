@@ -1,0 +1,45 @@
+# Archivos de Node.js
+node_modules
+npm-debug.log
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# Archivos de git
+.git
+.gitignore
+
+# Archivos temporales
+*.tmp
+*.temp
+*.log
+
+# Carpetas de cache
+.cache
+*.cache
+
+# Archivos de backup
+*.bak
+*.backup
+
+# Enlaces simbólicos problemáticos
+**/symlink*
+**/*symlink*
+
+# Docker
+Dockerfile*
+docker-compose*
+.dockerignore
+
+# Archivos de entorno
+.env.local
+.env.development
+.env.test
+.env.production
