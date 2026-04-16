@@ -3356,21 +3356,26 @@ switch ($header) {
 
 		echo "<td style='font-size:11px;width: 48%;' rowspan='3'>
 
-							<strong style='color:#21618C;'>IDENTIFICACIÓN DEL LABORATORIO: " . $pageContent["labnumber"] . " </strong><br>
+    					<strong style='color:#21618C;'>IDENTIFICACIÓN DEL LABORATORIO: " . $pageContent["labnumber"] . " </strong><br>
 
-							Código de reporte: " . $pageContent["reportidoriginal"] . " - Revaloración <br>
+    					Código de reporte: " . $pageContent["reportidoriginal"] . 
+    					(
+        					$pageContent["reportstatus"] == "Revaloración"
+        				    ? " - " . $pageContent["reportstatus"]
+        				    : ""
+    					) . " <br>
 
-							Ronda: " . $pageContent["programroundnumber"] . "<br>
+    					Ronda: " . $pageContent["programroundnumber"] . "<br>
 
-							Muestra: " . $pageContent["programsamplenumber"] . "<br>
+    					Muestra: " . $pageContent["programsamplenumber"] . "<br>
 
-							Código de la muestra: " . $pageContent["programsample"] . " <br>
+    					Código de la muestra: " . $pageContent["programsample"] . " <br>
 
-							Tipo de muestra: " . $pageContent["programsampletype"] . " <br>
+    					Tipo de muestra: " . $pageContent["programsampletype"] . " <br>
 
-							Fecha generación: " . strftime("%d / %B / %Y", strtotime($d)) . " <br><br>
+    					Fecha generación: " . strftime("%d / %B / %Y", strtotime($d)) . " <br><br>
 
-					</td>";
+				</td>";
 
 		echo "</tr>";
 

@@ -3634,8 +3634,12 @@ switch ($header) {
 
 							<strong style='color:#21618C;'>IDENTIFICACIÓN DEL LABORATORIO: " . $pageContent["labnumber"] . " </strong><br>
 
-							Código de reporte: " . $pageContent["reportidoriginal"] . " - Revaloración <br>
-
+							Código de reporte: " . $pageContent["reportidoriginal"] . 
+    					(
+        					$pageContent["reportstatus"] == "Revaloración"
+        				    ? " - " . $pageContent["reportstatus"]
+        				    : ""
+    					) . " <br>
 							Ronda: " . $pageContent["programroundnumber"] . "<br>
 
 							Muestra: " . $pageContent["programsamplenumber"] . "<br>
